@@ -70,7 +70,7 @@ AWS Regions are physical locations around the world that contain groups of data 
 An Availability Zone consists of one or more data centers with redundant power, networking, and connectivity. 
 
 
-![Region and Availability zones](../../images/AWSRegion.png)
+![Region and Availability zones](../images/AWSRegion.png)
 
 Regions and Availability Zones are designed to provide low-latency, fault-tolerant access to services for users within a given area.
 
