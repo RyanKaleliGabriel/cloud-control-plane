@@ -2,7 +2,7 @@
 
 With serverless computing, you run applications without managing the underlying infrastructure. In the following lessons, you learn how to take full advantage of it with powerful compute services.
 
-## Unmanaged and managed services
+### Unmanaged and managed services
 
 With unmanaged compute services like Amazon EC2, AWS takes care of the underlying physical infrastructure, but you're responsible for setting up, securing, and maintaining the operating system, network configurations, and applications on your instances.
 
@@ -10,7 +10,7 @@ Managed services, on the other hand, reduce the amount of infrastructure you nee
 
 ![Unmanaged vs Managed Services](../images/unamanaged_vs_managed.png)
 
-## Fully-managed services
+### Fully-managed services
 Fully-managed services—like serverless ones—take abstraction even further, eliminating the need to provision or manage any servers at all. The underlying infrastructure is fully managed by AWS, so you can focus entirely on writing and deploying code. 
 
 Later in this module, you will explore Lambda. Lambda is a serverless compute service where AWS handles the infrastructure, scaling, and availability, while you remain responsible for securing and managing your application code.
@@ -23,14 +23,14 @@ Lambda is a serverless compute service that runs code in response to events with
 
 You are charged only for the compute time consumed, down to the millisecond. Lambda handles execution, scaling, and resource allocation. You can optimize performance by configuring the appropriate memory size for your function.
 
-## How Lambda works
+### How Lambda works
 
 1. Upload code to Lambda. First, upload the code to Lambda, which uploads as a Lambda function.
 2. Set code to trigger from an event source. Next, configure your code to be triggered by events, like AWS services, mobile apps, or HTTP requests.
 3. Run code when triggered. Your code runs only when an event occurs, like a file upload or user action. Lambda automatically handles all the server management, scaling, and infrastructure. The Lambda runtime executes your function code using the event data passed to it. This way, your code runs reliably, securely, and efficiently—without you managing the servers or environment it runs in.
 4. Pay only for the compute time used. You are charged only for the compute time consumed, down to the millisecond. The price depends on the amount of memory that you allocate to your function.
 
-## Lambda use cases
+### Lambda use cases
 
 Lambda is ideal for building responsive, event-driven applications across a wide range of industries.
 
@@ -64,7 +64,7 @@ This helps to move, update, and manage. Containers are faster and lighter than v
 ## Deployment consistency with containers
 When a developer’s environment differs from staging or production, deployments can fail and become difficult to debug. Containers solve this by keeping the application’s environment consistent everywhere, making deployments smoother and assisting troubleshooting.
 
-## Scaling containers with orchestration
+### Scaling containers with orchestration
 
 As containerized applications scale, managing them becomes more complex. A setup that began with a few containers on a single host can quickly grow into hundreds or thousands of containers across multiple hosts. At that scale, manually handling container lifecycle, monitoring, and general operations becomes unsustainable. This is where orchestration tools come in. They automate deployment, scaling, and management to keep everything running smoothly.
 
@@ -72,7 +72,7 @@ As containerized applications scale, managing them becomes more complex. A setup
 
 AWS has a set of tools for managing containers that fits into three categories: orchestration, registry, and compute.
 
-## Amazon ECS
+### Amazon ECS
 Amazon Elastic Container Service (Amazon ECS) is a scalable container orchestration service for running and managing containers on AWS, like Docker containers. Docker is a software platform for building, testing, and deploying applications quickly.
 
 Amazon ECS launch types
@@ -81,7 +81,7 @@ Amazon ECS launch types
 
  - Amazon ECS with AWS Fargate is perfect for startups or small teams building web applications with variable traffic. It's a serverless option—no server management required—so teams can focus on development while Amazon ECS handles scaling and orchestration.
 
-## Amazon EKS
+### Amazon EKS
 
 Amazon Elastic Kubernetes Service (Amazon EKS) is a fully managed service for running Kubernetes on AWS. It simplifies deploying, managing, and scaling containerized applications using open-source Kubernetes, with ongoing support and updates from the broader community.
 
@@ -89,11 +89,11 @@ Amazon EKS launch types
  - Amazon EKS with Amazon EC2: This is best for enterprises needing full control over infrastructure. It offers deep customization of EC2 instances alongside Kubernetes scalability—ideal for complex, large-scale workloads.
  - Amazon EKS with AWS Fargate: This is great for teams wanting Kubernetes flexibility without managing servers. It combines Kubernetes power with serverless simplicity, helping to scale applications quickly across various use cases.
 
- ## Amazon ECR
+### Amazon ECR
 
 Amazon Elastic Container Registry (Amazon ECR) is where you can store, manage, and deploy container images. It supports container images that follow the Open Container Initiative (OCI) standards. You can push, pull, and manage images in your Amazon ECR repositories using standard container tooling and command line interfaces (CLIs).
 
-## Fargate
+### Fargate
 
 AWS Fargate is a serverless compute engine for containers. It works with both Amazon ECS and Amazon EKS. Fargate is a container hosting platform, unlike Amazon ECS and Amazon EKS, which are both container orchestration services.
 
@@ -110,12 +110,15 @@ AWS offers purpose-built services for specific needs, such as streamlining web a
 
 2. AWS Batch
    AWS Batch is a fully managed service that you can use to run batch computing workloads on AWS. It automatically schedules, manages, and scales compute resources for batch jobs, optimizing resource allocation based on job requirements.
+   
    Good for: Processing large-scale, parallel workloads in areas like scientific computing, financial risk analysis, media transcoding, big data processing, machine learning training, and genomics research
 
 3. Lightsail
    Amazon Lightsail is a cloud service offering virtual private servers (VPSs), storage, databases, and networking at a predictable monthly price. It’s ideal for small businesses, basic workloads, and developers seeking a straightforward AWS experience without the complexity of the full AWS Management Console.
+   
    Good for: Basic web applications, low-traffic websites, development and testing environments, small business websites, blogs, and learning cloud services
 
 4. Outposts
-   AWS Outposts is a fully managed hybrid cloud solution that extends AWS infrastructure and services to on-premises data centers. It provides a consistent experience between on premises and the AWS Cloud, offering compute, storage, and networking components.
+   AWS Outposts is a fully managed hybrid cloud solution that extends AWS infrastructure and services to on-premises data centers. AWS installs Outposts hardware (servers, storage, networking) in your on-premises data center. That hardware is connected back to an AWS Region using a reliable network link. You run AWS services locally (like EC2, EBS, ECS, EKS) on that hardware. You manage everything using the same AWS tools (Console, CLI, APIs) as if it were in the cloud. AWS handles maintenance, updates, and patching for the Outposts infrastructure.
+   
    Good for: Low-latency applications, data processing in remote locations, migrating and modernizing legacy applications, and meeting regulatory compliance or data residency requirements

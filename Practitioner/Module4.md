@@ -1,4 +1,4 @@
-## Introduction to Going Global
+# Introduction to Going Global
 
 ## How to choose a Region or set of Regions
 If we were to expand our coffee shop by opening new locations, there would be multiple things to consider, like customer demand and development cost. Similarly, you have several factors to consider when selecting a Region or set of Regions for your real-life resources.
@@ -23,9 +23,7 @@ Another important consideration of a coffee shop expansion would be to maintain 
 
 ## Diving Deeper into AWS Global Infrastructure
 
-## Designing highly available architectures
-
-## Deploying multi-Region and multi-AZ resources
+### Designing highly available architectures by deploying multi-Region and multi-AZ resources
 
 You've learned how deploying your cloud resources to multiple Regions can achieve high availability. In addition to deploying to multiple Regions, you also want to deploy resources to multiple Availability Zones. By building redundant architectures or replicating your resources across multiple levels of AWS infrastructure, you can improve application reliability so that your users have access to your content when they need it.
 
@@ -37,7 +35,7 @@ In addition to high availability, the AWS Global Infrastructure also helps you a
 
  - Elasticity: Elasticity refers to the ability of a system to scale resources up or down automatically in response to changes in demand. AWS infrastructure is set up for you to scale resources up and down on demand.
 
- ## Edge locations
+## Edge locations
 
 In addition to AWS Regions that contain Availability Zones, AWS has a global edge network that provides quicker content access to users outside of standard Regions. These edge locations are strategically placed in areas like Atlanta, Georgia, USA or Shanghai, China to provide low-latency access to AWS services and content delivery. Edge locations offer multiple services to run closer to end users, including AWS networking services like Amazon CloudFront. CloudFront is a content delivery network (CDN) and caching system that you learn more about later in this training.
 
@@ -54,13 +52,13 @@ In addition to AWS Regions that contain Availability Zones, AWS has a global edg
 
 ## Infrastructure and Automation
 
-## CloudFormation
+### CloudFormation
 
 CloudFormation is a service that helps you model and set up your AWS resources so that you can spend less time managing those resources and more time focusing on your applications that run in AWS. With CloudFormation, you can define your infrastructure as code. You create a template that describes all the AWS resources that you want (like Amazon Elastic Compute Cloud (Amazon EC2) instances), and CloudFormation takes care of provisioning and configuring those resources for you.
 
 ## Interacting with AWS resources
 
-As you've learned, there are a number of ways you can operate in the AWS Cloud. To interact with AWS resources, you must invoke AWS APIs. To interact with these APIs, you can use the AWS SDKs, the AWS Command Line Interface (AWS CLI), the AWS Management Console, or IaC tools such as CloudFormation. To review functions and use cases for using these approaches, choose each of the numbered markers.
+As you've learned, there are a number of ways you can operate in the AWS Cloud. To interact with AWS resources, you must invoke AWS APIs. To interact with these APIs, you can use the AWS SDKs, the AWS Command Line Interface (AWS CLI), the AWS Management Console, or IaC tools such as CloudFormation.
 
 1. Programmatic Access. Programmatic access includes options like the AWS CLI and AWS SDKs.
    Use cases for AWS CLI actions and SDKs include the following:
