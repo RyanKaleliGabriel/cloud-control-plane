@@ -8,14 +8,14 @@ With unmanaged compute services like Amazon EC2, AWS takes care of the underlyin
 
 Managed services, on the other hand, reduce the amount of infrastructure you need to manage. While AWS handles much of the operational overhead, you might still need to perform some provisioning or configuration depending on the service.
 
-![Unmanaged vs Managed Services](../../images/unamanaged_vs_managed.png)
+![Unmanaged vs Managed Services](../images/unamanaged_vs_managed.png)
 
 ## Fully-managed services
 Fully-managed services—like serverless ones—take abstraction even further, eliminating the need to provision or manage any servers at all. The underlying infrastructure is fully managed by AWS, so you can focus entirely on writing and deploying code. 
 
 Later in this module, you will explore Lambda. Lambda is a serverless compute service where AWS handles the infrastructure, scaling, and availability, while you remain responsible for securing and managing your application code.
 
-![Fully managed Services](../../images/fully_managed.png)
+![Fully managed Services](../images/fully_managed.png)
 
 ## AWS Lambda
 
