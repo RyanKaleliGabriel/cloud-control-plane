@@ -1,14 +1,14 @@
-## Introduction to Networking
+# Introduction to Networking
 
 The term networking refers to interconnected devices that can exchange data and resources. Networking in the AWS Cloud consists of the infrastructure and services working together to host your applications, data, and any other resources you might need. 
 
 ## Networking components
 
-## Amazon Virtual Private Cloud (Amazon VPC)
+### Amazon Virtual Private Cloud (Amazon VPC)
 
 An Amazon VPC lets you provision a logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network that you define.
 
-## Subnet
+### Subnet
 
 Subnets are used to organize your resources and can be made publicly or privately accessible. A private subnet is commonly used to contain resources like a database storing customer or transactional information. A public subnet is commonly used for resources like a customer-facing website.
 
@@ -16,7 +16,7 @@ Subnets are used to organize your resources and can be made publicly or privatel
 
 If you are new to IT or cloud computing, you might not have worked with architectural diagrams before. A diagram is, simply put, a schematic or map of your network in the AWS Cloud. It can provide a visual of how users or applications access services, resources, or data. A picture is worth a thousand words. With a quick glance, you can see if the network was built for redundancy, security, and even scalability. It can also serve as a blueprint so you don't forget important connections when building your solutions.
 
-![Network Diagrams](../../images/Network_diagrams.png)
+![Network Diagrams](../images/Network_diagrams.png)
 
 AWS Cloud, Regions, Amazon VPC, and AZs
 
@@ -77,7 +77,7 @@ VPN creates a connection that is more like a secure tunnel through the internet.
 
 With a virtual private gateway, you can establish a VPN connection between your VPC and a private network, such as an on-premises data center or internal corporate network. A virtual private gateway allows traffic into the VPC only if it is coming from an approved network.
 
-![Virtual private gateway](../../images/VPG.png)
+![Virtual private gateway](../images/VPG.png)
 
 ## Amazon Virtual Private Cloud
 Amazon VPC is used to establish boundaries around your AWS resources.
@@ -103,7 +103,7 @@ With so many different types of networks, on-premises datacenters, and remote wo
    Site-to-Site VPN creates a secure connection between your data center or branch offices and your AWS Cloud resources.
    Benefits: Site-to-Site VPN provides high availability, secure and private sessions, and accelerates applications.
    Use cases: It can be used for application migration and secure communication between remote locations.
-   ![Site to site VPN](../../images/Site_to_site_vpn.png)
+   ![Site to site VPN](../images/Site_to_site_vpn.png)
 
  - AWS PrivateLink (Securely connect resources, even in other VPCs)
    AWS PrivateLink is a highly available, scalable technology that you can use to privately connect your VPC to services and resources as if they were in your VPC. You do not need to use an internet gateway, NAT device, public IP address, Direct Connect connection, or AWS Site-to-Site VPN connection to allow communication with AWS services or resources from your private subnets. Instead, you control the specific API endpoints, sites, services, and resources that are reachable from your VPC.
@@ -116,7 +116,7 @@ With so many different types of networks, on-premises datacenters, and remote wo
  - AWS Direct Connect (Dedicated private connections for increased bandwidth)
    Direct Connect is a service that makes it possible for you to establish a dedicated private connection between your network and VPC in the AWS Cloud.
    Benefits: AWS Direct Connect reduces network costs and increases amount of bandwidth.
-   ![AWS Direct Connect](../../images//Direct_Connect.png)
+   ![AWS Direct Connect](../images//Direct_Connect.png)
 
    More about Direct connect
    1. Latency sensitive applications
@@ -150,7 +150,7 @@ When a customer requests data from an application hosted in the AWS Cloud, this 
 
 It enters into a VPC through an internet gateway. Before a packet can enter into a subnet or exit from a subnet, it will run into several checks for permissions, one being a network ACL associated with the subnet the packet is being routed to. The permissions defined by the network ACLs indicate what is allowed or denied. It is based on who sent the packet and how the packet is trying to communicate with the resources in a subnet.
 
-![Network acess lists](../../images/ACL.png)
+![Network acess lists](../images/ACL.png)
 
 ## Network ACLs
 
@@ -198,7 +198,7 @@ Consider the same example of sending a request out from an Amazon EC2 instance t
 
 Remember the AWS Shared Responsibility Model? When it comes to securing the subnets and resources in your VPC with network ACLs and security groups, that is your responsibility.
 
-![Aws shared responsibility Model](../../images/AWS_Shared_Responsibility_Model.png)
+![Aws shared responsibility Model](../images/AWS_Shared_Responsibility_Model.png)
 
 ## AWS VPC DEMO
 
@@ -276,7 +276,7 @@ Direct Connect failover when you need much higher bandwidth with dedicated lines
 
 You've seen a basic VPN and AWS Direct Connect setup in previous lessons. Here is the video example of a company with clients and servers that demand high bandwidth connections for large data transfers and critical application performance. They chose to access their AWS resources securely with multiple Direct Connect connections for failover.
 
-![Mulitple Direct connects](../../images/Multiple_Direct_Connects.png)
+![Mulitple Direct connects](../images/Multiple_Direct_Connects.png)
 
 1. Customer network. The customer network clients and servers need a secure, high-bandwidth connection for large data transfers and critical application performance.
 2. Content router or firewall. The customer has a content router or firewall connecting their network to Direct Connect.
@@ -289,7 +289,7 @@ You've seen a basic VPN and AWS Direct Connect setup in previous lessons. Here i
 
 Here is an example of how a company with offices around the world can deliver content with low latency for a seamless experience across multiple Regions.
 
-![Delivering content to several different Regions globally](../../images/CloudFront_And_Route53.png)
+![Delivering content to several different Regions globally](../images/CloudFront_And_Route53.png)
 
 1. Users. The users access the company's website using a custom domain. The request is first sent to a Route 53 DNS record.
 2. Routing policy. Route 53 uses a routing policy to determine which Region is closest to the user. Route 53 directs the user to the appropriate CloudFront edge location.
