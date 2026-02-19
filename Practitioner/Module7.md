@@ -71,7 +71,7 @@ Some examples of practical use cases for Aurora are gaming applications, media a
 
 Instead of row and column relationships, NoSQL databases build a structure for the data that they contain using key-value pairs instead. With key-value pairs, data is organized into items identified by unique keys.
 
-## Amazon DynamoDB
+### Amazon DynamoDB
 
 DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance for both document and key-value data structures. It's a powerful and incredibly fast database option for use cases that require a flexible schema, and is ideal for applications that require high performance and seamless scaling.
 

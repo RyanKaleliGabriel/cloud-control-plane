@@ -11,6 +11,8 @@ AWS offers three distinct types of cloud storage to meet diverse requirements an
 
 Block storage provides persistent, low-latency block-level storage volumes that attach to EC2 instances like physical hard drives. 
 
+Stores data in fixed-size blocks. Each block has its own address. Acts like a raw disk attached to a server. The OS formats it with a filesystem (ext4, xfs, etc.). Best for databases and low-latency applications.
+
 Block storage volumes can be encrypted, backed up via snapshots, and modified while in use without disrupting the instance. 
 
 AWS offers two primary block storage services: 
@@ -20,14 +22,24 @@ AWS offers two primary block storage services:
 
 ## Object storage
 
-Object storage is a data storage architecture that manages data as objects in a flat address space. It offers unlimited scalability so you can store vast amounts of unstructured data without worrying about capacity constraints. Object storage provides enhanced metadata capabilities to provide more efficient data management, search, and analytics across massive datasets.
+Object storage is a data storage architecture that manages data as objects in a flat address space. 
+
+Stores data as objects (file + metadata + unique ID). Accessed via API (HTTP/HTTPS), not mounted as a disk. Flat structure (no real folders). Highly scalable and durable. Best for backups, static files, media, logs.
+
+It offers unlimited scalability so you can store vast amounts of unstructured data without worrying about capacity constraints. 
+
+Object storage provides enhanced metadata capabilities to provide more efficient data management, search, and analytics across massive datasets.
 
 The following is the primary AWS object storage service:
  - Amazon Simple Storage Service (S3). A fully managed scalable object storage service for storing and retrieving any amount of data from anywhere.
 
 ## File storage
 
-AWS file storage services provide shared file systems accessible over networks, so multiple users and applications can access the same data simultaneously. They offer scalability and flexibility so you can expand storage capacity as needs grow without managing physical infrastructure. 
+AWS file storage services provide shared file systems accessible over networks, so multiple users and applications can access the same data simultaneously. 
+
+Stores data in a hierarchical filesystem (folders/directories). Accessed via network protocols like NFS or SMB. Multiple servers can mount it simultaneously. Best for shared storage, legacy apps.
+
+They offer scalability and flexibility so you can expand storage capacity as needs grow without managing physical infrastructure. 
 
 AWS offers two primary file storage services:
  - Amazon Elastic File System (EFS). A fully managed, scalable NFS file system for use with AWS Cloud services and on-premises resources.
@@ -63,9 +75,9 @@ An Amazon EC2 instance store provides temporary block-level storage for an Amazo
 
 Benefits
 
- - Automatically available storage. Instance store volumes come automatically attached to many EC2 instance types, providing temporary block-level storage at no additional cost. It's physically connected to the host computer, offering high I/O performance for data that disappears when the instance stops.
+ - Automatically available storage. Instance store volumes come automatically attached to many EC2 instance types physically, providing temporary block-level storage at no additional cost. 
 
- - Cost Effective. Because EC2 instance store is included in the EC2 instance price, you don't have to pay any additional fees for storage. It's ideal for temporary storage needs like buffers, caches, or scratch data, potentially reducing expenses for applications that don't require persistent storage.
+ - Cost Effective. Because EC2 instance store is included in the EC2 instance price, you don't have to pay any additional fees for storage. 
 
  - High performance. EC2 instance store offers extremely low-latency storage directly attached to the host server of your EC2 instance. This proximity means exceptionally high I/O performance, making it ideal for temporary storage of data requiring fast processing.
 
@@ -103,7 +115,7 @@ EBS snapshots can be used to create multiple new volumes, and new volumes create
 
 In keeping with the AWS shared responsibility model, as the customer, you are responsible for scheduling and managing regular EBS snapshots as part of your backup strategy. This includes monitoring snapshot costs and deleting unnecessary snapshots to avoid excessive charges. You also need to make sure sensitive data within snapshots is encrypted, verify snapshot integrity, and test restoration procedures regularly.
 
-The following illustration shows how EBS snapshots are created from an EBS volume over time. To learn more about how EBS snapshots interact with EBS volumes, choose each of the following three markers.
+The following illustration shows how EBS snapshots are created from an EBS volume over time.
 
  -  Initial snapshot. When you create the first snapshot of an EBS volume, a full copy of all the data on the volume at that point in time is included. This initial snapshot serves as the baseline and contains all the data blocks that were in use on the volume.
 
@@ -162,10 +174,12 @@ Benefits
 Everything you store in Amazon S3 is private by default. You must explicitly grant permissions to access these resources. If you want your Amazon S3 data to be available to everyone on the internet, you can choose to make your buckets and objects public. To more granularly define who can do what with your Amazon S3 resources, Amazon S3 provides several security management features.
 
  - Bucket policies. Amazon S3 bucket policies are resource-based policies that can only be attached to S3 buckets. An S3 bucket policy specifies which actions are allowed or denied on the bucket, in addition to every object in that bucket.
- - Identity based policies. Permissions that control what actions users, groups, or roles can perform on S3 resources are configured using identity-based policies. These policies attach directly to identities rather than to the S3 resources themselves. You can use these policies to specify which S3 buckets and objects users can access and what actions they can perform.
+
+ - Identity based policies. Permissions that control what actions users, groups, or roles can perform on S3 resources are configured using identity-based policies. 
+
  - Amazon S3 provides encryption capabilities to protect data both at rest and in transit. These encryption features help maintain data confidentiality and comply with various security standards and regulations. These capabilities are as follows:
- - Encryption at rest secures data stored in S3 buckets, preventing unauthorized access to stored objects.
- - Encryption in transit safeguards data traveling to and from Amazon S3, maintaining secure communication between clients and the service.
+    - Encryption at rest secures data stored in S3 buckets, preventing unauthorized access to stored objects.
+    - Encryption in transit safeguards data traveling to and from Amazon S3, maintaining secure communication between clients and the service.
 
  ## Amazon S3 Storage Classes and S3 Lifecycle
 

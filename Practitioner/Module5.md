@@ -14,11 +14,11 @@ Subnets are used to organize your resources and can be made publicly or privatel
 
 ## Networking components: Understanding connections through diagrams
 
-If you are new to IT or cloud computing, you might not have worked with architectural diagrams before. A diagram is, simply put, a schematic or map of your network in the AWS Cloud. It can provide a visual of how users or applications access services, resources, or data. A picture is worth a thousand words. With a quick glance, you can see if the network was built for redundancy, security, and even scalability. It can also serve as a blueprint so you don't forget important connections when building your solutions.
+A picture is worth a thousand words. With a quick glance, you can see if the network was built for redundancy, security, and even scalability. It can also serve as a blueprint so you don't forget important connections when building your solutions.
 
 ![Network Diagrams](../images/Network_diagrams.png)
 
-AWS Cloud, Regions, Amazon VPC, and AZs
+## AWS Cloud, Regions, Amazon VPC, and AZs
 
 The AWS Cloud is the outermost box in most diagrams.
 
@@ -42,11 +42,11 @@ Public subnets are designed to provide direct internet access to resources place
 
 Imagine the millions of customers who use AWS services. Also imagine the millions of resources that these customers have created, such as Amazon EC2 instances. Without boundaries around all these resources, network traffic can flow between them unrestricted.
 
-Establishing boundaries around AWS resources
+### Establishing boundaries around AWS resources
 
 When organizing your resources in the AWS Cloud, you need to be able to group certain functions together and isolate them from the public, or make them available to the public.
 
-Amazon VPC
+### Amazon VPC
 
 With Amazon VPC, you can provision an isolated section of the AWS Cloud. In this isolated section, you can launch resources in a virtual network that you define.
 
@@ -55,7 +55,7 @@ It provides three main benefits.
  - Amazon VPC gives you full control over your resource placement, connectivity, and security. 
  - The convenience of using Amazon VPC means you will spend less time setting up, managing, and validating your virtual network when compared to on-premises network management.
 
-## Subnets
+### Subnets
 
 Within an Amazon VPC, you can organize your resources into subsections or subnets. A subnet is a section of an Amazon VPC that can contain resources, such as Amazon EC2 instances. 
 
@@ -65,7 +65,7 @@ To allow public traffic from the internet to access your VPC, you attach an inte
 
 You can think of an internet gateway as being similar to a doorway that customers use to enter the coffee shop. Without an internet gateway, no one can access the resources within your VPC.
 
-## Virtual private gateways
+### Virtual private gateways
 
 What if you have a VPC that includes only private resources? The following example shows how a virtual private gateway works. 
 
@@ -79,18 +79,18 @@ With a virtual private gateway, you can establish a VPN connection between your 
 
 ![Virtual private gateway](../images/VPG.png)
 
-## Amazon Virtual Private Cloud
+### Amazon Virtual Private Cloud
 Amazon VPC is used to establish boundaries around your AWS resources.
 
-## Virtual private gateway
+### Virtual private gateway
 A virtual private gateway allows protected internet traffic to enter into the VPC.
 
-## Virtual private network
+### Virtual private network
 A VPN encrypts your internet traffic, helping protect it from anyone who might try to intercept or monitor it.
 
 ## More Ways to Connect to the AWS Cloud
 
-## Connecting to the AWS Cloud
+### Connecting to the AWS Cloud
 
 With so many different types of networks, on-premises datacenters, and remote workers, companies need a wide range of ways to connect to the AWS Cloud. Four ways to connect to the AWS Cloud:
  - AWS Client VPN (Securely connect a remote workforce to AWS Cloud resources)
@@ -128,7 +128,7 @@ With so many different types of networks, on-premises datacenters, and remote wo
    3. Hybrid cloud architectures
       You can use Direct Connect to link your AWS and on-premises networks to build applications that span environments without compromising performance.
 
-## Additional gateway services
+### Additional gateway services
 
  - AWS Transit Gateway is used to connect your Amazon VPCs and on-premises networks through a central hub. As your cloud infrastructure expands globally, inter-Region peering connects transit gateways together using the AWS Global Infrastructure. 
 
@@ -152,7 +152,7 @@ It enters into a VPC through an internet gateway. Before a packet can enter into
 
 ![Network acess lists](../images/ACL.png)
 
-## Network ACLs
+### Network ACLs
 
 Virtual firewall controlling traffic
 
@@ -206,7 +206,7 @@ Remember the AWS Shared Responsibility Model? When it comes to securing the subn
 
 ## Global Networking
 
-## Edge networking services
+### Edge networking services
 
 Secure and speedy networking for user-facing application data
 
