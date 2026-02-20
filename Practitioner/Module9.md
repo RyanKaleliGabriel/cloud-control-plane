@@ -130,32 +130,13 @@ AWS built-in data protection:
  - Amazon EBS. Amazon EBS volumes and snapshots can be encrypted at rest, including both boot and data volumes of an Amazon EC2 instance.
  - Amazon DynamoDB. Server-side encryption at rest is enabled on all DynamoDB table data using encryption keys stored in AWS Key Management Service (AWS KMS).
 
-## AWS data protection services
-
-1. AWS Key Management Service (AWS KMS)
-   You can use AWS KMS to create and manage cryptographic keys. These keys can then be used to encrypt and decrypt your data. You can also control the use of keys across a wide range of services and in your applications. For example, you can specify which IAM users and roles can manage keys. Your keys never leave AWS KMS, and you can temporarily disable them so they can no longer be used.
-
-2. Amazon Macie
-   With Amazon Macie, you can monitor your sensitive data at rest to make sure it's safe. Macie uses machine learning (ML) and automation to discover sensitive data stored in 
-   Amazon S3. You can use Macie to assess your security posture, which is especially helpful for meeting compliance requirements.
-
-3. AWS Certificate Manager (ACM)
-   ACM centralizes the management of your SSL/TLS certificates that provide data encryption in transit. It can be used to protect various AWS services and your connected on-premises resources.
+## AWS Data Protection Services
+ - AWS KMS: Create/manage encryption keys for data; control who can use them; keys never leave AWS.
+ - Amazon Macie: Uses ML to discover and monitor sensitive data in S3 for security and compliance.
+ - AWS Certificate Manager (ACM): Manage SSL/TLS certificates to encrypt data in transit.
 
 ## Detecting and Responding to Security Incidents
-
-AWS offers a variety of services you can use to detect and respond to security incidents.
-
-1. Amazon Inspector
-   Amazon Inspector helps improve the security and compliance of applications by running automated security assessments for Amazon EC2 instances, containers, and Lambda functions. It checks applications for security vulnerabilities and deviations from security best practices, such as open access to EC2 instances and installations of vulnerable software versions.
-
-   You can view completed assessments in the Amazon Inspector console. These assessments include a list of security findings prioritized by severity level. Each identified security issue includes a detailed description and a recommendation for how to fix it. You can also retrieve these findings through an API.
-
-2. Amazon GuardDuty
-   Amazon GuardDuty provides intelligent threat detection across your infrastructure and resources. GuardDuty identifies threats by continuously monitoring streams of your account metadata and network activity in your environment. It uses known malicious IP addresses, anomaly detection, and machine learning to identify threats more accurately.
-
-3. Amazon Detective
-   After a threat has been detected, you can use Amazon Detective to further investigate the root cause. Detective helps you analyze threats with interactive visualizations contained in a unified AWS Management Console view. These visualizations include resource and user interactions over a configurable timeline with recommended steps for remediation.
-
-4. AWS Security Hub
-   Security Hub brings multiple security services together into a single place and format. With this service, you can quickly see your security and compliance state in one comprehensive view. Security Hub automatically aggregates security findings from AWS and partner services and organizes them into actionable, meaningful groupings called insights. It can accelerate time to resolution (TTR) with automated remediation.
+ - Amazon Inspector: Automated security assessments of EC2, containers, and Lambda; finds vulnerabilities and suggests fixes.
+ - Amazon GuardDuty: Continuous threat detection using logs, anomalies, and ML.
+ - Amazon Detective: Investigate detected threats with interactive visualizations and timelines.
+ - AWS Security Hub: Central dashboard aggregating security findings from AWS and partners; organizes them into actionable insights.

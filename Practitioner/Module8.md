@@ -135,9 +135,10 @@ AWS offers the following types of generative AI solutions:
 
 ## Amazon SageMaker JumpStart
 
-SageMaker JumpStart is a machine learning hub within SageMaker AI that accelerates the process of building, training, and deploying ML models.
+Provides pre-trained models and ML solutions you can fine-tune and deploy quickly.
+Runs on AWS-managed EC2 instances inside SageMaker. Training jobs use CPU/GPU, and endpoints run in containers. You interact via APIs or console—no VM management needed.
 
-SageMaker JumpStart offers a library of pre-built ML solutions across various domains such as computer vision, NLP, and tabular data. These pre-trained models can be fine-tuned to suit your specific needs and deployed with just a few clicks.
+Technical Example. Fine-tune a sentiment-analysis model and deploy it as an API for your app.
 
 Use cases:
 1. Rapid ML model deployments. Quickly deploy pre-trained models without extensive ML expertise.
@@ -148,7 +149,12 @@ Use cases:
 
 Amazon Bedrock is a fully managed service that was specifically designed for working with large foundation models and building generative AI applications.
 
-It provides access to FMs from Amazon and leading AI startups, such as Claude and Stable Diffusion, all through a single unified API. With Amazon Bedrock, you can quickly experiment with FMs, fine-tune them with your own data, and seamlessly integrate them into your AWS applications.
+It provides access to FMs from Amazon and leading AI startups, such as Claude and Stable Diffusion, all through a single unified API. 
+
+Purpose: Lets you use foundation models via API without managing infrastructure.
+Fully serverless, running on AWS-managed GPU/accelerator clusters. You just call the API.
+
+Technical example: Call a foundation model API to summarize documents without managing servers.
 
 Use cases:
 
@@ -160,13 +166,17 @@ Use cases:
 
 Amazon Q is a generative AI assistant that can help companies streamline processes, get to decisions faster, and improve employee productivity. It can help every employee gain insights into their data and accelerate their tasks.
 
+An AI assistant for enterprise data, performing retrieval and answering queries.
+Managed SaaS service on AWS. Uses Bedrock or internal FMs, connecting to your data via APIs. No servers or VMs to manage.
+
+Technical example: Ask your company’s internal knowledge base questions and get AI-generated answers.
+
 1. Amazon Q Business
    Amazon Q Business can answer pressing questions, help solve problems, and take actions using the data and expertise found in your company's information repositories. Amazon Q Business provides this tailored assistance with a secure connection to commonly used systems.
    Use cases: Information requests, automated workflows, and insight extraction
 
-2. Amazon Q Business
-   Amazon Q Business can answer pressing questions, help solve problems, and take actions using the data and expertise found in your company's information repositories. Amazon Q Business provides this tailored assistance with a secure connection to commonly used systems.
-   Use cases: Information requests, automated workflows, and insight extraction
+2. Amazon Q (general/consumer)
+   Amazon Q (general/consumer) – the standard AI assistant version for more general or small-scale use, still cloud-hosted, but without deep enterprise integrations.
 
 ## Introduction to Data Analytics
 Both AI/ML and data analytics are supported by good data. Let's review ways in which data is prepared and used by analysts.
