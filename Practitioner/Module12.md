@@ -32,7 +32,7 @@ There are several groups of stakeholders and various parts of the business to co
 
 Six perspectives of AWS CAF
 
-1. Business. The Business perspective makes sure that IT aligns with business needs and that IT investments link to key business results. Use the Business perspective to create a strong business case for cloud adoption and prioritize cloud adoption initiatives. The following are common Business perspective roles: Business managers, Finance managers, Budget owners, Strategy stakeholders
+1. Business. Use the Business perspective to create a strong business case for cloud adoption and prioritize cloud adoption initiatives. The following are common Business perspective roles: Business managers, Finance managers, Budget owners, Strategy stakeholders
 
 2. People. The People perspective supports development of an organization-wide change management strategy for successful cloud adoption. The following are common People perspective roles: Human resources, Staffing, People managers
 
@@ -132,25 +132,24 @@ The good news is, whether your migration is homogenous (from same type of databa
 
 ## AWS DMS
 
-The AWS Database Migration Service (AWS DMS) makes it possible to quickly and securely migrate databases and perform ongoing data replication tasks for live databases and data warehouses. It provides a way to plan, assess, convert, and migrate databases even with data warehouses in one central tool.
+Migrates and replicates databases to AWS with low downtime.
 
-Benefits: AWS DMS provides benefits for migrating databases including maintaining high availability and low downtime during the migration process. It supports homogenous and heterogenous migrations. It also makes it possible to migrate terabyte sized databases at a low cost.
+Supports both homogeneous (same engine) and heterogeneous (different engine) migrations.
 
-Use cases: You can use AWS DMS to move to managed databases, remove licensing costs, replicate ongoing changes in your database, and improve integration with data lakes.
+Handles large (terabyte-sized) databases at low cost and keeps databases highly available.
 
-If you want to change from a commercial database to an open source database during your migration, there are a few important logistics. 
+Used to move to managed databases, remove licensing costs, replicate live changes, and integrate with data lakes.
 
-When the databases you are migrating have different source and target engines, you need to consider how to recreate existing resources, like the database schema, in the target. 
-
-A schema defines the structure and organization of data inside the database and acts like a blueprint for things like table structures, field types, and relationships between items. It can be time consuming to recreate everything manually. That's where AWS Schema Conversion Tool (AWS SCT) can help.
 
 ## AWS SCT
 
-AWS SCT makes it possible to convert database schemas and code objects (like stored procedures, views, and functions) from one database engine to another. AWS SCT can even give you estimates of how big of an effort a conversion is, which helps with planning.
+Converts database schemas and code objects (tables, views, stored procedures, functions) between different database engines.
 
-Benefits: AWS SCT provides benefits to simplify database migrations by automating schema analysis, recommendations, and conversion at scale. It is compatible with popular databases and analytics services as source and target engines. It can save weeks or months of manual time and resources, which are typically required in conversions.
+Provides effort estimates for planning.
 
-Use cases: You can use AWS SCT to move from commercial databases to open source databases. You can also use it for migrating large data warehouse workloads and modernizing or updating database schemas in place.
+Automates schema analysis and conversion, saving weeks/months of manual work.
+
+Used when switching from commercial to open-source databases or modernizing schemas.
 
 ## Transferring Data Online
 
@@ -158,26 +157,28 @@ When you migrate data to the AWS Cloud, there are a few considerations to keep i
 
 ## AWS DataSync
 
-AWS DataSync is specifically designed for automating and accelerating data transfer. DataSync simplifies and accelerates moving large amounts of data between on-premises storage and AWS storage services like Amazon Simple Storage Service (Amazon S3). It automates many aspects of the transfer process, including running instances, encryption, and network optimization.
+Automates and accelerates large-scale data transfer between on-premises storage and AWS (e.g., S3).
 
-Benefits: The benefits include streamlining and accelerating secure data migrations. DataSync manages data movement workloads with bandwidth throttling, migration scheduling, task filtering, and task reporting. It also provides rapid data replication.
+Handles encryption, scheduling, bandwidth control, filtering, reporting, and replication.
 
-Use cases: You can use DataSync to migrate your data, archive your cold data, and manage hybrid data workflows.
+Used for migrations, archiving cold data, and hybrid workflows.
 
 ## AWS Transfer Family
+Fully managed FTP, SFTP, and FTPS service for secure file transfers into/out of AWS (S3, EFS).
 
-The AWS Transfer Family makes it possible to seamlessly manage and share data with simple, secure, and scalable file transfers. This service provides fully managed support for secure file transfers over FTP, Secure File Transfer Protocol (SFTP), File Transfer Protocol Secure (FTPS), and other protocols. It helps you transfer files directly into and out of AWS storage services like Amazon S3 and Amazon EFS.
+Provides encryption, authentication, scalability, and simplified infrastructure management.
 
-Benefits: The benefits include simplifying the process of setting up and managing file transfers and reducing the need for complex infrastructure management. The Transfer Family provides secure data transfer with encryption and authentication, to ensure data integrity and confidentiality. It is built to scale and streamline workflows.
+Used to modernize file transfers and share data with partners/workforce.
 
-Use cases: You can use the Transfer Family to modernize and manage your file transfers, simplify data sharing with your workforce and partners, and integrate transactional business data into a unified data lake.
-
+## AWS Direct connect
 You might remember Direct Connect from the networking module. With the bandwidth of a dedicated connection, it is also a great solution for moving your data online to the AWS Cloud when migrating.
 
 
-AWS Direct Connect is a service that makes it possible for you to establish a dedicated private connection between your network and virtual private cloud (VPC) in the AWS Cloud. Because it is your dedicated connection, it is a fast, reliable, and secure way to transfer your data or files.
+Provides a dedicated private connection from your network to AWS VPC.
 
-Benefits: Direct Connect helps reduce network costs and increase amount of bandwidth.
+Offers fast, reliable, secure transfers with higher bandwidth and reduced network costs.
+
+Useful for large data migrations requiring consistent performance.
 
 ## Transferring Data Offline
 
