@@ -38,13 +38,13 @@ Some examples of practical use cases for Amazon RDS are web applications, enterp
 
 Benefits
 
-1. Cost optimization. Amazon RDS eliminates the high upfront costs of purchasing and maintaining database hardware infrastructure. You only pay for the compute and storage resources that you consume through a flexible pay-as-you-go model. As a managed service, it also reduces operational expenses by automating time-consuming administrative tasks like backups, patching, and monitoring.
+1. Cost optimization. Amazon RDS uses a pay-as-you-go model for compute and storage. It removes hardware procurement costs and reduces operational overhead by automating backups, patching, and monitoring.
 
-2. Multi AZ deployment. Amazon RDS improves database reliability through Multi-AZ deployments. It automatically replicates data to a standby instance in a different Availability Zone. During system failures, maintenance, or zone disruptions, Amazon RDS automatically fails over to the standby instance without manual intervention. This ensures continuous database operations with minimal downtime.
+2. Multi AZ deployment. RDS replicates data synchronously to a standby instance in a different Availability Zone. It performs automatic failover during instance or AZ failure to maintain availability.
 
-3. Performance optimization. Amazon RDS enhances database performance through automated management of resource allocation, monitoring, and optimization tasks. It includes features like automated backups and read replicas that can help offload read traffic from the primary instance. Amazon RDS performance insights provide real-time monitoring and analysis of database load, to help you identify and resolve performance bottlenecks quickly.
+3. Performance optimization. RDS supports read replicas to offload read traffic and provides Performance Insights for real-time workload analysis. Resource management and maintenance tasks are automated.
 
-4. Security controls. Amazon RDS enhances database security through multiple layers of protection, including VPC isolation as well as encryption at rest and in transit. It leverages automated backups and offers Multi-AZ deployments to provide resiliency against potential system failures.
+4. Security controls. RDS runs inside a VPC, supports encryption at rest and in transit, and integrates with IAM for access control. Backup and Multi-AZ features enhance resilience.
 
 
 ## Amazon Aurora 
@@ -82,13 +82,13 @@ Some examples of practical use cases for DynamoDB are gaming platforms, financia
 
 ## Benefits
 
-1. Scalability with provisioned capacity. DynamoDB automatically scales throughput up or down based on actual usage, which ensures consistent performance without manual intervention. You can specify target utilization levels, and DynamoDB automatically provisions capacity to maintain those targets. With no practical limits on table size or the amount of data stored, DynamoDB can seamlessly accommodate growing applications.
+1. Scalability with provisioned capacity. DynamoDB auto-scales read and write capacity based on target utilization. It supports virtually unlimited table size and partitions data automatically to handle growth.
 
-2. Consistent high performance. DynamoDB delivers single-digit millisecond response times at any scale, which makes it ideal for high-performance applications. It maintains consistent performance by automatically distributing data across multiple servers and SSDs.
+2. Consistent high performance.Provides single-digit millisecond latency at any scale. Data is distributed across multiple partitions backed by SSDs to maintain predictable performance.
 
-3. High availability. DynamoDB delivers 99.999% data availability by replicating data across three distinct facilities within each AWS Region. It also maintains multiple copies in separate AWS Regions, to provide built-in fault tolerance and data durability. This ensures continuous operation and protection against data loss even if individual facilities fail.
+3. High availability. Replicates data across three Availability Zones within a Region. Supports multi-Region replication for cross-Region resilience and durability.
 
-4. Data encryption. DynamoDB offers comprehensive encryption capabilities to protect information both at rest and in transit. All data is automatically encrypted behind the scenes before being written to the storage layer. DynamoDB includes the flexibility to choose between different kinds of encryption keys for customized security control.
+4. Data encryption. Encrypts data at rest by default and supports TLS in transit. Integrates with AWS KMS for customer-managed or AWS-managed encryption keys.
 
 [Demo](https://skillbuilder.aws/renderer/?module_id=B1DGAV8S16%3A001.000.000&product_id=8D79F3AVR7%3A002.000.000&registration_id=43c00644-2725-5f07-91a6-2056eca2e564&referrer=https%3A%2F%2Fskillbuilder.aws%2Flearn%2F94T2BEN85A%2Faws-cloud-practitioner-essentials%2F8D79F3AVR7&navigation=digital)
 
@@ -107,13 +107,13 @@ Some examples of practical use cases for ElastiCache are session data management
 
 ## Benefits
 
-1. High performance rfor redic, valkey or memcached instances. ElastiCache streamlines the deployment and maintenance of in-memory caching environments, offering high availability for Redis, Valkey, and Memcached by automatically handling hardware provisioning, software patching, and monitoring. ElastiCache offers seamless scalability so you can add or remove nodes as demand changes.
+1. High performance, provides managed in-memory caching for Redis, Valkey, and Memcached with automatic provisioning, patching, and monitoring. It supports horizontal scaling by adding or removing nodes based on demand.
 
-2. High availability. ElastiCache provides high availability by constantly monitoring primary nodes for potential failures. When issues are detected, it maintains application availability while promoting a replica node to become the new primary without manual intervention. The entire recovery process typically finishes within minutes, which minimizes downtime and preserves operations during infrastructure disruptions.
+2. High availability. Continuously monitors primary nodes and automatically promotes a replica to primary upon failure. Failover is automatic and typically completes within minutes.
 
-3. Replication across multiple availability zones. ElastiCache enables automatic replication across multiple Availability Zones to protect against infrastructure failures. You can configure primary and replica nodes across different Availability Zones according to their durability requirements. This helps to ensure that data remains accessible even if one zone experiences an outage.
+3. Replication across multiple availability zones.Supports primary and replica nodes across multiple Availability Zones. Replication protects against AZ-level failures and maintains cache availability.
 
-4. Data encryption. ElastiCache supports data encryption mechanisms to safeguard sensitive information throughout its lifecycle. At-rest encryption protects data while stored in disk storage and automated backups. In-transit encryption secures data traveling between clients and cache nodes by employing transport layer security, or TLS, for encrypted connections.
+4. Data encryption. Supports encryption at rest (including backups) and TLS encryption in transit. Integrates with AWS KMS for key management.
 
 ## Amazon DocumentDB
 

@@ -28,54 +28,45 @@ Benefits
 
 ## Functional and business-related stakeholders
 
-There are several groups of stakeholders and various parts of the business to consider in your migration planning and readiness.
+When moving to the cloud, different people in the business must be involved. AWS Cloud Adoption Framework (CAF) has six perspectives.
 
 Six perspectives of AWS CAF
 
-1. Business. Use the Business perspective to create a strong business case for cloud adoption and prioritize cloud adoption initiatives. The following are common Business perspective roles: Business managers, Finance managers, Budget owners, Strategy stakeholders
+1. Business. Focuses on the business value of using the cloud. Roles: Business managers, finance managers, budget owners, strategy stakeholders.
 
-2. People. The People perspective supports development of an organization-wide change management strategy for successful cloud adoption. The following are common People perspective roles: Human resources, Staffing, People managers
+2. People. Focuses on helping employees adapt to cloud changes. Roles: HR, staffing teams, people managers.
 
 3. Governance
-   The Governance perspective focuses on skills and processes to align IT strategy with business strategy. This perspective helps you maximize business value and minimize risks.
-
-   Use it to understand how to update the staff skills and processes necessary to maintain business governance in the cloud. 
-   The following are common Governance perspective roles: Chief information officer (CIO), Program managers, Enterprise architects, Business analysts, Portfolio managers
+   Focuses on aligning IT with business goals and managing risk. Roles: CIO, program managers, enterprise architects, business analysts, portfolio managers.
 
 4. Platform
-   The Platform perspective includes principles and patterns for implementing new solutions in the cloud and migrating on-premises workloads to the cloud.
-
-   Use a variety of architectural models to understand and communicate the structure of IT systems and their relationships. Describe the architecture of the target state environment in detail.
-   
-   The following are common Platform perspective roles: Chief technology officer (CTO), IT managers, Solutions architects
+   Focuses on building and moving systems to the cloud. Roles: CTO, IT managers, solutions architects.
 
 5. Security
-   The Security perspective makes sure that the organization meets security objectives for visibility, auditability, control, and agility.
-   The following are common Security perspective roles:
-   - Chief information security officer (CISO)
-   - IT security managers
-   - IT security analysts
+   Focuses on protecting systems and data in the cloud. Roles: CISO, security managers, security analysts.
 
 6. Operations
-   The Operations perspective helps you to enable, run, use, operate, and recover IT workloads to the level agreed upon with your business stakeholders.
-   The following are common Operations perspective roles: IT operations managers, IT support managers
+   Focuses on running and supporting cloud systems. Roles: IT operations managers, IT support managers.
+
+Memory Trick
+“Big People Govern Platforms Securely Operate.”
 
 ## Seven Migration Strategies
 
 1. Relocate
-   Relocating is changing the hosting location to the cloud. This could be if applications are already virtual machines (VMs) or containers running on premises and then moving to the cloud.
+   Move applications (VMs or containers) from on-premises to the cloud without changing them.
 
 2. Rehost
-   Rehosting, also known as lift-and-shift, involves moving applications without changes.
+   Move an application to the cloud without making changes.
 
 3. Replatform
-   Replatforming, also known as lift, tinker, and shift, involves making a few cloud optimizations to realize a tangible benefit. Optimization is achieved without changing the core architecture of the application.
+   Move the application and make small improvements without changing its main design.
 
 4. Refactor
-   Refactoring, also known as re-architecting, involves reimagining how an application is architected and developed by using features built for the cloud. Refactoring is driven by a strong business need to add features, scale, or improve performance that would otherwise be difficult to achieve in the application’s existing environment.
+   Redesign the application to fully use cloud features and improve performance or scalability.
 
 4. Repurchase
-   Repurchasing involves moving from a traditional license to a software-as-a-service (SaaS) model.
+   Replace the application with a SaaS cloud service.
    For example, a business might choose to implement the repurchasing strategy by migrating from a customer relationship management (CRM) system to a new sales force software.
 
 5. Retain

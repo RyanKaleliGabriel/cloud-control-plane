@@ -69,11 +69,7 @@ You can think of an internet gateway as being similar to a doorway that customer
 
 What if you have a VPC that includes only private resources? The following example shows how a virtual private gateway works. 
 
-You can think of the internet as the road between your home and the coffee shop. It is open and accessible to anyone. You want a way to protect the traffic you send on the internet from the public, internet service providers, and others who might be trying to track or intercept it. This is where a virtual private network (VPN) connection comes in.
-
 VPN creates a connection that is more like a secure tunnel through the internet. Using encryption, it hides and protects everything you send and receive from outside eyes.
-
- A virtual private gateway is the component in the AWS Cloud that makes it possible for you to connect this protected traffic to enter the VPC. With a VPN connection, your data travels privately and safely, hidden from others using the same route.
 
 With a virtual private gateway, you can establish a VPN connection between your VPC and a private network, such as an on-premises data center or internal corporate network. A virtual private gateway allows traffic into the VPC only if it is coming from an approved network.
 
@@ -106,7 +102,8 @@ With so many different types of networks, on-premises datacenters, and remote wo
    ![Site to site VPN](../images/Site_to_site_vpn.png)
 
  - AWS PrivateLink (Securely connect resources, even in other VPCs)
-   AWS PrivateLink is a highly available, scalable technology that you can use to privately connect your VPC to services and resources as if they were in your VPC. You do not need to use an internet gateway, NAT device, public IP address, Direct Connect connection, or AWS Site-to-Site VPN connection to allow communication with AWS services or resources from your private subnets. Instead, you control the specific API endpoints, sites, services, and resources that are reachable from your VPC.
+
+   p Provides private service-to-service connectivity using interface VPC endpoints (ENIs). Traffic stays on the AWS backbone and does not require internet gateways, NAT, or VPN. Used for private access to services across VPCs.
    
    Benefits: AWS PrivateLink helps you secure your traffic and connect with simplified management rules.
    Use case: It is used for connecting your clients in your VPC to resources, other VPCs, and endpoints.
@@ -164,7 +161,7 @@ For custom network ACLs, all inbound and outbound traffic is denied until you ad
 
 Stateless packet filtering. Network ACLs perform stateless packet filtering. They remember nothing and check packets that cross the subnet border each way: inbound and outbound.
 
-When a packet response for that request comes back to the subnet, the network ACL does not remember your previous request. The network ACL checks the packet response against its list of rules to determine whether to allow or deny.
+
 
 ## Security groups
 
@@ -182,7 +179,7 @@ Stateful packet filtering
 
 Security groups perform stateful packet filtering. They remember previous decisions made for incoming packets.
 
-Consider the same example of sending a request out from an Amazon EC2 instance to the internet. When a packet response for that request returns to the instance, the security group remembers your previous request. The security group allows the response to proceed, regardless of inbound security group rules.
+
 
 ## Differences between Network ACLs and Security Groups
 
@@ -208,9 +205,6 @@ Remember the AWS Shared Responsibility Model? When it comes to securing the subn
 
 ### Edge networking services
 
-Secure and speedy networking for user-facing application data
-
-Edge networking is the process of bringing information storage and computing abilities closer to the devices that produce that information and the users who consume it.
 
 Edge computing is important because organizations often need lower latency access to their data and content. By performing tasks or caching data locally or closer to users, organizations can deliver faster, more responsive experiences while maintaining better control over their infrastructure. 
 
