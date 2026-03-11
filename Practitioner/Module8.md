@@ -156,6 +156,24 @@ Fully serverless, running on AWS-managed GPU/accelerator clusters. You just call
 
 Technical example: Call a foundation model API to summarize documents without managing servers.
 
+AWS hosts the model weights on their managed infrastructure, and you hit an API endpoint specifying which model you want.
+
+```
+Your App
+   ↓
+POST /model/anthropic.claude-sonnet-4-5/invoke   ← you pick the model
+   ↓
+Bedrock Runtime (AWS-managed)
+   ↓
+Model inference runs on AWS compute
+   ↓
+Response back to your app
+```
+
+Key API calls:
+```
+POST bedrock-runtime.us-east-1.amazonaws.com/model/anthropic.claude.../invoke
+```
 Use cases:
 
  - Enterprise-grade generative AI.Build production-ready generative AI applications with enterprise-level security, privacy, and scalability.
@@ -163,8 +181,9 @@ Use cases:
  - Advanced conversational AI. Develop advanced conversational agents that connect to your enterprise data to provide accurate responses.
 
 ## Amazon Q products
+Amazon Q is a managed, cloud-native and **generative AI assistant** built on a fine-tuned foundation model and deeply integrated with AWS service APIs. It gets to decisions faster, and improve employee productivity
 
-Amazon Q is a generative AI assistant that can help companies streamline processes, get to decisions faster, and improve employee productivity. It can help every employee gain insights into their data and accelerate their tasks.
+AWS Service APIs are the HTTP/HTTPS REST endpoints that expose every AWS resource as a programmable interface.
 
 An AI assistant for enterprise data, performing retrieval and answering queries.
 Managed SaaS service on AWS. Uses Bedrock or internal FMs, connecting to your data via APIs. No servers or VMs to manage.
@@ -172,8 +191,7 @@ Managed SaaS service on AWS. Uses Bedrock or internal FMs, connecting to your da
 Technical example: Ask your company’s internal knowledge base questions and get AI-generated answers.
 
 1. Amazon Q Business
-   Amazon Q Business can answer pressing questions, help solve problems, and take actions using the data and expertise found in your company's information repositories. Amazon Q Business provides this tailored assistance with a secure connection to commonly used systems.
-   Use cases: Information requests, automated workflows, and insight extraction
+   Installed as a VS Code extension. It's essentially a Copilot alternative, but AWS-native — stronger on cloud/AWS-specific code, IAM policies, CDK, Lambda, etc.
 
 2. Amazon Q (general/consumer)
    Amazon Q (general/consumer) – the standard AI assistant version for more general or small-scale use, still cloud-hosted, but without deep enterprise integrations.

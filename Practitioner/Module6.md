@@ -3,9 +3,51 @@
 AWS provides many solutions for storing, accessing, managing, and backing up your data in the cloud. These virtual storage systems eliminate the need for physical hardware in your data center while offering the flexibility to scale as your needs change. 
 
 AWS offers three distinct types of cloud storage to meet diverse requirements and application needs: 
-  - block storage
-  - object storage
-  - file storage.
+  - block storage - Databases (MySQL, PostgreSQL), Operating system disks, Virtual machine boot volumes, Transactional applications, ERP systems
+  - object storage - Images, videos, and audio files (media libraries), Website static assets (HTML, CSS, JS), Data lake raw data and analytics datasets, Application backups and archives, Machine learning training datasets, Log files from distributed systems
+  - file storage -  Shared application configuration files, Home directories for enterprise users, Content management system (CMS) assets, Development environments and code repositories, Media rendering workloads (shared project files) ,Lift-and-shift enterprise applications
+
+What dictates where you store data is mainly how the application needs to access the data. Each storage type is built for a different access pattern and structure.
+
+1. How the data is accessed
+
+| Storage            | How data is accessed                       |
+| ------------------ | ------------------------------------------ |
+| **Block storage**  | The OS accesses raw disk blocks            |
+| **File storage**   | Applications access files using file paths |
+| **Object storage** | Applications access data through APIs/HTTP |
+
+2. Data structure
+
+| Storage | Data structure                        |
+| ------- | ------------------------------------- |
+| Block   | Raw blocks (filesystem created by OS) |
+| File    | Files and folders                     |
+| Object  | Objects with metadata                 |
+
+3. Performance requirements - Some applications need very low latency.
+
+| Storage | Performance                           |
+| ------- | ------------------------------------- |
+| Block   | Very low latency (good for databases) |
+| File    | Moderate                              |
+| Object  | Higher latency                        |
+
+4. Sharing requirements - Do multiple servers need to access the same data at the same time?
+
+| Storage | Multi-server sharing             |
+| ------- | -------------------------------- |
+| Block   | Usually attached to one server   |
+| File    | Designed for sharing             |
+| Object  | Accessible from anywhere via API |
+
+5. Size and scalability
+
+Object storage is designed for massive scale.
+Example:  
+ - Billions of images → Amazon S3
+ - Block storage is usually smaller volumes attached to instances.
+
 
 ## Block storage
 
@@ -258,7 +300,11 @@ You can further optimize Amazon EFS storage costs by automatically moving data b
 
 ## Amazon FSx
 
-Amazon FSx makes it convenient and cost effective to launch, run, and scale feature-rich, high-performance file systems in the cloud. It supports a wide range of workloads with its reliability, security, scalability, and broad set of capabilities. Compared to Amazon EFS, which focuses on the Network File System (NFS) compatibility, Amazon FSx supports multiple filesystem protocols, including Windows File Server, Lustre, OpenZFS, and NetAPP ONTAP.
+Amazon FSx makes it convenient and cost effective to launch, run, and scale feature-rich, high-performance file systems in the cloud. 
+
+It supports a wide range of workloads with its reliability, security, scalability, and broad set of capabilities. 
+
+Compared to Amazon EFS, which focuses on the Network File System (NFS) compatibility, Amazon FSx supports multiple filesystem protocols, including Windows File Server, Lustre, OpenZFS, and NetAPP ONTAP.
 
 Amazon FSx is built on the latest AWS compute, networking, and disk technologies to provide high performance and lower total cost of ownership (TCO). As a fully managed service, it handles hardware provisioning, patching, and backups.
 
@@ -350,6 +396,8 @@ Storage Gateway offers three distinct types of gateways to meet different hybrid
 ## AWS Elastic Disaster Recovery
 
 Elastic Disaster Recovery replicates critical workloads to AWS with minimal downtime. Your servers' block-level data is continuously replicated to AWS, making it ideal for uses that require robust disaster recovery solutions. 
+
+What actually happens. Your on-prem server disks are continuously replicated to AWS storage. The data is stored in a staging area in AWS.If a disaster happens, AWS launches an EC2 instance from that replicated data.
 
 It supports both physical and virtual servers to enable rapid recovery during disruptions, which is particularly valuable for industries like healthcare where system availability is crucial.
 
