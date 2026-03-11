@@ -102,6 +102,8 @@ When applications need specific information, they first check the cache before r
 
 ElastiCache is a fully managed in-memory caching service that was built to help reduce the complexity of administering in-memory caching systems. This means that you can continue to use the same Redis, Valkey, or Memcached tools and configurations to scale your workloads. It automatically detects and replaces failed nodes, which makes it ideal for applications that need consistent high performance.
 
+ElastiCache is a cluster of multiple separate computers (nodes), not RAM management for a single computer. Every node is a separate EC2-like instance with its own CPU and RAM. The data is stored in RAM on each of these separate machines
+
 Use cases
 Some examples of practical use cases for ElastiCache are session data management, database query enhancement, and gaming leaderboards.
 
