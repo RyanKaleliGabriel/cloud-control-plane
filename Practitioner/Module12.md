@@ -121,7 +121,7 @@ It is fairly simple to migrate data from one server to another when both are usi
 
 The good news is, whether your migration is homogenous (from same type of database to same type) or heterogenous (from one type of database to a different type), there are AWS services to support you.
 
-## AWS DMS
+## AWS Database Migration Service
 
 Migrates and replicates databases to AWS with low downtime.
 
@@ -132,7 +132,7 @@ Handles large (terabyte-sized) databases at low cost and keeps databases highly 
 Used to move to managed databases, remove licensing costs, replicate live changes, and integrate with data lakes.
 
 
-## AWS SCT
+## AWS Schema Conversion Tool.
 
 Converts database schemas and code objects (tables, views, stored procedures, functions) between different database engines.
 
