@@ -134,7 +134,7 @@ An organization is a collection of AWS accounts that you can manage centrally an
 
 Each account can be located directly in the root or placed in one of the OUs in the hierarchy.
 
-![Organizations](../../images/AWS_ORG.png)
+![Organizations](../images/AWS_ORG.png)
 
 - Management account. The management account is the central AWS account that creates and manages the organization. It's responsible for overall control and governance.
 - Organizational unit (OU). An organizational unit (OU) is a logical grouping of accounts in an AWS Organization. OUs can contain member accounts or nested OUs.
