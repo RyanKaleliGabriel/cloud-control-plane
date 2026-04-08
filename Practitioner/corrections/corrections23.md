@@ -38,4 +38,4 @@ D. Download the AWS Trusted Advisor report, then provide the report to the audit
 Answer
 Correct Answer: C
 
-Explanation: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html
+Explanation: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.htmlP
