@@ -49,6 +49,8 @@ B. Amazon Redshift
 C. API Gateway
 D. Amazon Direct Connect
 
+A and D
+
 Which of the following benefits does the AWS Compliance program provide to AWS customers? (Choose two.)
 A. It verifies that hosted workloads are automatically compliant with the controls of supported compliance frameworks.
 B. AWS is responsible for the maintenance of common compliance framework documentation.

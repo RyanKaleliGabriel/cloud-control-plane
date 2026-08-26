@@ -3,7 +3,8 @@ Which service will facilitate private hybrid connectivity?
 A. Amazon Virtual Private Cloud (Amazon VPC) NAT Gateway
 B. AWS Direct Connect
 C. Amazon Simple Storage Service (Amazon S3) Transfer Acceleration
-D. AWS Web Application Firewall (AWS WAF)
+D. AWS Web Application Firewall (AWS WAF)q
+Answer B
 
 Which of the following services is a MySQL-compatible database that automatically grows storage as needed?
 A. Amazon Elastic Compute Cloud (Amazon EC2)
@@ -46,3 +47,4 @@ D. Data transfer costs
 E. Network infrastructure costs
 F. Hardware lifecycle costs
 
+Answer ADF
