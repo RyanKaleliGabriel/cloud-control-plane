@@ -38,3 +38,13 @@
 26. Create a Dynamic policy (target tracking). Target cpu spikes. Use stress linux os package to increase cpu load. Observe after 15 minutes in the monitoring tab of the auto scaling group. Delete the target tracking policy
 
 27. Create a mysql rds db, fully configured. administer a security group,connect it through mysql electron (local tool). Create tables and add data.Terminate the instance
+
+28. WIth a paid account create 3 ec2 instances in different regions, each with apache and they should be displaying their ip addresses. Create an alb such that the target groupof the alb points to the three ec2 instances. Create a domain record in route53 and create a subdomain record that points to the alb. Set a time to live of 120 seconds and access the web service using the created subdomain. Use nslookup to check if the mapping of the subdomain is correct. Use dig to check how the TTL cache time reduces by running dig in intervals of 5 secons. After the TTL is donefor the dns subdomain refresh the subdomain in the web browser and it should point to a different ec2
+
+29. From the route53, create an alias and a cname record from the alb created
+
+30. Create a subdomain record, mapit to one of the ec2 instances and set routing policy to simple. Test in the web browser. Then edit the record and add the rest of the ec2 instances ips. Check the TTL in using dig(commandline tool). Refresh the subdomain in the browser to see if the ip changes. (It should change)
+
+31. Create a subdomain record ans assign it a weighted routing policy. The first record assign it to the first instance with a weight of 70, then the second record assign to the next ec2 instance with a weight of 20, then the third record to the third ec2 instance with a weight of 10. Each record give it a 3 second TTL. Access the record in your browser. You should notice that most requests go to the first instance
+
+32. Create another subdomain to test latency based routing policy. Since our ec2 instances are in different regions after creating another subdmomain configure it with latency routing policy and create 3 for the 3 ec2 instances records, each record should have latency routing policy and the region should be set to the region where each ec2 instance is from. Test with a vpn to full see how the ip changes in the browser
