@@ -280,3 +280,128 @@ Configure you router/firewall to allow incoming requests from Route 53 Health Ch
 • You can create a CloudWatch Metric and associate a CloudWatch Alarm, then create a Health Check that checks the alarm itself
 
 ![Image](../saa/hc_private_hoste_zones.png)
+
+
+## Routing Policies – Failover (Active-Passive)
+
+![Image](../saa/routing_policy_failover.png)
+
+## Routing Policies – Geolocation
+
+• Different from Latency-based!
+
+• This routing is based on user location
+
+• Specify location by Continent, Country or by US State (if there’s overlapping, most precise location selected)
+
+• Should create a “Default” record (in case there’s no match on location)
+
+• Use cases: website localization, restrict content distribution, load balancing, …
+
+• Can be associated with Health Checks
+
+![Image](../saa/routing_policy_geolocation.png)
+
+## Routing Policies – Geoproximity
+
+• Route traffic to your resources based on the geographic location of users and resources
+
+• Ability to shift more traffic to resources based on the defined bias
+
+To change the size of the geographic region, specify bias values:
+ - To expand (1 to 99) – more traffic to the resource
+ - To shrink (-1 to -99) – less traffic to the resource
+
+Resources can be:
+ - AWS resources (specify AWS region)
+ - Non-AWS resources (specify Latitude and Longitude)
+
+• You must use Route 53 Traffic Flow to use this feature
+
+## Routing Policies – Geoproximity - EXAM IMPORTANT
+
+Geo proximity is really helpful when you need to shift traffic from one region another by increasing the bias
+
+
+![Image](../saa/routing_policy_geoproximity.png)
+
+## Routing Policies – Geoproximity
+
+![Image](../saa/rp_geoproximity2.png)
+
+## Routing Policies – IP-based Routing
+
+• Routing is based on clients’ IP addresses
+
+• You provide a list of CIDRs for your clients and the corresponding endpoints/locations (user-IP-to-endpoint mappings)
+
+• Use cases: Optimize performance, reduce network costs…
+
+• Example: route end users from a particular ISP to a specific endpoint
+
+![Image](../saa/rp_ip_based.png)
+
+## Routing Policies – Multi-Value
+
+• Use when routing traffic to multiple resources
+
+• Route 53 return multiple values/resources
+
+• Can be associated with Health Checks (return only values for healthy resources)
+
+• Up to 8 healthy records are returned for each Multi-Value query
+
+• Multi-Value is not a substitute for having an ELB
+
+![Image](../saa/rp_multi_value.png)
+
+## Domain Registar vs. DNS Service
+
+• You buy or register your domain name with a Domain Registrar typically by paying annual charges (e.g., GoDaddy, Amazon Registrar Inc., …)
+
+• The Domain Registrar usually provides you with a DNS service to manage your DNS records
+
+• But you can use another DNS service to manage your DNS records
+
+• Example: purchase the domain from GoDaddy and use Route 53 to manage your DNS records
+
+![Immage](../saa/domain_registar_dns_service.png)
+
+## GoDaddy as Registrar & Route 53 as DNS Service
+
+![Image](../saa/godaddy_route53.png)
+
+## 3rd Party Registrar with Amazon Route 53
+
+If you buy your domain on a 3rd party registrar, you can still use Route 53 as the DNS Service provider
+ - Create a Hosted Zone in Route 53
+ - Update NS Records on 3rd party website to use Route 53 Name
+
+Servers
+ - Domain Registrar != DNS Service
+ - But every Domain Registrar usually comes with some DNS features
+
+## Route 53 – Hybrid DNS
+
+By default, Route 53 Resolver automatically answers DNS queries for:
+ - Local domain names for EC2 instances
+ - Records in Private Hosted Zones
+ - Records in public Name Servers
+
+Hybrid DNS – resolving DNS queries between VPC (Route 53 Resolver) and your networks (other DNS Resolvers)
+
+Networks can be:
+ - VPC itself / Peered VPC
+ - On-premises Network (connected through Direct Connect or AWS VPN)
+
+ ![Image](../saa/hybrid_dns.png)
+
+## Route 53 – Resolver Endpoints
+
+Inbound Endpoint – allows your DNS Resolvers to resolve domain names for AWS resources (e.g., EC2 instances) and records in Private Hosted Zones
+
+![Image](../saa/inbound_endpoint_r53.png)
+
+• Outbound Endpoint - Route 53 Resolver forwards DNS queries to your DNS Resolvers
+
+![Image](../saa/outbound_endpoint_r53.png)
