@@ -91,3 +91,25 @@ Create a domain name in a public hosted zone before anything
 1. Review current and noncurrent version transition and expiration actions, including storage-class transitions from Day 0 through Day 365, object expiration at Day 700, noncurrent version transitions to Glacier Flexible Retrieval at Day 90, and permanent deletion of noncurrent versions at Day 700.
 
 2. Event notification. CReate a new bucket, default settings( regional). Create an sqs queue to send messages to whenever a file is uloaded in the bucket. You will have to change the access policy of the sqs queue to allow messages to be sent to it by the sqs queue. Hint use access policy generator. You will have to link the s3 to sqs communication in the s3 section
+
+## S3 security
+
+1. Create a bucket, enable versioning and server side encryption should be set to the default sse-s3. Upload an image to the bucket and view its properties to see the encryption enebaled. Change the encryption method to sse-kms. Check the versions of the objects in the bucket to see two versions of your image.
+
+2. Test cors in your first markdown. Create upload the index.html in your first bucket that had static website enabled and make sure in the cors section (javascript) include on to fetch extra-page.html not the an aws domain name. Upload the extra-page.html. And access the page to see the extra page. Delete the extra-page.html.ate another origin bucket in another region, lets say canada and enable static webiste to it, set the main faile to index.html, remove all blocks when creating the bucket and add a policy that allows public access. Upload the extra-page.html there and go back to vscoe and change the index.html to fetch the extra-page.html from the new bucket by including the bucket domain name and /extra-page.html. Upload the index.html in your first bucket again and try accessing the page. Observer the cosole tab and see the cors error. Edit the permissions in the new bucket where the extra page is and include the cors config in vscode, make sure the allowed origins does not end with a slash. And add the url of the first bucket to the allowed origins. Save and hard reload the page to see the extra page appear
+
+3. 
+
+## Cloudfront
+
+1. Create an s3 bucket with default settings nothing changed, upload index.html, coffee and beach .jpg. CrEATE A CLOUD FRONT DISTRIBUTION AND LINK IT TO THE S3 BUCKET, it will automatically copy a the policy to allow cloud front to access s3 and the policy will be copied to the s3 bucket. After creating it make sure the root object is set to index.html. After it has deployed open the cloudfront dns settings to access the site. Add /coffee.jpg to the dns name reload, then do the same for beach.jpg and reload. This is just to see both images. Reload the site without both /images.jpg just the original dns so that inde.html is fetched from cloud front not s3 and do the same for the images
+
+## SQS
+
+1. Create a sqs queue with default settings and 30 second message resend if the message is not deleted. Try sending a message from the queue tab and poll for messages to see if a message has been receiived. Wait for 30 seconds and see the message count, it should be 2 for the same message. Delete the message.
+
+2. Create a fifo queue and the name should end with '.fifo'. Send 4 different messages with the same groupd id but different messages and deduplication ids. Research what is deduplication in sqs
+
+## SNS
+
+1. Create a sns topic, standard one. With default settings. Create a subscription to send messages to your email. Confirm the subscription from your gmail. Send a messages to the email to confirm and it is working. Delete the subscription and topic
