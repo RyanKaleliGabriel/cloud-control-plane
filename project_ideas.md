@@ -113,3 +113,22 @@ Create a domain name in a public hosted zone before anything
 ## SNS
 
 1. Create a sns topic, standard one. With default settings. Create a subscription to send messages to your email. Confirm the subscription from your gmail. Send a messages to the email to confirm and it is working. Delete the subscription and topic
+
+# ECS
+
+1. Create an ecs cluster with both fargate and self managed instances option. Set the desired ASG to 0 desired and 5 Maximum and leave the default options. After the cluster has been created go to the autoscaling group tab and changed the desired instances to 1 and save. Check if an ec2 instance has been launched (it should be) and go back to the cluster and check the containers status. The ec2 instance should be launched from there.
+
+2. Check the video for creating an ecs service in the aws not free tutorials and write the steps down and implement it
+
+## Lambda
+
+1. Create a demo function with python hello-world template and run it in lambda. Check the metrics in the monitoring tab
+
+## Dynamo DB 
+
+1. Navigate to the dynaodb service in the console and create a table name with a partition key which will be the primary id. Choose customize seting and dynamodb standard. Read and write capacity both set with OFF autoscaling and 1 rovisioned capcity each. Create the table. Create an two iems and each item should have a user_id and add 3 different attributes to each item. So that you see the schema flexibiliy it has to offer 
+
+
+## API gateway
+
+1. Create an api gateway in  the api gateway service. Choose rest api and the api detail should be new API. Give it a name and set the endpoint type to regional and create it. Navigate to the api and create a method. Should be a GET type and lambda function integration. Enale lambda proxy integration , leave it as buffered. And from here we have to create the lambda function. Gie your lambda function a name and choose python 3.14 as the runtime, leave other setting. Copy the lambda code in the api-gateway folder and test it. Go back to the api gateway and select the new lambda function and create method. Go to the lambda unction and in under configuration and permissions check the resource based policy to see if the api gateway is authorized to access your lambda function. Test to see the response. Create a resource and name it houses. Reapeat the same steps for creaing a method and linking the method to a new lambda function that instead says "HELLO from my pretty houses" in the print statement. Test the endpoint from the api gateway. Deploy the api and choose a new stage and name it dev. Test the invoke URL with bothe endpoints i.e "/" and "/houses"

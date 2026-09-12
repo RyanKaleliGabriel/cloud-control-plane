@@ -133,7 +133,7 @@ Note:
 
 Automatically increase/decrease the desired number of ECS tasks
 
-Amazon ECS Auto Scaling uses AWS Application Auto Scaling
+Amazon ECS Auto Scaling uses AWS Application Auto Scaling - Examimportant
  - ECS Service Average CPU Utilization
  - ECS Service Average Memory Utilization - Scale on RAM
  - ALB Request Count Per Target – metric coming from the ALB
