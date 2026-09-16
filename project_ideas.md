@@ -132,3 +132,33 @@ Create a domain name in a public hosted zone before anything
 ## API gateway
 
 1. Create an api gateway in  the api gateway service. Choose rest api and the api detail should be new API. Give it a name and set the endpoint type to regional and create it. Navigate to the api and create a method. Should be a GET type and lambda function integration. Enale lambda proxy integration , leave it as buffered. And from here we have to create the lambda function. Gie your lambda function a name and choose python 3.14 as the runtime, leave other setting. Copy the lambda code in the api-gateway folder and test it. Go back to the api gateway and select the new lambda function and create method. Go to the lambda unction and in under configuration and permissions check the resource based policy to see if the api gateway is authorized to access your lambda function. Test to see the response. Create a resource and name it houses. Reapeat the same steps for creaing a method and linking the method to a new lambda function that instead says "HELLO from my pretty houses" in the print statement. Test the endpoint from the api gateway. Deploy the api and choose a new stage and name it dev. Test the invoke URL with bothe endpoints i.e "/" and "/houses"
+
+## Athena
+
+1. Navigate to the athena service page and create and select "Query your data in Athena console". It should show you this pop up "Before you run your first query, you need to set up a query result location in Amazon S3.". Select "Edit setting and manage to create a s3 bucket which will store your query results. Navigate to the s3 servie page in another tab and create a regional s3 bucket. Go back to athena and choose the created bucket. There is a s3 bucket that was created from previous tasks that had access logs. We will use this bucket as our db. Navigate to editor tab in athena and run the first line of code in "/home/ryankaleligabriel/cloud-control-plane/Solutions_architect/code_v2025-10-27/s3-advanced/athena-s3-access-logs.sql" to create a database first. Select the database created in the right hand side navigation tab. Next is to copy the create table query and switch the location with the location of your logs. The previous example location was 's3://ryankaleli-s3-access-logs/'. Got the uri by clicking an object and copying its uri. In the table click the navbar link and click preview table and it should return some results from your table. Run the other queries in the code file listed above
+
+##  Polly
+
+1. Navigate to polly and try it out with the default sentence. Use the SSML feature to add a break in your sentences by using this input text "'<speak>Hi, I’m Danielle. <break time="1s" /> I Love AWS</speak>'". Upload a lexicon to change AWS to Amazon web services
+
+## Cloudwatch
+
+1. Check the cloud watch logs tutorial in the not free tutorials folder (its free)
+
+2. Create an ec2 instance t3micro with default settings. Create a classic cloudwatch alarm and select a metric, choose ec2 then choose per instance metri. Paste the instance id of the ec2 instance and select it in the search bar and select cpu utilization %. Afte that choose a 5 minute period so the metric can be populated evry 5minutes. Leave the statisticat average, Choose the cndition as static and greater than 95%. In the additional conifiguration. Choose the datapoints of the alarm to be 3 out of 3 wich means for 15 minutes if it stays at 95% and above the metric goes to alarm state. Click on next and choose the action point, we will go for ec2 action and terminate this instance. Click next and give the alarm a name. Verify and click the alarm. Because waiting for 15 minutes will be long we can set the alarm state from the ec2 instance (cloudshell) by running the command 
+
+```
+aws cloudwatch set-alarm-state \
+    --alarm-name "YOUR_ALARM_NAME" \
+    --state-value "ALARM" \
+    --state-reason "Testing notification triggers"
+```
+
+after that run checkthe history of the alarm and its state and check to see the ec2 instance state. Should be terminated
+
+2. Create an eventr bridge bus. Give it a name and enable archiving and schema discovery. Create a rule and give it a name and select the created bus as the default bus and click next. Now we want to create an event pattern. Select 'AWS events or EventBridge partner events' ans the event source. In the sample event type (this is for testing purposes) select AWS events and the sample evetnt choose "EC2 instance State-change Notification" and Sample event 4 who's state is stopped. Event pattern creation, pick "Use pattern form" and Event source as AWS services, Aws service as EC2 Event type as ' EC2 Instance State-change Notification. Choose Event Type specification 1 as 'Specific state(s) and choose 'stopped' and 'terminated'. Test the pattern and click next. In the targets choose aws service as the target type and sns topic as the target The topic choose demo-topic or create one with default settings. You can now create a subsription in sns that sends emails to your email. AFter that create and terminate a default t3.micro ec2 instance
+
+
+## Cloud trail
+
+1. Create a bareminimum ec2 instance and make sure its running, terminateit and observer the event history after five to ten minutes in the cloudtrail events history to see if its generated.

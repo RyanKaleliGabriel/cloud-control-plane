@@ -255,3 +255,18 @@ Use cases: IoT apps, operational applications, real-time analytics, …
 
 ![Image](../saa/amazon_timestream.png)
 
+## Amazon QLDB
+
+Stands for Quantum Ledger database
+
+A ledger is a book recording financial transactions
+
+Full Managed serverless High available. Replication across 3AZ
+
+Used to review history of all the changes made to your application data over time
+
+Immutable system: no entry can be removed omodified, cryptographically verifiable - Research how this works
+
+2-3x better performance than comon leger blockchain frameworks,manipulate data using SQL
+
+Difference with amazon managed blockchain: no decentralization component, in accordance with financial rules
