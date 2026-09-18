@@ -46,6 +46,24 @@ Security: Service Control Policies (SCP)
 
 ![IMAGE](../saa/scp_hierarchy.png)
 
+Management Account
+ - Can do anything (no SCP apply)
+
+Account A
+ - Can do anything
+ - EXCEPT S3 (explicit Deny from Sandbox OU)
+ - EXCEPT EC2 (explicit Deny)
+
+Account B & C
+ - Can do anything
+ - EXCEPT S3 (explicit Deny from Sandbox OU)
+
+Account D
+ - Can access EC2
+
+Prod OU & Account E & F
+ - Can do anything
+
 ## SCP Examples Blocklist and Allowlist strategies
 
 ![Image](../saa/SCP_EXAMPLES.png)
@@ -169,11 +187,11 @@ Use cases
 
 ## Example IAM Policy
 
-• Can you perform sqs:CreateQueue?
+• Can you perform sqs:CreateQueue? No there is an explicit deny
 
-• Can you perform sqs:DeleteQueue?
+• Can you perform sqs:DeleteQueue? No because if there is a deny first everything is denied
 
-• Can you perform ec2:DescribeInstances?
+• Can you perform ec2:DescribeInstances? No because thereis no explicit allow and explicit deny
 
 ![Image](../saa/example_iam_policy.png)
 
@@ -232,7 +250,7 @@ Attribute-Based Access Control (ABAC)
 
 ![Image](../saa/microsoft_ad.png)
 
-## AWS Directory Services
+## AWS Directory Services - Exam important
 
 AWS Managed Microsoft AD
  - Create your own AD in AWS, manage users locally, supports MFA
