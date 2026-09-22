@@ -103,3 +103,22 @@ LIMIT 100;
 From here i can see the results and filter based on which ip is trying to access me the most. 
 
 DELETE THE TWO FLOW LOGS.
+
+
+<<<<<<< HEAD
+## IPV6
+
+Navigate to demovpc, actions and edit cidrs. Create add ipv6 CIDR and choose Amazon-provided IPV6 CIDR. We will create an ipv6 cidr for the publicsubnetA, select bastion host and actions. Under networking you will see manage ip addresses, click on the eni interface and assign a new ipv6 address and leave it at auto-assign
+=======
+## VPC
+
+1. Creata a vpc. Give it a name tag DemoVPC, IPv4 Cidr manual input, IPv4 CIDR is 10.0.0.0/16 and No IPv6 CIDR block. Tenancy set to Default and create the vpc.
+
+1. Here in this exercise we will create 4 subnets for our new vps. Two subnets will be private and 2 will be public. The first public subnet will have a 10.0.0.0/24 CIDR and it will be in availabiliy zone us-east-1a (256 available ip addresses with the first ip address starting from 10.0.0.0 and the last having 10.0.0.25 ). The second public subnet will have a cidr of 10.0.1.0/24 in us-east-1b and will have  256 ip addresses (first ip address will be 10.0.1.0 and the last one will be 10.0.1.255). So the first and second subnets have different ips. The private subnets are assumed to have more hosts. So we will give both a /20 cidr. The first private subnet will hae a cidr block of 10.0.16.0/20 (4096 available ips, 10.0.16.0 is the first ip address, 10.0.31.255 is the last one) and the other one which will be in us-east-1b will have a cidr block of 10.0.32.0/20 (4096 available ips, with 10.0.32.0 as the first IP and 10.0.47.255 ad the last ip)
+
+3. Edit both public subnets and enable ip address auto assigning. Create an ec2 instance with default settings and make sure the ec2 instance is in the vpc you just created and in publicsubnetA and has not key pair. Try connecting using ec2 instance connect and it should fail because there is no internet gateway. Create an internet gateway and attach to the vpc. Try connecting to the ec2 instance again using ecn instance connect, it should fail. Because there is no route table. Create two route tables the private route table and the public route table, explicitly associate theprivate subnets to the private route table and vice versa. Now we will edit the routes in the public route table to send traffic to the internet gateway. So we will add a route Destination 0.0.0.0/0 and target internet gateway and we pick the internet gateway we created. The first rule means that any instance within our vpc (10.0.0.0/16) goes to local which means from within our vpc. The new rule means that anthying else (0.0.0.0/0) which includes public ips (that your ec2 instance was given) can go to the internet gateway. Now connect to the ec2 using ec2 instance connect and ping google.com
+
+4. Rename the ec2 instance as bation host. It will be used toas a bastion to log into ec2 instances that are in the private subnet. Users will ssh into the bastion and jump into the private ec2 instances. Create another ec2 instance and the key pair select the one you created earlier in the course or create a new.pem one with rsa. Choose the vpc we created and private subnet A. Create new security group and name it privatesg. n the inbound security group rules select source type of ssh as custom and the source choose the security group of the bastion host, decsription write allow ssh for bastion host. Launch the instance. Connect the bastion ec2 from ec2 instance connect, create a file named DemoKeypair.pem and copy the contents of the key pair in this file. Now ssh into the new ec2 instance ```ssh ec2-user@privateip -i DemoKeypair.pem```
+
+5. Create a NAT gateway. Give it a name, availabilitymode = zonal Subnet = PublicSubnetA, Connectivity type = public and allocate an elastic IP. Edit your private route table and allow all ips (0.0.0.0/0) destionation to access the target NAT gateway you created. Login to the private ec2 via the bastion and ping google.com (It should work)
+>>>>>>> 57e7ce2 (changes)
