@@ -162,3 +162,7 @@ after that run checkthe history of the alarm and its state and check to see the 
 ## Cloud trail
 
 1. Create a bareminimum ec2 instance and make sure its running, terminateit and observer the event history after five to ten minutes in the cloudtrail events history to see if its generated.
+
+## IPV6
+
+Navigate to demovpc, actions and edit cidrs. Create add ipv6 CIDR and choose Amazon-provided IPV6 CIDR. We will create an ipv6 cidr for the publicsubnetA, select bastion host and actions. Under networking you will see manage ip addresses, click on the eni interface and assign a new ipv6 address and leave it at auto-assign
