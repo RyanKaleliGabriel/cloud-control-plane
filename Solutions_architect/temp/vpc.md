@@ -451,7 +451,7 @@ S3 Cross Region Replication: $0.02 per GB
 
 ![Image](../saa/s3_data_transfer_pricing.png)
 
-## Pricing: NAT Gateway vs Gateway VPC Endpoint
+## Pricing: NAT Gateway vs Gateway VPC Endpoint - EXAM important
 
 ![Image](../saa/nat_gateway_vs_gateway_endpoint.png)
 
