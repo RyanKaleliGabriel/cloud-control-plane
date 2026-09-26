@@ -23,11 +23,11 @@
 
 • In AWS you apply the least privilege principle: don’t give more permissions than a user needs
 
-[IAM Permissions](../saa/IAM_permissions.png)
+![IAM Permissions](../saa/IAM_permissions.png)
 
 ### IAM Policies inheritance
 
-[IAM Policies](../saa/iam_policies.png)
+![IAM Policies](../saa/iam_policies.png)
 
 
 So let's imagine we have a group of developers, Alice, Bob and Charles, and we, attach a policy at the group level.
@@ -109,9 +109,9 @@ And David has a policy from audit team and a policy from the operations team.
 
 ## MFA devices options in AWS
 
-[MFA Devices options in AWS](../saa/MFA_Devices_options.png)
+![MFA Devices options in AWS](../saa/MFA_Devices_options.png)
 
-[MFA Devices options in AWS](../saa/MFA_devices_options2.png)
+![MFA Devices options in AWS](../saa/MFA_devices_options2.png)
 
 ## How can users access AWS ?
 
