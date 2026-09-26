@@ -51,51 +51,51 @@ And David has a policy from audit team and a policy from the operations team.
 
 ## IAM Policies Structure
 
-• Consists of:
+Consists of:
 
-  • Version: policy language version, always include “2012-10-17”
+  - Version: policy language version, always include “2012-10-17”
 
-  • Id: an identifier for the policy (optional)
+  - Id: an identifier for the policy (optional)
 
-  • Statement: one or more individual statements (required)
+  - Statement: one or more individual statements (required)
 
-• Statements consists of
+Statements consists of
 
-  • Sid: an identifier for the statement (optional)
+  - Sid: an identifier for the statement (optional)
 
-  • Effect: whether the statement allows or denies access(Allow, Deny)
+  - Effect: whether the statement allows or denies access(Allow, Deny)
 
-  • Principal: account/user/role to which this policy applied to
+  - Principal: account/user/role to which this policy applied to
 
-  • Action: list of actions this policy allows or denies
+  - Action: list of actions this policy allows or denies
 
-  • Resource: list of resources to which the actions applied to
+  - Resource: list of resources to which the actions applied to
 
-  • Condition: conditions for when this policy is in effect(optional)
+  - Condition: conditions for when this policy is in effect(optional)
 
 ## IAM – Password Policy
 
-• Strong passwords = higher security for your account
+Strong passwords = higher security for your account
 
-• In AWS, you can setup a password policy:
+In AWS, you can setup a password policy:
 
-  • Set a minimum password length
+  - Set a minimum password length
 
-  • Require specific character types:
+  - Require specific character types:
 
-    • including uppercase letters
+    - including uppercase letters
 
-    • lowercase letters
+    - lowercase letters
 
-    • numbers
+    - numbers
 
-    • non-alphanumeric characters
+    - non-alphanumeric characters
 
-• Allow all IAM users to change their own passwords
+Allow all IAM users to change their own passwords
 
-• Require users to change their password after some time (password expiration)
+Require users to change their password after some time (password expiration)
 
-• Prevent password re-use
+Prevent password re-use
 
 ## Multi Factor Authentication - MFA
 
@@ -115,23 +115,23 @@ And David has a policy from audit team and a policy from the operations team.
 
 ## How can users access AWS ?
 
-• To access AWS, you have three options:
+To access AWS, you have three options:
 
-  • AWS Management Console (protected by password + MFA)
+  - AWS Management Console (protected by password + MFA)
 
-  • AWS Command Line Interface (CLI): protected by access keys
+  - AWS Command Line Interface (CLI): protected by access keys
 
-  • AWS Software Developer Kit (SDK) - for code: protected by access keys
+  - AWS Software Developer Kit (SDK) - for code: protected by access keys
 
-• Access Keys are generated through the AWS Console
+Access Keys are generated through the AWS Console
 
-• Users manage their own access keys
+Users manage their own access keys
 
-• Access Keys are secret, just like a password. Don’t share them
+Access Keys are secret, just like a password. Don’t share them
 
-• Access Key ID ~= username
+Access Key ID ~= username
 
-• Secret Access Key ~= password
+Secret Access Key ~= password
 
 ## What’s the AWS CLI?
 
@@ -149,50 +149,50 @@ And David has a policy from audit team and a policy from the operations team.
 
 ## What’s the AWS SDK?
 
-• AWS Software Development Kit (AWS SDK)
+AWS Software Development Kit (AWS SDK)
 
-• Language-specific APIs (set of libraries)
+Language-specific APIs (set of libraries)
 
-• Enables you to access and manage AWS services programmatically
+Enables you to access and manage AWS services programmatically
 
-• Embedded within your application
+Embedded within your application
 
-• Supports
+Supports
 
-  • SDKs (JavaScript, Python, PHP, .NET, Ruby, Java, Go, Node.js,  C++)
+  - SDKs (JavaScript, Python, PHP, .NET, Ruby, Java, Go, Node.js,  C++)
   
-  • Mobile SDKs (Android, iOS, …)
+  - Mobile SDKs (Android, iOS, …)
   
-  • IoT Device SDKs (Embedded C, Arduino, …)
+  - IoT Device SDKs (Embedded C, Arduino, …)
 
-• Example: AWS CLI is built on AWS SDK for Python
+Example: AWS CLI is built on AWS SDK for Python
 
 ## IAM Roles for Services
 
 
-• Some AWS service will need to perform actions on your behalf
+Some AWS service will need to perform actions on your behalf
 
-• To do so, we will assign permissions to AWS services with IAM Roles
+To do so, we will assign permissions to AWS services with IAM Roles
 
-• Common roles:
+Common roles:
 
-    • EC2 Instance Roles
+   - EC2 Instance Roles
 
-    • Lambda Function Roles
+   - Lambda Function Roles
 
-    • Roles for CloudFormation
+   - Roles for CloudFormation
 
 ## IAM Security Tools
 
 
-• IAM Credentials Report (account-level)
+IAM Credentials Report (account-level)
 
-    • a report that lists all your account's users and the status of their various credentials
+  - a report that lists all your account's users and the status of their various credentials
 
-• IAM Access Advisor (user-level)
-    • Access advisor shows the service permissions granted to a user and when those services were last accessed.
+IAM Access Advisor (user-level)
+  - Access advisor shows the service permissions granted to a user and when those services were last accessed.
     
-    • You can use this information to revise your policies.
+  - You can use this information to revise your policies.
 
 ## IAM Guidelines & Best Practices
 
