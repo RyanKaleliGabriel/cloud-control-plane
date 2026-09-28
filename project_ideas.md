@@ -1,21 +1,107 @@
 ## Project ideas for practise
 
-1. Password policies
-2. Setting up MFAs
-3. Create and configure access key for aws cli
-4. Run a couple of commands in cloud shell
-5. Creating roles for aws services and using them
-6. Check status o account credntials in IAM credentials repot
-7. Audit permissions and removed unused ones in iam access advisor
-8. Setting a billing budget
-9. Create a EC2 User data script.
-10. Creating roles for ec2 instances
-11. Elastic Ip addresses assigned and associating it to an ip address
-12. Design placement groups for different types of applications. Create and launch ec2 instances there.
-13. Creating an ENI independently and mving it across instances
-14. Attach a ebs volumes (small 2gb) to a amazon ec2 instance, format it and make it available in the ec2 vm
-15. Create an ec2 instance in a separate region (a region that non of your ec2 instances is available). Create an ebs volume in a different region/availability zone that your new ec2 instance is created. Take a snapshot of the ebs volume, copy it to the new region where your ec2 instance is created. Attach the snapshot  to the ec2 instance and make it work (formatting etc)
-16. Create a 1 day retention rule for snapshots (recycle bin section) . Create a snapshot, delete it , then recover it from the recycle bin.
+## PART ONE Getting started, IAM, EC2 INTRO, EC2 SAA LEVEL
+
+## 01 IAM
+
+
+1. Set a IAM password policy for new users
+    - Set a minimum password length
+    - Require specific character types:
+      - including uppercase letters
+      - lowercase letters
+      - numbers
+      - non-alphanumeric characters
+    -  Turn on password expiration
+    -  Allow users to change their own password
+    - Prevent password reuse
+   Create a user and a user_group and the iam_group should have administrator access. Add the user to that group. Set up MFA for that user using google authenticator
+
+
+2. Create and configure access key for aws cli with  ```aws configure```. Run a couple of commands in cloud shell
+    - List iam users ```aws iam list-users```
+    - List EC2 instances ```aws ec2 describe-instances```
+    - List EC2 instances in a specifc region ```aws ec2 describe-instances --region us-west-2```
+    - Identify my current identity ```aws sts get-caller-identity```
+    - List my IAM policies ```aws iam list-user-policies --user-name gabriel```
+    - List my attached policies ``` aws iam list-attached-user-policies --user-name gabriel```
+    - List the iam group i am in ```aws iam list-groups-for-user --user-name gabriel```
+    - List the attached iam policies of the group ```aws iam list-attached-group-policies --group-name your-group-name```
+    - List default region ```aws configure get region```
+    - List all s3 buckets ```aws s3 ls```
+    - List Objects in a Human-Readable Format ```aws s3 ls s3://your-bucket-name/```
+    - View Current Monthly Billing (Month-to-Date)
+      ```
+      aws ce get-cost-and-usage \
+      --time-period Start=2026-09-01,End=2026-10-01 \
+      --granularity MONTHLY \
+      --metrics "UnblendedCost" \
+      --query "ResultsByTime[*].Total.UnblendedCost.Amount" \
+      --output text
+      ```
+
+
+5. Creating roles for aws services. Create an IAM role for an EC2 instance, attach a policy that gives the role read-only access to an S3 bucket, then attach the role to an EC2 instance and verify that the instance can list and read objects from the S3 bucket using the role. Delete the role and the ec2 instance
+
+
+6. Check status of account credntials in IAM credentials report by downloading it and viewing it in google sheets. Check the status of:
+    - Password enabled/disabled
+    - Password last used
+    - Password last changed
+    - Password next rotation
+    - MFA active/inactive
+    - Access key 1 active/inactive
+    - Access key 1 last used
+    - Access key 2 active/inactive
+    - Access key 2 last used
+    - Access key age
+    - Overall credential status
+
+
+7. Audit permissions in iam access advisor. Navigate to groups select the group you want to analyze and navigate to access advisor. Filter by service not accessed. Do not remove the unused ones yet.
+
+## 02 EC2
+
+8. Setting a billing budget. Nvaigate to  Billing and cost managemen, then budgets then create budget. Select Use a template, Monthly cost budget. Give it a name and set email recipients then create budget.
+
+9. Create an EC2 instance using a:
+   - User Data script that installs Apache and configures a simple “Hello” page displaying the EC2 instance’s IP address. Changes the ssh port to 4326
+   
+   - A security group that allows the following inbound rules SSH on port 4326, HTTP traffic on port 80 and ICMP ipv4 from your network. Try sshing using port 22. Change the ssh port to 4326 and try again. Try accessing the web server from your phone and laptop. Then again using your phone connected with bundles.
+   
+   - Assign the EC2 instance an IAM role with read-only access to all S3 buckets and verify access by listing the buckets.
+   
+   - By default all traffic is allow outbound. Test internet connectivity by pinging and curling `google.com`. 
+   
+   - Create an Elastic IP, associate it with the EC2 instance, then stop and start the instance to verify whether its public IP changes and confirm that the Elastic IP remains associated. 
+
+   Terminate the ec2 instance and the release the elastic ip
+   
+12. Design placement groups for different types of applications. Create and launch ec2 instances there. (Optional)
+
+13. Create two EC2 instances and create a separate ENI in the same Availability Zone. Attach the ENI to the first instance and verify its private IP, then detach it and attach it to the second instance. Verify that the second instance now has the ENI and its private IP, demonstrating that the ENI can be moved between instances.
+    | Setting                      | Value                                |
+    | ---------------------------- | ------------------------------------ |
+    | **VPC**                      | Same VPC as your EC2 instances       |
+    | **Subnet**                   | Same subnet/AZ as both EC2 instances |
+    | **Private IPv4 address**     | Auto-assign                          |
+    | **Security groups**          | Use the same SG as your EC2 instance |
+    | **Description**              | `Test-ENI`                           |
+    | **Source/Destination check** | Leave enabled                        |
+
+  Terminate one of the ec2 instances
+
+## EBS
+
+14. Create an ebs volume. Volume type gp2, size 3GIB same az as your ec2 instance, encrypt using default aws key. Attach the ebs volumes to the amazon ec2 instance, format it and make it available in the ec2 vm. After attaching it to the ec2 instance
+    - ssh into the ec2
+    - Check the device files ```lsblk``` and identify the new attached volume by size
+    - Format it to ext4 filesystem type ```sudo mkfs.ext4 /dev/nvme1n1```
+    - Create a directory where you will mount it ```sudo mkdir /data```
+    - Mount it ```sudo mkdir /data```
+    - Confirm ```df -h``
+
+15. Create an ec2 instance in a separate region (a region that non of your ec2 instances is available). Create an ebs volume in a different region/availability zone that your new ec2 instance is created. Take a snapshot of the ebs volume, copy it to the new region where your ec2 instance is created. Attach the snapshot  to the ec2 instance and make it work (formatting etc). Create a 1 day retention rule for snapshots (recycle bin section) . Create a snapshot, delete it , then recover it from the recycle bin.
 
 17. Look at ## AMI process (from an ec2 instance) in (02_ec2_instance_storage.md). Create a ec2 instrance, use data script to update and install a web server like apache or nginx, enable the web server in systemctl. Test and see if the instance works( if you see the welcome page of the web server). Create an ami from that image at that point. Launch another ec2 instance with that ami image and see if its the welcome page show. Terminate both instances.
 
@@ -30,13 +116,16 @@
 
 22. Add a rule in the load balancer that if the path is /error it returns a custom message
 
-23. Set a stciky session for your load balancer and make the sticky session be generated by the load balancer. Test and refresh the load balancer to see if it goes to the same ec2. Inspect the web page and check the request and response cookies
+23. Set a sticky session for your load balancer and make the sticky session be generated by the load balancer. Test and refresh the load balancer to see if it goes to the same ec2. Inspect the web page and check the request and response cookies
 
-24. WIth a demo app try adding a ssl cert using acm of importing it. Add it to the alb y adding a new listener in the alb
+24. With a demo app try adding a ssl cert using acm of importing it. Add it to the alb y adding a new listener in the alb
 
 25. Create and auto scaling group. First create a launch template. Manualy edit the desired and maximum caoacities and observe the changes in the monitoring and actions tab
 
 26. Create a Dynamic policy (target tracking). Target cpu spikes. Use stress linux os package to increase cpu load. Observe after 15 minutes in the monitoring tab of the auto scaling group. Delete the target tracking policy
+
+## r
+
 
 27. Create a mysql rds db, fully configured. administer a security group,connect it through mysql electron (local tool). Create tables and add data.Terminate the instance
 
