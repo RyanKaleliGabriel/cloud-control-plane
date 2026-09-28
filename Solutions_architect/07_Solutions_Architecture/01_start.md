@@ -108,30 +108,30 @@
 
 ## Stateful Web App: MyClothes.com Introduce User Cookies
 
-![Image](../saa/my_clothes3.png)
+![Image](../saa/myclothes3.png)
 
 ## Stateful Web App: MyClothes.com Introduce Server Session
 
-![Image](../saa/my_clothes4.png)
+![Image](../saa/myclothes4.png)
 
 ## Stateful Web App: MyClothes.com Storing User Data in a database
 
-![Image](../saa/my_clothes5.png)
+![Image](../saa/myclothes5.png)
 
 ## Stateful Web App: MyClothes.com Scaling Reads
-![Image](../saa/my_clothes6.png)
+![Image](../saa/myclothes6.png)
 
 ## Stateful Web App: MyClothes.com Scaling Reads (Alternative) – Lazy Loading
 
-![Image](../saa/my_clothes7.png)
+![Image](../saa/myclothes7.png)
 
 ## Stateful Web App: MyClothes.com Multi AZ – Survive disasters
 
-![Image](../saa/my_clothes8.png)
+![Image](../saa/myclothes8.png)
 
 
 ## Stateful Web App: MyClothes.com Security Groups
-![Image](../saa/my_clothes9.png)
+![Image](../saa/myclothes9.png)
 
 ## In this lecture we’ve discussed… 3-tier architectures for web applications
 
