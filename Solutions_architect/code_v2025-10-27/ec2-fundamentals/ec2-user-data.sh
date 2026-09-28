@@ -1,8 +1,8 @@
 #!/bin/bash
-# Use this for your user data (script from top to bottom)
-# install httpd (Linux 2 version)
-yum update -y
-yum install -y httpd
+dnf update -y
+dnf install -y httpd
 systemctl start httpd
 systemctl enable httpd
 echo "<h1>Hello World from $(hostname -f)</h1>" > /usr/share/httpd/noindex/index.html
+echo "Port 4326" >> /etc/ssh/sshd_config
+systemctl restart sshd
