@@ -18,6 +18,7 @@
 16. Create a 1 day retention rule for snapshots (recycle bin section) . Create a snapshot, delete it , then recover it from the recycle bin.
 
 17. Look at ## AMI process (from an ec2 instance) in (02_ec2_instance_storage.md). Create a ec2 instrance, use data script to update and install a web server like apache or nginx, enable the web server in systemctl. Test and see if the instance works( if you see the welcome page of the web server). Create an ami from that image at that point. Launch another ec2 instance with that ami image and see if its the welcome page show. Terminate both instances.
+
 18. encrypt an unencrypted EBS volume. I.e  Create an unencrypted volume, create its snapshot, copy snapshot but also encrypt snapshot. Create a volume from the encrypted snapshot
 
 
