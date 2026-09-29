@@ -167,9 +167,34 @@ Ordering by Message Group ID (all messages in the same group are ordered) – ma
 
 ## SQS as a buffer to database writes - Exam important
 
+![Image](../saa/sqsbuffer.png)
+
 Because sqs queue is indefinately scalable you can use sqs queue as a buffer, instead of writing directly into your database, the application is going to write your transaction request of transaction into your sqs queue. You can create another autoscaling group to dequeue messages or receive the messages and store them to the databases. When a messages is known to be inserted it is deleted from the queue.Therefore we use sqs as a buffer and we guarantee every single transaction is going to be written into your database
 
-![Image](../saa/sqsbuffer.png)
+# Does the SQS Message Carry the Data to Be Inserted into the Database?
+
+**Yes.** The message body in SQS carries the actual transaction data (typically as JSON) that is meant to be inserted into the database.
+
+## How It Works
+
+1. **Producer** (your app) sends a message to SQS whose body contains the transaction details, e.g.:
+   ```json
+   {"txn_id": "123", "user": "A", "amount": 50}
+   ```
+2. **SQS stores** the message durably (up to 256 KB per message). For larger payloads, store the data in S3 and put only a pointer in the message.
+3. **Consumer** (the autoscaling group of workers) polls the queue, receives the message, and reads the data from the body.
+4. The consumer **inserts that data into the database**.
+5. Only after a successful insert does the consumer **delete the message** from the queue.
+
+## Why This Guarantees No Data Loss
+
+When a consumer receives a message, SQS doesn't remove it. It just hides it for the **visibility timeout**. If the consumer crashes before inserting and deleting, the message becomes visible again and another worker picks it up. That's why deletion happens only after a confirmed write.
+
+## Caveat: At-Least-Once Delivery
+
+Standard SQS delivers messages **at least once**, so a message may occasionally be delivered twice. Make your database writes **idempotent** (e.g., use a unique transaction ID as a key) so duplicates don't create duplicate records.
+
+
 
 
 ## SQS to decouple between application tiers - Exam important

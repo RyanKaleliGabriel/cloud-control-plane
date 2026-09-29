@@ -124,6 +124,9 @@
 
 26. Create a Dynamic policy (target tracking). Target cpu spikes. Use stress linux os package to increase cpu load. Observe after 15 minutes in the monitoring tab of the auto scaling group. Delete the target tracking policy
 
+Delete evrything apart from the load balancer security group
+
+
 ## r
 
 
