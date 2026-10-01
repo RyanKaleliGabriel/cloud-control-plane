@@ -99,7 +99,7 @@
     - Format it to ext4 filesystem type ```sudo mkfs.ext4 /dev/nvme1n1```
     - Create a directory where you will mount it ```sudo mkdir /data```
     - Mount it ```sudo mkdir /data```
-    - Confirm ```df -h``
+    - Confirm ```df -h```
 
 15. Create an ec2 instance in a separate region (a region that non of your ec2 instances is available). Create an ebs volume in a different region/availability zone that your new ec2 instance is created. Take a snapshot of the ebs volume, copy it to the new region where your ec2 instance is created. Attach the snapshot  to the ec2 instance and make it work (formatting etc). Create a 1 day retention rule for snapshots (recycle bin section) . Create a snapshot, delete it , then recover it from the recycle bin.
 
@@ -130,7 +130,72 @@ Delete evrything apart from the load balancer security group
 ## r
 
 
-27. Create a mysql rds db, fully configured. administer a security group,connect it through mysql electron (local tool). Create tables and add data.Terminate the instance
+ 27. Create a mysql rds db, fully configured with:
+     - Engine option = Mysql
+     - DB Creation method = Full configuration
+     - DB Instance Identifier = demodb
+     - Master username = demodb
+     - Credentials Management = Self Managed
+     - Give master password
+     - DB Auth options = Password auth
+     - Allocated storage = 20
+     - Max Storage =  25
+     - Do not connect to Ec2 
+     - Public access = ?
+     - Add mysql access (3306) To launch-wizard-1 and use launch-wizard-1 as the sg
+     - Choose an AZ(any)
+     - Log exports = Error and General
+     - Backup retention period = 1 day
+
+      administer a security group, connect it through sqlelectron (local tool) or just use your teriminal.
+
+    Connect to your rds instance in sqlelectron
+    - name = demodb
+    - DB Type = MySQL
+    - Server address = Available in the Connectivity and security
+    - User = admin
+    - Password = password 
+
+    Test first. Then connect.
+
+    Create a DB
+    ```
+    CREATE DATABASE sample_db;
+    ```
+
+    Select it
+    ```
+    USE sample_db;
+    ```
+
+    Create a table
+    ```
+    CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    department VARCHAR(100),
+    salary DECIMAL(10,2)
+    );
+    ```
+
+    Add some data
+
+    ```
+    INSERT INTO employees (id, name, department, salary)
+    VALUES
+      (1, 'Alice', 'IT', 75000),
+      (2, 'Bob', 'Finance', 68000),
+      (3, 'Charlie', 'HR', 62000),
+      (4, 'Diana', 'IT', 80000);
+    ```
+
+    Test it
+
+    ```
+    SELECT * FROM employees;
+    ```
+    
+    Delete the instance from the console 
 
 ## Route 53
 
@@ -158,9 +223,16 @@ Create a domain name in a public hosted zone before anything
 
 ## Beanstalk
 
-1. CReate a dev environment (web service). with beanstalk. Create a beanstalk iam role that has multicontainer docker, web service and worker service policies. Link the role to the evnivornment. Launch the environment an acceess it through the domain provided by aws
+1. Create a dev environment (web service). with beanstalk. While creating the service, navigate to iam, roles and create an iam role:
+   - Choose Aws service
+   - Choose EC2 as the use case
+   - Add permissions
+     - AWSElasticBeanstalkWebTier - permissions for Beanstalk apps serving web requests.
+     - AWSElasticBeanstalkWorkerTier - permissions for apps processing background jobs/tasks.
+     - AWSElasticBeanstalkMulticontainerDocker - permissions needed to run/manage multiple Docker containers in Beanstalk.
 
-2. Terinate the environment
+   Link the role to the envivornment in the EC2 instace profile. Launch the environment an acceess it through the domain provided by aws
+
 
 ## S3 Intro
 
