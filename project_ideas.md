@@ -2,6 +2,8 @@
 
 ## PART ONE Getting started, IAM, EC2 INTRO, EC2 SAA LEVEL
 
+## Monday
+
 ## 01 IAM
 
 
@@ -91,6 +93,12 @@
 
   Terminate one of the ec2 instances
 
+
+
+
+## Tuesday
+
+
 ## EBS
 
 14. Create an ebs volume. Volume type gp2, size 3GIB same az as your ec2 instance, encrypt using default aws key. Attach the ebs volumes to the amazon ec2 instance, format it and make it available in the ec2 vm. After attaching it to the ec2 instance
@@ -127,7 +135,7 @@
 Delete evrything apart from the load balancer security group
 
 
-## r
+## RDS
 
 
  27. Create a mysql rds db, fully configured with:
@@ -197,29 +205,7 @@ Delete evrything apart from the load balancer security group
     
     Delete the instance from the console 
 
-## Route 53
 
-For a task that requires many records created, they wiil have the same subdomain name.
-
-Create a domain name in a public hosted zone before anything
-
-28. WIth a paid account create 3 ec2 instances in different regions, each with apache and they should be displaying their ip addresses In  a text file write their public ips along side their az and also note down the dns name of the alb you will create. Create an alb such that the target groupof the alb points to the three ec2 instances. Create a domain record in route53 and create a subdomain record that points to the alb. Set a time to live of 120 seconds and access the web service using the created subdomain. Use nslookup to check if the mapping of the subdomain is correct. Use dig to check how the TTL cache time reduces by running dig in intervals of 5 secons. After the TTL is donefor the dns subdomain refresh the subdomain in the web browser and it should point to a different ec2
-
-29. From the route53, create an alias and a cname record from the alb created
-
-30. Create a subdomain record, mapit to one of the ec2 instances and set routing policy to simple. Test in the web browser. Then edit the record and add the rest of the ec2 instances ips. Check the TTL in using dig(commandline tool). Refresh the subdomain in the browser to see if the ip changes. (It should change)
-
-31. Create a subdomain record ans assign it a weighted routing policy. The first record assign it to the first instance with a weight of 70, then the second record assign to the next ec2 instance with a weight of 20, then the third record to the third ec2 instance with a weight of 10. Each record give it a 3 second TTL. Access the record in your browser. You should notice that most requests go to the first instance
-
-32. Create another subdomain to test latency based routing policy. Since our ec2 instances are in different regions after creating another subdmomain configure it with latency routing policy and create 3 for the 3 ec2 instances records, each record should have latency routing policy and the region should be set to the region where each ec2 instance is from. Test with a vpn to full see how the ip changes in the browser
-
-33. Create health checks for each ec2 instance. Create one calculated health check for the health checks created. After the health check of the ec2 instances has been created, in one of the ec2 instances remove the http rule in the security group and observer if the health check will fail
-
-34. Create a failover health check. Create a subdomain record and point it to one of the ec2 instances in region A, add a health check type of failover and a TTL of 60 . The add record 2 with the value (A record type) set the ip of another instance in region B. Access the subdomain in the browser. Edit the security group of the first instance to remove access from port 80 and wait for the health check to fail. Refrehs your browser to see if it has failed over to the other ec2 instance in region B
-
-35. Create a geo location ruting policy. Create a subdomain name geo.yourdomain.com. Create three records and link them to the regions where your ec2 instances are from. Access the subdomain in your browser to check where it send you to. Use a vpn to jump to the regions your other ec2 instances are and refresh the subdomain. Make sure the security groups are intact, i.e port 80 is exposed
-
-36. Delete the load balancers and ec2 instances, the domain name is optional if you are using it. Delete the hosted zone
 
 ## Beanstalk
 
@@ -233,6 +219,9 @@ Create a domain name in a public hosted zone before anything
 
    Link the role to the envivornment in the EC2 instace profile. Launch the environment an acceess it through the domain provided by aws
 
+
+
+## Wednesday
 
 ## S3 Intro
 
@@ -263,11 +252,15 @@ Create a domain name in a public hosted zone before anything
 
 2. Test cors in your first markdown. Create upload the index.html in your first bucket that had static website enabled and make sure in the cors section (javascript) include on to fetch extra-page.html not the an aws domain name. Upload the extra-page.html. And access the page to see the extra page. Delete the extra-page.html.ate another origin bucket in another region, lets say canada and enable static webiste to it, set the main faile to index.html, remove all blocks when creating the bucket and add a policy that allows public access. Upload the extra-page.html there and go back to vscoe and change the index.html to fetch the extra-page.html from the new bucket by including the bucket domain name and /extra-page.html. Upload the index.html in your first bucket again and try accessing the page. Observer the cosole tab and see the cors error. Edit the permissions in the new bucket where the extra page is and include the cors config in vscode, make sure the allowed origins does not end with a slash. And add the url of the first bucket to the allowed origins. Save and hard reload the page to see the extra page appear
 
-3. 
+
 
 ## Cloudfront
 
 1. Create an s3 bucket with default settings nothing changed, upload index.html, coffee and beach .jpg. CrEATE A CLOUD FRONT DISTRIBUTION AND LINK IT TO THE S3 BUCKET, it will automatically copy a the policy to allow cloud front to access s3 and the policy will be copied to the s3 bucket. After creating it make sure the root object is set to index.html. After it has deployed open the cloudfront dns settings to access the site. Add /coffee.jpg to the dns name reload, then do the same for beach.jpg and reload. This is just to see both images. Reload the site without both /images.jpg just the original dns so that inde.html is fetched from cloud front not s3 and do the same for the images
+
+
+## Thursday
+
 
 ## SQS
 
@@ -278,6 +271,8 @@ Create a domain name in a public hosted zone before anything
 ## SNS
 
 1. Create a sns topic, standard one. With default settings. Create a subscription to send messages to your email. Confirm the subscription from your gmail. Send a messages to the email to confirm and it is working. Delete the subscription and topic
+
+
 
 # ECS
 
@@ -305,6 +300,8 @@ Create a domain name in a public hosted zone before anything
 ##  Polly
 
 1. Navigate to polly and try it out with the default sentence. Use the SSML feature to add a break in your sentences by using this input text "'<speak>Hi, I’m Danielle. <break time="1s" /> I Love AWS</speak>'". Upload a lexicon to change AWS to Amazon web services
+
+## Friday 
 
 ## Cloudwatch
 
@@ -447,7 +444,7 @@ From here i can see the results and filter based on which ip is trying to access
 
 DELETE THE TWO FLOW LOGS.
 
-
+## Saturday
 
 
 ## IPV6
