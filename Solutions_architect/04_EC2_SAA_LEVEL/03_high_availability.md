@@ -110,6 +110,8 @@
 * **Application Load Balancer (v2 - new generation) – 2016 – ALB**
 
   * HTTP, HTTPS, WebSocket
+  * WebSocket is a protocol that provides a persistent, two-way (full-duplex) connection between a client and a server over a single TCP connection. With normal HTTP, the client sends a request and the server replies, and then the exchange is over. With WebSocket, the connection stays open, so either side can send data at any time without a new request.
+  * Relevance to the ALB: The Application Load Balancer natively supports WebSocket (and HTTP/HTTPS). Once a connection is upgraded, the ALB keeps routing that long-lived connection to the same target, which is why ALB is a good fit for chat or real-time apps, unlike the older Classic Load Balancer, which lacked native WebSocket support.
 
 * **Network Load Balancer (v2 - new generation) – 2017 – NLB**
 
