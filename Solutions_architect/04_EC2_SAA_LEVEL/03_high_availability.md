@@ -302,6 +302,8 @@ The numbers next to the ec2 instances represent the percentage of load being dis
 * Comodo, Symantec, GoDaddy, GlobalSign, Digicert, Letsencrypt, etc…
 * SSL certificates have an expiration date (you set) and must be renewed
 
+* TLS encryption works in two stages. First, during the handshake, the client connects to the server (or load balancer), which presents its SSL/TLS certificate containing its public key, signed by a trusted Certificate Authority (CA). The client verifies that the certificate is valid, unexpired, and issued by a CA it trusts, which proves the server is who it claims to be. The two sides then use asymmetric encryption (public/private key pair) to securely agree on a shared secret, called a session key. Second, once the handshake is complete, both sides switch to fast symmetric encryption using that session key to encrypt all data in transit. This means anyone intercepting the traffic between the client and the load balancer sees only unreadable ciphertext (in-flight encryption). Asymmetric encryption is used only to set up the connection safely because it is slow, while symmetric encryption handles the actual data because it is fast.
+
 ## Load Balancer - SSL Certificates
 
 ![SSL Certs](../saa/ssl.png)
