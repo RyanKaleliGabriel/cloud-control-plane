@@ -106,7 +106,7 @@ EBS Volumes come in 6 types
 
 * **sc1 (HDD):** Lowest cost HDD volume designed for less frequently accessed workloads
 
-* EBS Volumes are characterized in Size | Throughput | IOPS (I/O Ops Per Sec)
+* EBS Volumes are characterized in Size | Throughput | IOPS (I/O Ops Per Sec). IOPS in Amazon EBS Pricing (Elastic Block Store) stands for Input/Output Operations Per Second, which measures how many read and write tasks a storage volume can handle every second
 
 * When in doubt always consult the AWS documentation – it’s good!
 
