@@ -75,7 +75,7 @@
    
    - By default all traffic is allow outbound. Test internet connectivity by pinging and curling `google.com`. 
    
-   - Create an Elastic IP, associate it with the EC2 instance, then stop and start the instance to verify whether its public IP changes and confirm that the Elastic IP remains associated. 
+   - Create an Elastic IP, associate it with the EC2 instance. In a terminal ping the ip, then stop and start the instance to verify whether its public IP changes and confirm that the Elastic IP remains associated. 
 
    Terminate the ec2 instance and the release the elastic ip
    
