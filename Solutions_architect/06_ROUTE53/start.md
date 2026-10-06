@@ -78,13 +78,11 @@ Each record contains:
 
 ## Route 53 – Hosted Zones
 
-• A container for records that define how to route traffic to a domain and its subdomains
+• A hosted zone in Amazon Route 53 is simply a container for DNS records that tell Route 53 how to route traffic for a domain and its subdomains (you pay $0.50 per month for each one). 
 
-• Public Hosted Zones – contains records that specify how to route traffic on the Internet (public domain names) application1.mypublicdomain.com
+- The difference between the two types is who can reach the names inside them. A public hosted zone holds records for names that anyone on the internet can resolve, so if you own mypublicdomain.com, a record for application1.mypublicdomain.com pointing to a web server lets any customer's browser find your site.
 
-• Private Hosted Zones – contain records that specify how you route traffic within one or more VPCs (private domain names) application1.company.internal
-
-• You pay $0.50 per month per hosted zone
+- A private hosted zone holds records that resolve only from within one or more VPCs you associate with it, so a record for application1.company.internal pointing to an internal server's private IP can be reached by your EC2 instances inside the VPC, but is invisible and unresolvable from the public internet.
 
 ## Route 53 – Public vs. Private Hosted Zones
 
