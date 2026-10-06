@@ -106,10 +106,10 @@
     - Check the device files ```lsblk``` and identify the new attached volume by size
     - Format it to ext4 filesystem type ```sudo mkfs.ext4 /dev/nvme1n1```
     - Create a directory where you will mount it ```sudo mkdir /data```
-    - Mount it ```sudo mkdir /data```
+    - Mount it ```sudo mount /dev/nvme1n1 /data```
     - Confirm ```df -h```
 
-15. Create an ec2 instance in a separate region (a region that non of your ec2 instances is available). Create an ebs volume in a different region/availability zone that your new ec2 instance is created. Take a snapshot of the ebs volume, copy it to the new region where your ec2 instance is created. Attach the snapshot  to the ec2 instance and make it work (formatting etc). Create a 1 day retention rule for snapshots (recycle bin section) . Create a snapshot, delete it , then recover it from the recycle bin.
+15. Create an ebs volume in a different region/availability zone that your current ec2 instance is created. Take a snapshot of the ebs volume, copy it to the new region where your ec2 instance is created. Attach the snapshot  to the ec2 instance and make it work (formatting etc). Create a 1 day retention rule for snapshots (recycle bin section) . Create a snapshot, delete it , then recover it from the recycle bin.
 
 17. Look at ## AMI process (from an ec2 instance) in (02_ec2_instance_storage.md). Create a ec2 instrance, use data script to update and install a web server like apache or nginx, enable the web server in systemctl. Test and see if the instance works( if you see the welcome page of the web server). Create an ami from that image at that point. Launch another ec2 instance with that ami image and see if its the welcome page show. Terminate both instances.
 
