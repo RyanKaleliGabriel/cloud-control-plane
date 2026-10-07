@@ -75,7 +75,7 @@ EXAM important - if you have a very high throughput s3 bucket and everything is 
 
 ![Image](../saa/s3encryption4.png)
 
-![Image](../saa/s3encryption5.png)
+
 
 ## Amazon S3 Encryption – Client-Side Encryption
 
@@ -87,7 +87,8 @@ EXAM important - if you have a very high throughput s3 bucket and everything is 
 
 • Customer fully manages the keys and encryption cycle
 
-![Image](../saa/s3encryption6.png)
+![Image](../saa/s3encryption5.png)
+
 
 ## Amazon S3 – Encryption in transit (SSL/TLS)
 
@@ -105,7 +106,8 @@ Most clients would use the HTTPS endpoint by default
 
 ## Amazon S3 – Force Encryption in Transit aws:SecureTransport
 
-![Image](../saa/s3encryption7.png)
+![Image](../saa/s3encryption6.png)
+
 
 ## Not in the note
 
@@ -120,11 +122,13 @@ Read About DSSE-KMS
 
 • Note: Bucket Policies are evaluated before “Default Encryption”
 
-![Image](../saa/s3defaultencryption.png)
+![Image](../saa/s3encryption7.png)
+
 
 ## What is CORS? - Exam important
 
-![Image](../saa/cors1.png)
+![Image](../saa/s3defaultencryption.png)
+
 
 ## Amazon S3 – CORS - Exam important
 
@@ -134,7 +138,8 @@ Read About DSSE-KMS
 
 • You can allow for a specific origin or for * (all origins)
 
-![Image](../saa/cors2.png)
+![Image](../saa/cors1.png)
+
 
 ## Amazon S3 – MFA Delete
 
@@ -151,3 +156,4 @@ MFA won’t be required to:
 To use MFA Delete, Versioning must be enabled on the bucket
 
 Only the bucket owner (root account) can enable/disable MFA Delete
+![Image](../saa/cors2.png)
