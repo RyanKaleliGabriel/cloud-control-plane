@@ -205,6 +205,19 @@ AWS Storage Gateway!
 
 ## AWS Storage Cloud Native Options
 
+Block storage splits data into fixed-size blocks, each with its own address, and presents them to a server as a raw disk. The operating system formats it and manages the file system on top. It offers low latency and high performance, so it suits databases and boot volumes. AWS example: EBS.
+
+File storage organizes data in a hierarchy of folders and files, accessed over a network using protocols like NFS or SMB. Multiple servers can share the same files at once, which suits shared drives, home directories, and content management. AWS examples: EFS, FSx.
+
+Object storage stores data as objects (the data, metadata, and a unique ID) in a flat structure, accessed over HTTP APIs. It scales almost without limit and is cheap, but it isn't meant for frequent in-place edits or low-latency transactional workloads. It suits backups, media, data lakes, and static websites. AWS example: S3.
+
+Block, file, and object are different ways of organizing and accessing data, not different kinds of hardware. Underneath, the bits still end up on physical media (SSDs, HDDs, or tape in some archival cases) in a data center.
+
+What differs is the layer sitting on top of the disks:
+ - Block: exposes the raw storage as a virtual disk. You (or the OS) decide how to format and use it.
+ - File: adds a file system on top, so you see folders and files and can share them over a network.
+ - Object: adds a flat, API-driven layer where the system decides where on the underlying disks each object lives, often spreading copies across multiple disks and facilities for durability.
+
 ![Image](../saa/awsstoragecloudnative.png)
 
 ## AWS Storage Gateway
