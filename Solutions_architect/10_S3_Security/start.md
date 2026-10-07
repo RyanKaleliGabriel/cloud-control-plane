@@ -214,6 +214,8 @@ Lock the policy for future edits (can no longer be changed or deleted)
 
 Helpful for compliance and data retention
 
+A financial firm must keep trade records for 7 years and prove no one can delete them early, not even the root user. They create a Glacier vault and attach a Vault Lock policy that denies glacier:DeleteArchive for any archive younger than 2,555 days (about 7 years). When they run initiate-vault-lock, the policy enters an InProgress state and returns a lock ID, giving them 24 hours to test it. Once satisfied, they run complete-vault-lock with that ID, and the policy becomes permanent: it can never be edited or removed. From then on, new archives can still be written and read any time (WORM: Write Once Read Many), but early deletion is blocked for everyone, which satisfies regulatory retention requirements.
+
 ![Image](../saa/s3glaciervolt.png)
 
 ## S3 Object Lock (versioning must be enabled) - Exam important
