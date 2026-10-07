@@ -2,7 +2,7 @@
 
 ## PART ONE Getting started, IAM, EC2 INTRO, EC2 SAA LEVEL
 
-## Monday
+# Monday
 
 ## 01 IAM
 
@@ -82,7 +82,8 @@
 10. Design placement groups for different types of applications. Create and launch ec2 instances there. (Optional)
 
 
-## Tuesday 
+# Tuesday 
+
 11. Create two EC2 instances and create a separate ENI in the same Availability Zone. Attach the ENI to the first instance and verify its private IP, then detach it and attach it to the second instance. Verify that the second instance now has the ENI and its private IP, demonstrating that the ENI can be moved between instances.
     | Setting                      | Value                                |
     | ---------------------------- | ------------------------------------ |
@@ -94,11 +95,6 @@
     | **Source/Destination check** | Leave enabled                        |
 
   Terminate one of the ec2 instances
-
-
-
-
-## Tuesday
 
 
 ## EBS
@@ -240,7 +236,7 @@ Delete evrything apart from the load balancer security group
 
 30. Upload the beach.jpg in the same level as the coffee.jpg. Enable the s3 to host static sites. and upload the index.html. Access the domain url and observe the static site deployed. Also OPEN THE image displayed in a new tab to see it s3 url of the same image
 
-## Thursday
+# Thursday
  
 31. Add versioning to your bucket. Edit index.html in vscode and reupload it. Go to the objects dashboard and enable versioning to see the version ID. Reload the site to see the changes. Add a delete marker to coffee.jpg by tuggling of the show version and deleting the coffe.jpg. It does not delete the image but when you refresh the webise the image is not displayed. It has not been deleted from the bucket but a delete marker has been added. elete the delete marker to see the image 
 
@@ -273,7 +269,7 @@ Delete evrything apart from the load balancer security group
 
 40. Create a pre signed url from an object in a bucket that is private like th event notification one. Copy it somewhere and open with another device. Set the presigned url to expire after 5 minutes
 
-## Friday
+# Friday
 
 ## SQS
 
@@ -312,7 +308,7 @@ Delete evrything apart from the load balancer security group
 
 50. Navigate to polly and try it out with the default sentence. Use the SSML feature to add a break in your sentences by using this input text "'<speak>Hi, I’m Danielle. <break time="1s" /> I Love AWS</speak>'". Upload a lexicon to change AWS to Amazon web services
 
-## Friday 
+# Saturday 
 
 ## Cloudwatch
 
@@ -353,7 +349,7 @@ after that run checkthe history of the alarm and its state and check to see the 
 
 60. In the bastion host install apache and echo hello world in this file ```echo "<h1>Hello World from $(hostname -f)</h1>" > /usr/share/httpd/noindex/index.html```. Access the server using its public ip make sure is not https. Now we want to demonstrate the rule numbering. Add a new rule in the nacl inbound rules and number it 80 it should deny http from port 80. Try rereshing the ec2 instance to see if it works. It should not because rule 80 will be evaluated after 100. Edit rule 80 and give it number 140. It should now work. The ec2 instance should load. We want to demonstrate nacls statelessness. Remove the outbound rule from the Default nacl and save then refresh the ec2 instance it should be in a never ending loop loading. Add it back. We want to demonstrate security groups statefulness. Navigate to the security group of the bastion host and remove the outbound rule and save then refresh the ec2 instance. It should work because security groups are stateful
 
-## Saturday
+# Sunday
 
 ## VPC Peering. L
 
@@ -456,8 +452,6 @@ LIMIT 100;
 From here i can see the results and filter based on which ip is trying to access me the most. 
 
 DELETE THE TWO FLOW LOGS.
-
-## Sunday
 
 
 ## IPV6
