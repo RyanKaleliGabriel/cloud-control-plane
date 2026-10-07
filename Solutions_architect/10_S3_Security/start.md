@@ -160,7 +160,7 @@ MFA won’t be required to:
  - Enable Versioning
  - List deleted versions
  
-To use MFA Delete, Versioning must be enabled on the bucket
+To use MFA Delete, Versioning must be enabled on the bucket 
 
 Only the bucket owner (root account) can enable/disable MFA Delete
 
