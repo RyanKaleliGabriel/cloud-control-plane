@@ -58,6 +58,14 @@ It’s important to understand which ones are for which situation for the exam
 
 EXAM important - if you have a very high throughput s3 bucket and everything is encrypted using kms keys, you may go into a thread link kind of use case 
 
+Example: During a viral event, thousands of users upload and download videos every second. Each upload triggers a GenerateDataKey call and each download triggers a Decrypt call to KMS, so the combined request rate quickly hits the regional KMS quota (e.g., 5,500 req/s). Once that limit is exceeded, KMS starts throttling, and S3 requests begin failing even though S3 itself has plenty of capacity. The fix is to request a quota increase through the Service Quotas Console (or, for the exam, recognize that SSE-S3 doesn't have this bottleneck).
+
+GenerateDataKey: KMS creates a unique data key and returns it in two forms, plaintext and encrypted. S3 uses the plaintext key to encrypt your object, then discards it and stores the encrypted copy alongside the object.
+
+Decrypt: When you download the object, S3 sends the stored encrypted data key to KMS, which decrypts it and returns the plaintext key so S3 can decrypt your object.
+
+This is called envelope encryption: KMS protects the small data key, and the data key protects your actual file.
+
 ![Image](../saa/s3encryption3.png)
 
 
