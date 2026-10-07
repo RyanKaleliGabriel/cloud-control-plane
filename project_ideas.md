@@ -81,6 +81,8 @@
    
 10. Design placement groups for different types of applications. Create and launch ec2 instances there. (Optional)
 
+
+## Tuesday 
 11. Create two EC2 instances and create a separate ENI in the same Availability Zone. Attach the ENI to the first instance and verify its private IP, then detach it and attach it to the second instance. Verify that the second instance now has the ENI and its private IP, demonstrating that the ENI can be moved between instances.
     | Setting                      | Value                                |
     | ---------------------------- | ------------------------------------ |
@@ -235,38 +237,38 @@ Delete evrything apart from the load balancer security group
 
 29. Remove block public access for the bucket. Create a bucket policy using aws policy generator. Make sure all objects are publicly accessible by using the GetObject policy in the policy generator and using a (/*) postfix after copying the bucket arn.
 
-32. Upload the beach.jpg in the same level as the coffee.jpg. Enable the s3 to host static sites. and upload the index.html. Access the domain url and observe the static site deployed. Also OPEN THE image displayed in a new tab to see it s3 url of the same image
+30. Upload the beach.jpg in the same level as the coffee.jpg. Enable the s3 to host static sites. and upload the index.html. Access the domain url and observe the static site deployed. Also OPEN THE image displayed in a new tab to see it s3 url of the same image
  
-33. Add versioning to your bucket. Edit index.html in vscode and reupload it. Go to the objects dashboard and enable versioning to see the version ID. Reload the site to see the changes. Add a delete marker to coffee.jpg by tuggling of the show version and deleting the coffe.jpg. It does not delete the image but when you refresh the webise the image is not displayed. It has not been deleted from the bucket but a delete marker has been added. elete the delete marker to see the image 
+31. Add versioning to your bucket. Edit index.html in vscode and reupload it. Go to the objects dashboard and enable versioning to see the version ID. Reload the site to see the changes. Add a delete marker to coffee.jpg by tuggling of the show version and deleting the coffe.jpg. It does not delete the image but when you refresh the webise the image is not displayed. It has not been deleted from the bucket but a delete marker has been added. elete the delete marker to see the image 
 
-34. Create two buckets in different regions origin bucket and replica bucket respectively. Enable versioning in both of them while selecting create new iam role and save them. In the first origin bucket upload the beach image. Then in the management tab add a replication rule pointing to the other bucket in a different region.Do not replicate existing data. Upload another image like coffee.jpg and refresh the objects in the replica bucket. Edit the replication rule in the origin bucket to enable replication of delete markers. Add a delete marker in obe of the objects in the origin bucket. Observer if the delete marker has been replicated in the replica bucket. Permanently delete an object in the origin bucket and observe if it is deleted in the replica bucket (should not work)
+32. Create two buckets in different regions origin bucket and replica bucket respectively. Enable versioning in both of them while selecting create new iam role and save them. In the first origin bucket upload the beach image. Then in the management tab add a replication rule pointing to the other bucket in a different region.Do not replicate existing data. Upload another image like coffee.jpg and refresh the objects in the replica bucket. Edit the replication rule in the origin bucket to enable replication of delete markers. Add a delete marker in obe of the objects in the origin bucket. Observer if the delete marker has been replicated in the replica bucket. Permanently delete an object in the origin bucket and observe if it is deleted in the replica bucket (should not work)
 
-35. Create a new bucket with default settings in any region. Add coffee.jpg. Edit the storage class to one zone IA and save. Edit the bucket rules and enable transition current versions of object to storage classes. Add different storage classes transitioning with different days and save
+33. Create a new bucket with default settings in any region. Add coffee.jpg. Edit the storage class to one zone IA and save. Edit the bucket rules and enable transition current versions of object to storage classes. Add different storage classes transitioning with different days and save
 
 
 ## S3 advanced
 
-36. Review current and noncurrent version transition and expiration actions, including storage-class transitions from Day 0 through Day 365, object expiration at Day 700, noncurrent version transitions to Glacier Flexible Retrieval at Day 90, and permanent deletion of noncurrent versions at Day 700.
+34. Review current and noncurrent version transition and expiration actions, including storage-class transitions from Day 0 through Day 365, object expiration at Day 700, noncurrent version transitions to Glacier Flexible Retrieval at Day 90, and permanent deletion of noncurrent versions at Day 700.
 
-37. Event notification. CReate a new bucket, default settings( regional). Create an sqs queue to send messages to whenever a file is uloaded in the bucket. You will have to change the access policy of the sqs queue to allow messages to be sent to it by the sqs queue. Hint use access policy generator. You will have to link the s3 to sqs communication in the s3 section
+35. Event notification. CReate a new bucket, default settings( regional). Create an sqs queue to send messages to whenever a file is uloaded in the bucket. You will have to change the access policy of the sqs queue to allow messages to be sent to it by the sqs queue. Hint use access policy generator. You will have to link the s3 to sqs communication in the s3 section
 
 ## S3 security
 
-38. Create a bucket, enable versioning and server side encryption should be set to the default sse-s3. Upload an image to the bucket and view its properties to see the encryption enebaled. Change the encryption method to sse-kms. Check the versions of the objects in the bucket to see two versions of your image.
+36. Create a bucket, enable versioning and server side encryption should be set to the default sse-s3. Upload an image to the bucket and view its properties to see the encryption enebaled. Change the encryption method to sse-kms. Check the versions of the objects in the bucket to see two versions of your image.
 
-39. Test cors in your first markdown. Create upload the index.html in your first bucket that had static website enabled and make sure in the cors section (javascript) include on to fetch extra-page.html not the an aws domain name. Upload the extra-page.html. And access the page to see the extra page. Delete the extra-page.html.ate another origin bucket in another region, lets say canada and enable static webiste to it, set the main faile to index.html, remove all blocks when creating the bucket and add a policy that allows public access. Upload the extra-page.html there and go back to vscoe and change the index.html to fetch the extra-page.html from the new bucket by including the bucket domain name and /extra-page.html. Upload the index.html in your first bucket again and try accessing the page. Observer the cosole tab and see the cors error. Edit the permissions in the new bucket where the extra page is and include the cors config in vscode, make sure the allowed origins does not end with a slash. And add the url of the first bucket to the allowed origins. Save and hard reload the page to see the extra page appear
+37. Test cors in your first markdown. Create upload the index.html in your first bucket that had static website enabled and make sure in the cors section (javascript) include on to fetch extra-page.html not the an aws domain name. Upload the extra-page.html. And access the page to see the extra page. Delete the extra-page.html.ate another origin bucket in another region, lets say canada and enable static webiste to it, set the main faile to index.html, remove all blocks when creating the bucket and add a policy that allows public access. Upload the extra-page.html there and go back to vscoe and change the index.html to fetch the extra-page.html from the new bucket by including the bucket domain name and /extra-page.html. Upload the index.html in your first bucket again and try accessing the page. Observer the cosole tab and see the cors error. Edit the permissions in the new bucket where the extra page is and include the cors config in vscode, make sure the allowed origins does not end with a slash. And add the url of the first bucket to the allowed origins. Save and hard reload the page to see the extra page appear
 
 
 
 ## Cloudfront
 
-40. Create an s3 bucket with default settings nothing changed, upload index.html, coffee and beach .jpg. CrEATE A CLOUD FRONT DISTRIBUTION AND LINK IT TO THE S3 BUCKET, it will automatically copy a the policy to allow cloud front to access s3 and the policy will be copied to the s3 bucket. After creating it make sure the root object is set to index.html. After it has deployed open the cloudfront dns settings to access the site. Add /coffee.jpg to the dns name reload, then do the same for beach.jpg and reload. This is just to see both images. Reload the site without both /images.jpg just the original dns so that inde.html is fetched from cloud front not s3 and do the same for the images
+38. Create an s3 bucket with default settings nothing changed, upload index.html, coffee and beach .jpg. CrEATE A CLOUD FRONT DISTRIBUTION AND LINK IT TO THE S3 BUCKET, it will automatically copy a the policy to allow cloud front to access s3 and the policy will be copied to the s3 bucket. After creating it make sure the root object is set to index.html. After it has deployed open the cloudfront dns settings to access the site. Add /coffee.jpg to the dns name reload, then do the same for beach.jpg and reload. This is just to see both images. Reload the site without both /images.jpg just the original dns so that inde.html is fetched from cloud front not s3 and do the same for the images
 
 ## Storage extras 
 
-Create another bucket that will be collecting logs for your first s3 bucket. In the permissions of the first bucket enable logging and link to the new bucket and check if the bucket policy is changed to allow logging
+39. Create another bucket that will be collecting logs for your first s3 bucket. In the permissions of the first bucket enable logging and link to the new bucket and check if the bucket policy is changed to allow logging
 
-Create a pre signed url from an object in a bucket that is private like th event notification one. Copy it somewhere and open with another device. Set the presigned url to expire after 5 minutes
+40. Create a pre signed url from an object in a bucket that is private like th event notification one. Copy it somewhere and open with another device. Set the presigned url to expire after 5 minutes
 ## Thursday
 
 
