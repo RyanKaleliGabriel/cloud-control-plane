@@ -44,8 +44,6 @@ It’s important to understand which ones are for which situation for the exam
 ![Image](../saa/s3encryption2.png)
 
 
-![Image](../saa/s3encryption3.png)
-
 ## SSE-KMS Limitation
 
 • If you use SSE-KMS, you may be impacted by the KMS limits
@@ -58,9 +56,12 @@ It’s important to understand which ones are for which situation for the exam
 
 • You can request a quota increase using the Service Quotas Console
 
-
 EXAM important - if you have a very high throughput s3 bucket and everything is encrypted using kms keys, you may go into a thread link kind of use case 
-![Image](../saa/s3encryption4.png)
+
+![Image](../saa/s3encryption3.png)
+
+
+
 
 ## Amazon S3 Encryption – SSE-C
 
@@ -71,6 +72,8 @@ EXAM important - if you have a very high throughput s3 bucket and everything is 
 • HTTPS must be used
 
 • Encryption key must provided in HTTP headers, for every HTTP request made
+
+![Image](../saa/s3encryption4.png)
 
 ![Image](../saa/s3encryption5.png)
 
