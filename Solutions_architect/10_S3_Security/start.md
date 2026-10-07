@@ -127,8 +127,7 @@ Read About DSSE-KMS
 
 ## What is CORS? - Exam important
 
-![Image](../saa/s3defaultencryption.png)
-
+![Image](../saa/cors1.png)
 
 ## Amazon S3 – CORS - Exam important
 
@@ -138,7 +137,7 @@ Read About DSSE-KMS
 
 • You can allow for a specific origin or for * (all origins)
 
-![Image](../saa/cors1.png)
+![Image](../saa/cors2.png)
 
 
 ## Amazon S3 – MFA Delete
@@ -156,4 +155,4 @@ MFA won’t be required to:
 To use MFA Delete, Versioning must be enabled on the bucket
 
 Only the bucket owner (root account) can enable/disable MFA Delete
-![Image](../saa/cors2.png)
+
