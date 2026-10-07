@@ -153,11 +153,12 @@ Delete evrything apart from the load balancer security group
      - Allocated storage = 20
      - Max Storage =  25
      - Do not connect to Ec2 
-     - Public access = ?
+     - Public access = yes
      - Add mysql access (3306) To launch-wizard-1 and use launch-wizard-1 as the sg
      - Choose an AZ(any)
      - Log exports = Error and General
      - Backup retention period = 1 day
+     - Initial database name = demodb
 
       administer a security group, connect it through sqlelectron (local tool) or just use your teriminal.
 
