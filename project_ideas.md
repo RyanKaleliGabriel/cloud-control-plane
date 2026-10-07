@@ -218,7 +218,7 @@ Delete evrything apart from the load balancer security group
      - AWSElasticBeanstalkWorkerTier - permissions for apps processing background jobs/tasks.
      - AWSElasticBeanstalkMulticontainerDocker - permissions needed to run/manage multiple Docker containers in Beanstalk.
 
-   Link the role to the envivornment in the EC2 instace profile. Launch the environment an acceess it through the domain provided by aws
+   Link the role to the envivornment in the EC2 instace profile under Service access. Launch the environment an acceess it through the domain provided by aws
 
 
 
