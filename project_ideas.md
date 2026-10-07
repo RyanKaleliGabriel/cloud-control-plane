@@ -262,7 +262,11 @@ Delete evrything apart from the load balancer security group
 
 1. Create an s3 bucket with default settings nothing changed, upload index.html, coffee and beach .jpg. CrEATE A CLOUD FRONT DISTRIBUTION AND LINK IT TO THE S3 BUCKET, it will automatically copy a the policy to allow cloud front to access s3 and the policy will be copied to the s3 bucket. After creating it make sure the root object is set to index.html. After it has deployed open the cloudfront dns settings to access the site. Add /coffee.jpg to the dns name reload, then do the same for beach.jpg and reload. This is just to see both images. Reload the site without both /images.jpg just the original dns so that inde.html is fetched from cloud front not s3 and do the same for the images
 
+## Storage extras 
 
+Create another bucket that will be collecting logs for your first s3 bucket. In the permissions of the first bucket enable logging and link to the new bucket and check if the bucket policy is changed to allow logging
+
+Create a pre signed url from an object in a bucket that is private like th event notification one. Copy it somewhere and open with another device. Set the presigned url to expire after 5 minutes
 ## Thursday
 
 
