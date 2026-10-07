@@ -230,7 +230,7 @@ Delete evrything apart from the load balancer security group
 
 28. Create a folder and add the beach.jpg. Delete the folder
 
-29. Remove block public access for the bucket. Create a bucket policy using aws policy generator. Make sure all objects are publicly accessible by using the GetObject policy in the policy generator and using a (/*) postfix after copying the bucket arn.
+29. Remove block public access for the bucket. Create a bucket policy using aws policy generator. Principla "*" Make sure all objects are publicly accessible by using the GetObject policy in the policy generator and using a (/*) postfix after copying the bucket arn.
 
 30. Upload the beach.jpg in the same level as the coffee.jpg. Enable the s3 to host static sites. and upload the index.html. Access the domain url and observe the static site deployed. Also OPEN THE image displayed in a new tab to see it s3 url of the same image
 
