@@ -457,7 +457,7 @@ From here i can see the results and filter based on which ip is trying to access
 
 DELETE THE TWO FLOW LOGS.
 
-## Saturday
+## Sunday
 
 
 ## IPV6
