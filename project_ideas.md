@@ -135,6 +135,10 @@
 23. Create and auto scaling group. First create a launch template. Manualy edit the desired and maximum caoacities and observe the changes in the monitoring and actions tab
 
 24. Create a Dynamic policy (target tracking). Target cpu spikes. Use stress linux os package to increase cpu load. Observe after 15 minutes in the monitoring tab of the auto scaling group. Delete the target tracking policy
+    ```
+    dnf install stress
+    stress --cpu $(nproc)
+    ```
 
 Delete evrything apart from the load balancer security group
 
@@ -162,23 +166,15 @@ Delete evrything apart from the load balancer security group
 
       administer a security group, connect it through sqlelectron (local tool) or just use your teriminal.
 
-    Connect to your rds instance in sqlelectron
-    - name = demodb
-    - DB Type = MySQL
-    - Server address = Available in the Connectivity and security
-    - User = admin
-    - Password = password 
+    This demo uses the terminal
 
-    Test first. Then connect.
-
-    Create a DB
     ```
-    CREATE DATABASE sample_db;
+    mysql -h database-1.cdcq6awacl6l.eu-north-1.rds.amazonaws.com -P 3306 -u admin -p 
     ```
 
-    Select it
+    Select the db
     ```
-    USE sample_db;
+    USE demodb;
     ```
 
     Create a table
