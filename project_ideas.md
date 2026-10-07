@@ -232,7 +232,7 @@ Delete evrything apart from the load balancer security group
 
 29. Remove block public access for the bucket. Create a bucket policy using aws policy generator. Principal = * .Make sure all objects are publicly accessible by using the GetObject policy in the policy generator and using a (/*) postfix after copying the bucket arn.
 
-30. Upload the beach.jpg in the same level as the coffee.jpg. Enable the s3 to host static sites. and upload the index.html. Access the domain url and observe the static site deployed. Also OPEN THE image displayed in a new tab to see it s3 url of the same image
+30. Upload the beach.jpg in the same level as the coffee.jpg. Enable the s3 to host static sites. and upload the index.html. Access the domain url and observe the static site deployed. Also OPEN THE image displayed in a new tab to see it s3 url of the same image. Use the website endpoint to access s3 not the rest endpoint
 
 # Thursday
  
