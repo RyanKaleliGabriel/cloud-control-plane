@@ -32,20 +32,6 @@ It’s important to understand which ones are for which situation for the exam
 
 ## Amazon S3 Encryption – SSE-KMS
 
-• Encryption using keys handled, managed, and owned by AWS
-
-• Object is encrypted server-side
-
-• Encryption type is AES-256
-
-• Must set header "x-amz-server-side-encryption": "AES256"
-
-• Enabled by default for new buckets & new objects
-
-![Image](../saa/s3encryption2.png)
-
-## Amazon S3 Encryption – SSE-KMS
-
 • Encryption using keys handled and managed by AWS KMS (Key Management Service)
 
 • KMS advantages: user control + audit key usage using CloudTrail
@@ -53,6 +39,10 @@ It’s important to understand which ones are for which situation for the exam
 • Object is encrypted server side
 
 • Must set header "x-amz-server-side-encryption": "aws:kms"
+
+
+![Image](../saa/s3encryption2.png)
+
 
 ![Image](../saa/s3encryption3.png)
 
