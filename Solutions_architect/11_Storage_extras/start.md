@@ -137,6 +137,8 @@ Persistent File System
 
 ## Amazon FSx for NetApp ONTAP
 
+NetApp ONTAP is NetApp's storage operating system for managing data across on-premises arrays, hybrid setups, and the cloud.
+
 Managed NetApp ONTAP on AWS
 
 File System compatible with NFS, SMB, iSCSI protocol
@@ -160,6 +162,8 @@ Point-in-time instantaneous cloning (helpful for testing new workloads)
 ![Image](../saa/fsxnetapp.png)
 
 ## Amazon FSx for OpenZFS
+
+OpenZFS is an open-source file system and volume manager that combines the two into one layer, originally developed at Sun Microsystems.
 
 Managed OpenZFS file system on AWS
 
