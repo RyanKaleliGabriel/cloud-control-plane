@@ -273,7 +273,7 @@ Delete evrything apart from the load balancer security group
 
 40. Create a pre signed url from an object in a bucket that is private like th event notification one. Copy it somewhere and open with another device. Set the presigned url to expire after 5 minutes
 
-## Thursday
+## Friday
 
 ## SQS
 
