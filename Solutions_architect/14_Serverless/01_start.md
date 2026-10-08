@@ -194,6 +194,10 @@ Note:
  - Note: cold starts in VPC have been dramatically reduced in Oct & Nov 2019
  - https://aws.amazon.com/blogs/compute announcing-improved-vpc-networking-for-aws-lambda-functions/
 
+Terms: A cold start is the delay that happens when Lambda has to create a brand-new execution environment for your function, loading your code and running any initialization code that sits outside the handler (such as importing libraries or creating SDK clients) before it can handle the request. Provisioned concurrency means you pay to have a set number of execution environments prepared in advance, so they are already initialized and waiting. Application Auto Scaling is the AWS service that can raise or lower that provisioned amount automatically, either on a schedule or based on how heavily the environments are being used (target utilization).
+
+Example: A function called generateReport loads a heavy PDF library outside its handler, which takes about 3 seconds. Without provisioned concurrency, the first request after a quiet period triggers a cold start and takes around 3 seconds, while later requests on the warm instance finish in about 200 ms. If you set provisioned concurrency to 20, 20 instances are initialized in advance, so requests are fast every time, and you can use Application Auto Scaling to raise that number before a known peak, like 9 AM. The tradeoff is that you pay for those instances even when idle.
+
 ## Reserved and Provisioned Concurrency
 
 ![Image](../saa/reserved_provisioned_concurrency.png)
