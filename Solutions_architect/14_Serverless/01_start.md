@@ -161,7 +161,12 @@ If you need a higher limit, open a support ticket
 
 • If you don’t reserve (=limit) concurrency, the following can happen:
 
+Terms: Concurrency is the number of function executions running at the same moment. A reserved concurrency is a cap you set on one function that also guarantees it that many slots. A throttle happens when an invocation arrives but the limit is already reached, so Lambda refuses to run it right away. A DLQ (dead-letter queue) is a holding place where events go after all retries have failed, so you can inspect or reprocess them later.
+
+Example: Imagine your account has the default limit of 1000 concurrent executions, and you set reserved concurrency to 100 on a function called processOrders. If 150 requests arrive at the same time, 100 of them run and the other 50 are throttled. How those 50 are handled depends on how the function was invoked. If the calls were synchronous, such as through API Gateway, each throttled caller immediately receives a 429 ThrottleError and must decide whether to retry. If the calls were asynchronous, such as events from S3 or SNS, Lambda automatically retries the throttled events for you, and any that still cannot run end up in the DLQ. Because of the reservation, processOrders always has its 100 slots available, but it can never spike beyond them. And if your overall workload needs more than the 1000 account-wide limit, you would open a support ticket to ask for it to be raised.
+
 ![Image](../saa/lambda_concurrency_issue.png)
+
 
 ## Concurrency and Asynchronous Invocations
 
