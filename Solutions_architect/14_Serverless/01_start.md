@@ -290,6 +290,8 @@ Author your functions in one AWS Region (us-east-1), then CloudFront replicates 
 
 ![Image](../saa/lambda@edge.png)
 
+Example: Suppose you run a website on CloudFront. You use a CloudFront Function on the viewer request to quickly redirect /old-page to /new-page or normalize headers, because it starts in under a millisecond and handles millions of requests per second. You use Lambda@Edge on the origin request to do heavier work, such as calling an external API to decide which origin to fetch from, or on the origin response to add security headers to what your backend returned. You write the Lambda@Edge function once in us-east-1, and CloudFront replicates it to its locations worldwide.
+
 ## CloudFront Functions vs. Lambda@Edge
 
 | Feature                                 | CloudFront Functions                               | Lambda@Edge                                                         |
