@@ -238,16 +238,42 @@ Delete evrything apart from the load balancer security group
  
 31. Add versioning to your bucket. Edit index.html in vscode and reupload it. Go to the objects dashboard and enable versioning to see the version ID. Reload the site to see the changes. Add a delete marker to coffee.jpg by tuggling OFF the show version and deleting the coffe.jpg. It does not delete the image but when you refresh the webise the image is not displayed. It has not been deleted from the bucket but a delete marker has been added. Delete the delete marker to see the image 
 
-32. Create two buckets in different regions origin bucket and replica bucket respectively. Enable versioning in both of them while selecting create new iam role and save them. In the first origin bucket upload the beach image. Then in the management tab add a replication rule pointing to the other bucket in a different region.Do not replicate existing data. Upload another image like coffee.jpg and refresh the objects in the replica bucket. Edit the replication rule in the origin bucket to enable replication of delete markers. Add a delete marker in obe of the objects in the origin bucket. Observer if the delete marker has been replicated in the replica bucket. Permanently delete an object in the origin bucket and observe if it is deleted in the replica bucket (should not work)
+32. Create two buckets in different regions origin bucket and replica bucket respectively. Enable versioning in both of them and save them. In the first origin bucket upload the beach image. Then in the management tab add a replication rule pointing to the other bucket in a different region while selecting create new iam role. Do not replicate existing data. Upload another image like coffee.jpg and refresh the objects in the replica bucket. Edit the replication rule in the origin bucket to enable replication of delete markers. Add a delete marker in obe of the objects in the origin bucket. Observe if the delete marker has been replicated in the replica bucket. Permanently delete an object in the origin bucket and observe if it is deleted in the replica bucket (should not work)
 
-33. Create a new bucket with default settings in any region. Add coffee.jpg. Edit the storage class to one zone IA and save. Edit the bucket rules and enable transition current versions of object to storage classes. Add different storage classes transitioning with different days and save
+33. Create a new bucket with default settings in any region. Add coffee.jpg and while adding it select the storage class to one zone IA in the properties section and save. Under management Add different storage classes transitioning with different days and save
 
 
 ## S3 advanced
 
-34. Review current and noncurrent version transition and expiration actions, including storage-class transitions from Day 0 through Day 365, object expiration at Day 700, noncurrent version transitions to Glacier Flexible Retrieval at Day 90, and permanent deletion of noncurrent versions at Day 700.
+34. Edit the bucket rules and enable transition of current versions of object to  other storage classes by creating a lifecycle rule. Review current and noncurrent version transition and expiration actions, including storage-class transitions from Day 0 through Day 365. For storage-class transitions, set Intelligent-Tiering at day 60, Glacier Instant Retrival at day 120, Glacier Flexible Retrival at day 240, Glacier Deep archive at day 365. Expire current versions of objects at day 700. Permanently delete noncurrent version of objects at day 700 
 
-35. Event notification. CReate a new bucket, default settings( regional). Create an sqs queue to send messages to whenever a file is uloaded in the bucket. You will have to change the access policy of the sqs queue to allow messages to be sent to it by the sqs queue. Hint use access policy generator. You will have to link the s3 to sqs communication in the s3 section
+35. Event Notification Setup: Create a regional Amazon S3 bucket and an Amazon SQS queue to receive messages whenever a file is uploaded. You must update the SQS access policy to allow Amazon S3 (not the SQS queue itself) to send messages to it. Hint use policy generator and this as the principal ("Service": "s3.amazonaws.com").
+    Policy was
+    ```
+		    {
+		  "Version": "2012-10-17",
+		  "Statement": [
+		    {
+		      "Sid": "Statement1",
+		      "Effect": "Allow",
+		      "Principal": {
+		        "Service": "s3.amazonaws.com"
+		      },
+		      "Action": [
+		        "sqs:SendMessage"
+		      ],
+		      "Resource": "queue-arn",
+		      "Condition": {
+		        "ArnEquals": {
+		          "aws:SourceArn": "bucket-arn"
+		        }
+		      }
+		    }
+		  ]
+		}
+    ```
+    Link the event notification inside the S3 bucket settings. Head to the Properties tab and scroll down to the Event notifications section. Click Create event notification. Give it a name and check the box for All object create events (under Object creation). Scroll down to Destination, choose SQS queue, select your queue from the dropdown, and hit Save changes
+	
 
 ## S3 security
 
