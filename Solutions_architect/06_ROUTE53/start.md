@@ -403,3 +403,8 @@ Inbound Endpoint – allows your DNS Resolvers to resolve domain names for AWS r
 • Outbound Endpoint - Route 53 Resolver forwards DNS queries to your DNS Resolvers
 
 ![Image](../saa/outbound_endpoint_r53.png)
+
+
+Imagine a company that runs its apps on EC2 instances in an AWS VPC while keeping its legacy database servers in an on-premises data center, connected through AWS VPN. The VPC has a Private Hosted Zone for app.aws.company.com, and the on-premises network has its own DNS server that manages corp.company.local. This setup, where both environments can resolve each other’s names, is Hybrid DNS.
+
+To make it work, the company uses Route 53 Resolver Endpoints. When an on-premises server needs to reach an EC2 instance at app.aws.company.com, its DNS resolver forwards the query to an Inbound Endpoint in the VPC, and Route 53 Resolver answers it from the Private Hosted Zone. In the other direction, when an EC2 instance needs to reach db.corp.company.local, Route 53 Resolver uses an Outbound Endpoint (along with a forwarding rule) to send that query to the on-premises DNS server, which returns the answer. Inbound handles queries coming into AWS, and outbound handles queries going out of AWS.
