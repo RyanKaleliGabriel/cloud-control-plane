@@ -14,7 +14,7 @@ Resources:
           !Sub |
             #!/bin/bash -x
             # Get the latest CloudFormation package
-            dnf update -y aws-cfn-bootstrap
+            yum update -y aws-cfn-bootstrap
             # Initialize EC2 Instance
             /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource MyInstance --region ${AWS::Region}
             # Get result of last command
@@ -31,7 +31,7 @@ Resources:
             yum:
               httpd: []
           files:
-            "/var/www/html/index.html":
+            "/usr/share/httpd/noindex/index.html":
               content: |
                 <h1>Hello World from EC2 instance!</h1>
                 <p>This was created using cfn-init</p>

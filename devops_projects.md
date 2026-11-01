@@ -17,3 +17,25 @@
 2. Navigate the the nodejs repo in github. Add a file called buildspec.yml. Copy the contents of this file from the buildspec.yml in the code files under code build.Commit the changes and look at the build activity in codebuild. View the logs to see how the build worked.
 
 3. Now we want to integrate the codebuild to codepipeline. Navigate to your codebuild project and edit it. Remove the 'Rebuild everytime a code change is pushed to this repo' option, unselect it. Now go to code pipeline and edit it. In the build stage, give it a name and set the following.Action Provider = aws codebuild, Project Name = MyFirstBuild which is te codebuild project name, Build type = SIngle build, Output artifacts give it a name and save. Now change the congratulations in the index.html in the github repo to horrible so that the test does not pass and commit the changes. Also add codebuild admin access permission policy to the codepipeline service role. Change the horrible to congratulations and let the piepline run
+
+## Code Artifcat
+
+1. Its not free tier so watch the hands on video in udemy
+
+## Cloudformation
+
+1. Create a stack in cloud formation. Upload the /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/from-developer-course/0-just-ec2.yaml file in the configuration with default settings. Run the stack and look at the events and resources section
+
+2. Update the stack using a new template which is this /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/from-developer-course/1-ec2-with-sg-eip.yaml, observe the events and resources. Delet the stakc to also remove all resources
+
+3. Trigger a failureand rollback by creating a new stack and use this template /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/from-developer-course/0-just-ec2.yaml update the stack using this template /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/from-developer-course/2-trigger-failure.yaml. In updating the stack make sure you select "Roll back all resources. Roll back the stack to the last known stable state." Now observe as it rollbacks automatically after failing.
+
+4. Test the deletion Poluicy of cloudformation by creating a stack using this template /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/from-developer-course/4-deletionpolicy.yaml. One resource has a retain policy and the other has a snapshot. Delete the stack. Now check if a snapshot has been created and delete it. Also after the stack has been deleted, check the seurity groupif it has been retained
+
+5. Test custom resources in cloudfront by creating a aws cloudfront stack using this /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/2-custom-resource-lambda-backed.yaml template. It will create a lambda function, s3 bucket and iam roles so you have to acknolwedge the capabilities in the creation process. The lambda function will be triggered to empty the bucket before cloudfront deleted the bucket in the evnt you want to delete the stack. So after the bucket has been created. Upload three files in it. After that delete the bucket and then check the lambda cloud watch logs to see how the bucket will be emptied first the check the cloudfront events
+
+6. Create a cloudformation stack using this templat /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/from-sysops-course/0-user-data.yaml to verify how to create an ec2 instance using a user data script. Access the ec2 using its public ip to see if it worked. Delete the stack
+
+7. Create a cfn init stack using this template /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/from-sysops-course/1-cfn-init.yaml to demonstrate the cfn init capability. Confirm it worked by accessing the ec2 using its public ip. Delete the stack
+
+8. Create a cfn signal stack using this template /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/from-sysops-course/2-cfn-signal.yaml to demonstrate the cfn signal capability. Confirm it worked by accessing the ec2 using its public ip and by looking at the cf events to see if the simplewaitcondition received a 'Received SUCCESS signal with UniqueId ec2-instance-id'. Delete the stack

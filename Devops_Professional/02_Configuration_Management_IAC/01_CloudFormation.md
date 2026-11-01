@@ -272,3 +272,461 @@ Type:
 • Important pseudo parameters:
 
 ![Image](../DPI/pseudo_params.png)
+
+## CloudFormation – Mappings
+
+• Mappings are fixed variables within your CloudFormation template
+
+• They’re very handy to differentiate between different environments (dev vs prod) regions (AWS regions), AMI types…
+
+• All the values are hardcoded within the template
+
+![Image](../DPI/cf_mappings.png)
+
+## Accessing Mapping Values (Fn::FindInMap)
+
+• We use Fn::FindInMap to return a named value from a specific key
+
+• !FindInMap [ MapName, TopLevelKey, SecondLevelKey ]
+
+![Image](../DPI/accessing_mapping_values.png)
+
+## When would you use Mappings vs. Parameters?
+
+Mappings are great when you know in advance all the values that can be taken and that they can be deduced from variables such as
+ 
+ - Region
+ 
+ - Availability Zone
+ 
+ - AWS Account
+ 
+ - Environment (dev vs prod)
+ 
+ - etc…
+
+
+• They allow safer control over the template
+
+• Use parameters when the values are really user specific
+
+## CloudFormation – Outputs
+
+• The Outputs section declares optional outputs values that we can import into other stacks (if you export them first)!
+
+• You can also view the outputs in the AWS Console or in using the AWS CLI
+
+• They’re very useful for example if you define a network CloudFormation, and output the variables such as VPC ID and your Subnet IDs
+
+• It’s the best way to perform some collaboration cross stack, as you let expert handle their own part of the stack
+
+![Image](../DPI/cf_outputs.png)
+
+## CloudFormation – Outputs
+
+• Creating a SSH Security Group as part of one template
+
+• We create an output that references that security group
+
+![Image](../DPI/cf_oututs2.png)
+
+## CloudFormation – Outputs Cross-Stack Reference
+
+• We then create a second template that leverages that security group
+
+• For this, we use the Fn::ImportValue function
+
+• You can’t delete the underlying stack until all the references are deleted
+
+![Image](../DPI/cf_outputs_coss_stack.png)
+
+## CloudFormation – Conditions
+
+Conditions are used to control the creation of resources or outputs based on a condition
+
+Conditions can be whatever you want them to be, but common ones are:
+ 
+ - Environment (dev / test / prod)
+ 
+ - AWS Region
+ 
+ - Any parameter value
+
+![Image](../DPI/cf_conditions.png)
+
+## How to define a Condition
+
+![Image](../DPI/how_to_define__a_condition.png)
+
+The logical ID is for you to choose. It’s how you name condition
+
+The intrinsic function (logical) can be any of the following:
+
+-  Fn::And
+
+-  Fn::Equals
+
+-  Fn::If
+
+-  Fn::Not
+
+-  Fn::Or
+
+## How to use a Condition
+
+• Conditions can be applied to resources / outputs / etc…
+
+![Image](../DPI/how_to_use_a_condition.png)
+
+## CloudFormation – Intrinsic Functions
+
+
+Ref
+
+Fn::Base64
+
+Fn::GetAtt
+
+Fn::Cidr
+
+Fn::FindInMap
+
+Fn::GetAZs
+
+Fn::ImportValue
+
+Fn::Select
+
+Fn::Join
+
+Fn::Split
+
+Fn::Sub
+
+Fn::Transform
+
+Fn::ForEach
+
+Fn::Length
+
+Fn::ToJsonString
+
+Condition Functions (Fn::If, Fn::Not, Fn::Equals, etc…)
+
+## Intrinsic Functions – Fn::Ref
+
+The Fn::Ref function can be leveraged to reference
+ 
+ - Parameters – returns the value of the parameter
+ 
+ - Resources – returns the physical ID of the underlying resource (e.g., EC2 ID)
+
+The shorthand for this in YAML is !Ref
+
+![Image](../DPI/intrinsic_function.png)
+
+## Intrinsic Functions – Fn::GetAtt
+
+• Attributes are attached to any resources you create
+
+• To know the attributes of your resources, the best place to look at is the documentation
+
+• Example: the public DNS name of an EC2 instance!
+
+![Image](../DPI/intrinsic_function2.png)
+
+## Intrinsic Functions – Fn::FindInMap
+
+• We use Fn::FindInMap to return a named value from a specific key
+
+• !FindInMap [ MapName, TopLevelKey, SecondLevelKey ]
+
+![Image](../DPI/intrinsic_function3.png)
+
+## Intrinsic Functions – Fn::ImportValue
+
+• Import values that are exported in other stacks
+
+• For this, we use the Fn::ImportValue function
+
+![Image](../DPI/intrinsic_function4.png)
+
+## Intrinsic Functions – Fn::Base64
+
+• Convert String to it’s Base64 representation
+
+![Imafe](../DPI/intrinsic_function5.png)
+
+• Example: pass encoded data to EC2 Instance’s UserData property
+
+![Image](../DPI/intrinsic_function6.png)
+
+## Intrinsic Functions – Condition Functions
+
+![Image](../DPI/intrinsic_function7.png)
+
+• The logical ID is for you to choose. It’s how you name condition
+
+The intrinsic function (logical) can be any of the following:
+
+- Fn::And
+
+- Fn::Equals
+
+- Fn::If
+
+- Fn::Not
+
+- Fn::Or
+
+## CloudFormation – Rollbacks
+
+Stack Creation Fails:
+ - Default: everything rolls back (gets deleted). We can look at the log
+ - Option to disable rollback and troubleshoot what happened
+
+Stack Update Fails:
+ - The stack automatically rolls back to the previous known working state
+ - Ability to see in the log what happened and error messages
+
+Rollback Failure? Fix resources manually then issue ContinueUpdateRollback API from Console
+ - Or from the CLI using continue-update-rollback API call
+
+## CloudFormation – Service Role
+
+IAM role that allows CloudFormation to create/update/delete stack resources on your behalf
+
+Give ability to users to create/update/delete the stack resources even if they don’t have permissions to work with the resources in the stack
+
+Use cases:
+ 
+ - You want to achieve the least privilege principle
+ 
+ - But you don’t want to give the user all the required permissions to create the stack resources
+
+• User must have iam:PassRole permissions
+
+![Image](../DPI/cf_service_role.png)
+
+## CloudFormation Capabilities
+
+CAPABILITY_NAMED_IAM and CAPABILITY_IAM
+
+ - Necessary to enable when you CloudFormation template is creating or updating IAM resources (IAM User, Role, Group, Policy, Access Keys, Instance Profile…)
+
+ - Specify CAPABILITY_NAMED_IAM if the resources are named
+
+CAPABILITY_AUTO_EXPAND
+
+ - Necessary when your CloudFormation template includes Macros or Nested Stacks (stacks within stacks) to perform dynamic transformations
+
+ - You’re acknowledging that your template may change before deploying
+
+InsufficientCapabilitiesException
+
+ - Exception that will be thrown by CloudFormation if the capabilities haven’t been acknowledged when deploying a template (security measure)
+
+## CloudFormation – DeletionPolicy Delete
+
+DeletionPolicy:
+ - Control what happens when the CloudFormation template is deleted or when a resource is removed from a CloudFormation template
+ - Extra safety measure to preserve and backup resources
+
+Default DeletionPolicy=Delete
+ - Delete won’t work on an S3 bucket if the bucket is not empty
+
+![IMAGE](../DPI/cf_deletionpolicy.png)
+
+## CloudFormation – DeletionPolicy Retain
+
+DeletionPolicy=Retain:
+ - Specify on resources to preserve in case of CloudFormation deletes
+
+Works with any resources
+
+![Image](../DPI/cf_deletionpolicy_retain.png)
+
+## CloudFormation – DeletionPolicy Snapshot
+
+• DeletionPolicy=Snapshot
+
+• Create one final snapshot before deleting the resource
+
+Examples of supported resources:
+
+- EBS Volume, ElastiCache Cluster, ElastiCache ReplicationGroup
+
+- RDS DBInstance, RDS DBCluster, Redshift Cluster, Neptune DBCluster, DocumentDB DBCluster
+
+![Image](../DPI/cf_deletionpolicy_snapshot.png)
+
+## CloudFormation – Stack Policies
+
+• During a CloudFormation Stack update, all update actions are allowed on all resources (default)
+• A Stack Policy is a JSON document that defines the update actions that are allowed on specific resources during Stack updates
+
+• Protect resources from unintentional updates
+
+• When you set a Stack Policy, all resources in the Stack are protected by default
+
+• Specify an explicit ALLOW for the resources you want to be allowed to be updated
+
+![Image](../DPI/cf_stackpolicies.png)
+
+## CloudFormation – Termination Protection
+
+• To prevent accidental deletes of CloudFormation Stacks, use TerminationProtection
+
+## CloudFormation – Custom Resources
+
+Used to
+ 
+ - define resources not yet supported by CloudFormation
+ 
+ - define custom provisioning logic for resources can that be outside of CloudFormation (on-premises resources, 3rd party resources…)
+ 
+ - have custom scripts run during create / update / delete through Lambda functions (running a Lambda function to empty an S3 bucket before being deleted)
+
+• Defined in the template using AWS::CloudFormation::CustomResource or Custom::MyCustomResourceTypeName (recommended)
+
+• Backed by a Lambda function (most common) or an SNS topic
+
+## How to define a Custom Resource?
+
+• ServiceToken specifies where CloudFormation sends requests to, such as Lambda ARN or SNS ARN (required & must be in the same region)
+
+• Input data parameters (optional)
+
+![Image](../DPI/custom_resource.png)
+
+## Use Case – Delete content from an S3 bucket
+
+• You can’t delete a non-empty S3 bucket
+
+• To delete a non-empty S3 bucket, you must first delete all the objects inside it
+
+• We can use a custom resource to empty an S3 bucket before it gets deleted by CloudFormation
+
+![Image](../DPI/delete_from_s3.png)
+
+## Custom Resources – How does it work?
+
+![Image](../DPI/custom_resources_how_does_it_work.png)
+
+## Hands-On: Lambda-backed Custom Resource
+
+• You can’t delete a non-empty S3 bucket
+
+• To delete a non-empty S3 bucket, you must first delete all the objects inside it
+
+• We’ll create a custom resource with AWS Lambda that will be used to empty an S3 bucket before deleting it
+
+• Let’s create our first Custom Resource!
+
+![Image](../DPI/lambda_custom_resource.png)
+
+## CloudFormation – Dynamic References
+
+• Reference external values stored in Systems Manager Parameter Store and Secrets Manager within CloudFormation templates
+
+• CloudFormation retrieves the value of the specified reference during create/update delete operations
+
+• For example: retrieve RDS DB Instance master password from Secrets Manager
+
+Supports
+ - ssm – for plaintext values stored in SSM Parameter Store
+ - ssm-secure – for secure strings stored in SSM Parameter Store
+ - secretsmanager – for secret values stored in Secrets Manager
+  ‘{{resolve:service-name:reference-key}}’
+
+![Image](../DPI/cf_dynamic_ref.png)
+
+## CloudFormation – Dynamic References
+
+![Image](../DPI/cf_dynamic_ref2.png)
+
+## CloudFormation, Secrets Manager & RDS Option 1 – ManageMasterUserPassword
+
+• ManageMasterUserPassword – creates admin secret implicitly
+
+• RDS, Aurora will manage the secret in Secrets Manager and its rotation
+
+![Image](../DPI/cf_secrets_rds.png)
+
+## CloudFormation, Secrets Manager & RDS Option 2 – Dynamic Reference
+
+![Image](../DPI/cf_secrets_rds2.png)
+
+## User Data in EC2 for CloudFormation
+
+• We can have user data at EC2 instance launch through the console
+
+• Let’s learn how to write the same EC2 user-data script in our CloudFormation template
+
+• The important thing to pass is the entire script through the function Fn::Base64
+
+• Good to know, user data script log is in /var/log/cloud-init-output.log
+
+• Let’s see how to do this in CloudFormation!
+
+## The Problems with EC2 User Data
+
+• What if we want to have a very large instance configuration?
+
+• What if we want to evolve the state of the EC2 instance without terminating it and creating a new one?
+
+• How do we make EC2 user-data more readable?
+
+• How do we know or signal that our EC2 user-data script completed successfully?
+
+Enter CloudFormation Helper Scripts!
+ - Python scripts, that come directly on Amazon Linux AMIs, or can be installed using yum or dnf on non-Amazon Linux AMIs
+ - cfn-init, cfn-signal, cfn-get-metadata, cfn-hup
+
+## AWS::CloudFormation::Init
+
+• A config contains the following and is executed in that order
+ 
+ - Packages: used to download and install pre-packaged apps and components on Linux Windows (ex. MySQL, PHP, etc…)
+ 
+ - Groups: define user groups
+ 
+ - Users: define users, and which group they belong to
+ 
+ - Sources: download files and archives and place them on the EC2 instance
+ 
+ - Files: create files on the EC2 instance, using inline or can be pulled from a URL
+ 
+ - Commands: run a series of commands
+ 
+ - Services: launch a list of sysvinit
+
+![Image](../DPI/cf_init.png)
+
+## CloudFormation – cfn-init
+
+• Used to retrieve and interpret the resource metadata, installing packages, creating files and starting services
+
+• With the cfn-init script, it helps make complex EC2 configurations readable
+
+• The EC2 instance will query the CloudFormation service to get init data
+
+• AWS::CloudFormation::Init must be in the Metadata of a resource
+
+• Logs go to /var/log/cfn-init.log
+
+![Image](../DPI/cf_cfn_init.png)
+
+## CloudFormation – cfn-signal & Wait Conditions
+
+• We still don’t know how to tell CloudFormation that the EC2 instance got properly configured after a cfn-init
+• For this, we can use the cfn-signal script!
+• We run cfn-signal right after cfn-init
+• Tell CloudFormation service that the resource creation success/fail
+to keep on going or fail
+• We need to define WaitCondition:
+• Block the template until it receives a signal from cfn-signal
+• We attach a CreationPolicy (also works on EC2, ASG)
+• We can define a Count > 1 (in case you need more than 1 signal)
+
+![Image](../DPI/cf_cfn_signal_wait.png)

@@ -14,7 +14,7 @@ Resources:
           !Sub |
             #!/bin/bash -xe
             # Get the latest CloudFormation package
-            dnf update -y aws-cfn-bootstrap
+            yum update -y aws-cfn-bootstrap
             # Start cfn-init
             /opt/aws/bin/cfn-init -s ${AWS::StackId} -r MyInstance --region ${AWS::Region} || error_exit 'Failed to run cfn-init'
     Metadata:
@@ -25,7 +25,7 @@ Resources:
             yum:
               httpd: []
           files:
-            "/var/www/html/index.html":
+            "/usr/share/httpd/noindex/index.html":
               content: |
                 <h1>Hello World from EC2 instance!</h1>
                 <p>This was created using cfn-init</p>

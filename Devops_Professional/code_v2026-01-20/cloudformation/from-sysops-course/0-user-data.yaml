@@ -9,14 +9,14 @@ Resources:
       SecurityGroups:
         - !Ref SSHSecurityGroup
       # we install our web server with user data
-      UserData: 
+      UserData:
         Fn::Base64: |
           #!/bin/bash -xe
-          dnf update -y
-          dnf install -y httpd
+          yum update -y
+          yum install -y httpd
           systemctl start httpd
           systemctl enable httpd
-          echo "<h1>Hello World from user data</h1>" > /var/www/html/index.html
+          echo "<h1>Hello World from user data</h1>" > /usr/share/httpd/noindex/index.html
 
   # our EC2 security group
   SSHSecurityGroup:
@@ -24,11 +24,11 @@ Resources:
     Properties:
       GroupDescription: SSH and HTTP
       SecurityGroupIngress:
-      - CidrIp: 0.0.0.0/0
-        FromPort: 22
-        IpProtocol: tcp
-        ToPort: 22
-      - CidrIp: 0.0.0.0/0
-        FromPort: 80
-        IpProtocol: tcp
-        ToPort: 80
+        - CidrIp: 0.0.0.0/0
+          FromPort: 22
+          IpProtocol: tcp
+          ToPort: 22
+        - CidrIp: 0.0.0.0/0
+          FromPort: 80
+          IpProtocol: tcp
+          ToPort: 80
