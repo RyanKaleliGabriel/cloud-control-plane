@@ -730,3 +730,283 @@ to keep on going or fail
 • We can define a Count > 1 (in case you need more than 1 signal)
 
 ![Image](../DPI/cf_cfn_signal_wait.png)
+
+## Wait Condition Didn't Receive the Required Number of Signals from an Amazon EC2 Instance
+
+• Ensure that the AMI you're using has the AWS CloudFormation helper scripts installed. If the AMI doesn't include the helper scripts, you can also download them to your instance
+
+• Verify that the cfn-init & cfn-signal command was successfully run on the instance. You can view logs, such as /var/log cloud-init.log or /var/log/cfn-init.log, to help you debug the instance launch
+
+• You can retrieve the logs by logging in to your instance, but you must disable rollback on failure or else AWS CloudFormation  deletes the instance after your stack fails to create
+
+• Verify that the instance has a connection to the Internet. If the instance is in a VPC, the instance should be able to connect to the Internet through a NAT device if it's is in a private subnet or through an Internet gateway if it's in a public subnet
+
+• For example, run: curl -I https://aws.amazon.com
+
+## CloudFormation – Nested Stacks
+
+• Nested stacks are stacks as part of other stacks
+
+• They allow you to isolate repeated patterns / common components in separate stacks and call them from other stacks
+
+Example:
+ 
+ - Load Balancer configuration that is re-used
+ 
+ - Security Group that is re-used
+• Nested stacks are considered best practice
+
+• To update a nested stack, always update the parent (root stack)
+
+• Nested stacks can have nested stacks themselves!
+
+![Image](../DPI/cf_nested_stacks.png)
+
+## Cross Stacks vs. Nested Stacks
+
+Cross Stacks
+
+ - Helpful when stacks have different lifecycles
+
+ - Use Outputs Export and Fn::ImportValue
+
+ - When you need to pass export values to many stacks (VPC Id…)
+
+Nested Stacks
+ - Helpful when components must be re-used
+
+ - Example: re-use how to properly configure an Application Load Balancer
+
+ - The nested stack only is important to the higher-level stack (it’s not shared)
+
+![Image](../DPI/cross_stacks_nested_stacks.png)
+
+## CloudFormation – DependsOn
+
+Specify that the creation of a specific resource follows another
+
+When added to a resource, that resource is created only after the creation of the resource specified in the DependsOn attribute
+
+Applied automatically when using !Ref and !GetAtt
+
+Use with any resource
+
+![Image](../DPI/cf_depends_on.png)
+
+## CloudFormation – StackSets
+
+• Create, update, or delete stacks across multiple accounts and regions with a single operation/template
+
+• Administrator account to create StackSets
+
+• Target accounts to create, update, delete stack instances from StackSets
+
+• When you update a stack set, all associated stack instances are updated throughout all accounts and regions
+
+• Can be applied into all accounts of an AWS organizations
+
+![Image](../DPI/cf_stacksets.png)
+
+## CloudFormation – StackSets Permission Models
+
+Self-managed Permissions
+ 
+ - Create the IAM roles (with established trusted relationship) in both administrator and target accounts
+ 
+ - Deploy to any target account in which you have permissions to create IAM role
+
+Service-managed Permissions
+ 
+ - Deploy to accounts managed by AWS Organizations
+ 
+ - StackSets create the IAM roles on your behalf (enable trusted access with AWS Organizations)
+ 
+ - Must enable all features in AWS Organizations
+ 
+ - Ability to deploy to accounts added to your organization in the future (Automatic Deployments)
+
+![Image](../DPI/cf_stacksets_permission_models.png)
+
+## StackSets with AWS Organizations
+
+• Ability to automatically deploy Stack instances to new Accounts in an Organization
+
+• Can delegate StackSets administration to member accounts in AWS Organization
+
+• Trusted access with AWS Organizations must be enabled before delegated administrators can deploy to accounts managed by Organizations
+
+## StackSets with AWS Organizations
+
+![Image](../DPI/stacksets_aws_organizations.png)
+
+## Hands-On: StackSets
+
+• We’ll use StackSets to enable AWS Config across AWS regions with a single click
+
+• Let’s see how this works!
+
+![Image](../DPI/hands-on-stacksets.png)
+
+## CloudFormation – Troubleshooting
+
+DELETE_FAILED
+
+ • Some resources must be emptied before deleting, such as S3 buckets
+
+ • Use Custom Resources with Lambda functions to automate some actions
+
+ • Security Groups cannot be deleted until all EC2 instances in the group are gone
+
+ • Think about using DeletionPolicy=Retain to skip deletions
+
+UPDATE_ROLLBACK_FAILED
+
+ • Can be caused by resources changed outside of CloudFormation, insufficient permissions, Auto Scaling Group that doesn’t receive enough signals…
+
+ • Manually fix the error and then ContinueUpdateRollback
+
+## CloudFormation – StackSet Troubleshooting
+
+A stack operation failed, and the stack instance status is OUTDATED.
+ 
+ - Insufficient permissions in a target account for creating resources that are specified in your template.
+ 
+ - The template could be trying to create global resources that must be unique but aren't, such as S3 buckets
+ 
+ - The administrator account does not have a trust relationship with the target account
+ 
+ - Reached a limit or a quota in the target account (too many resources)
+
+## CloudFormation – Troubleshooting
+
+• You can’t set EC2 instance private DNS name in a CloudFormation template (there’s no PrivateDnsName attribute)
+ - Or anything else you wouldn’t be able to set through the AWS Console
+
+If your CloudFormation template works in one Region and doesn’t work in
+another Region:
+ 
+ - Check if AWS services in the template are available in this Region
+ 
+ - Check AMI IDs (AMIs are regional)
+ 
+ - Check hardcoded region-specific values (e.g., ARNs)
+ 
+ - Check unique names for resources that require it (e.g., S3 bucket names are globally unique)
+
+## CloudFormation – ChangeSets
+
+• When you update a stack, you need to know what changes will happen before it applying them for greater confidence
+
+• ChangeSets won’t say if the update will be successful
+
+• For Nested Stacks, you see the changes across all stacks
+
+![Image](../DPI/cf_changesets.png)
+
+## cfn-hup
+
+• Can be used to tell your EC2 instance to look for Metadata changes every 15 minutes and apply the Metadata configuration again
+
+• It’s very powerful but you really need to try it out to understand how it works
+
+• It relies on a cfn-hup configuration, see /etc/cfn/cfn- hup.conf and /etc/cfn/hooks.d/cfn-auto-reloader.conf
+
+![Image](../DPI/cf-hub.png)
+
+## CloudFormation – Drift
+
+• CloudFormation allows you to create infrastructure
+
+• But it doesn’t protect you against manual configuration changes
+
+• How do we know if our resources have drifted?
+
+• We can use CloudFormation Drift!
+
+• Detect drift on an entire stack or on individual resources within a stack
+
+![Image](../DPI/cf_drift.png)
+
+## StackSet Drift Detection
+
+• Performs drift detection on the stack associated with each stack instance in the StackSet
+
+If the current state of a resource in a stack varies from the expected state:
+ 
+ - The stack considered drifted
+ 
+ - And the stack instance that the stack associated with considered drifted
+ 
+ - And the StackSet is considered drifted
+
+• Drift detection identifies unmanaged changes (outside CloudFormation)
+
+• Changes made through CloudFormation to a stack directly (not at the StackSet level), aren’t considered drifted
+
+• You can stop drift detection on a StackSet
+
+![Image](../DPI/stackset_drift_detection.png)
+
+## AWS Service Catalog
+
+• Users that are new to AWS have too many options, and may create stacks that are not compliant / in line with the rest of the organization
+
+• Some users just want a quick self-service portal to launch a set of authorized products pre-defined by admins
+
+• Includes: virtual machines, databases, storage options, etc…
+
+• Enter AWS Service Catalog!
+
+## Service Catalog diagram
+
+![Image](../DPI/service_catalog_diagram.png)
+
+## AWS Service Catalog
+
+
+• Create and manage catalogs of IT services that are approved on AWS
+
+• The “products” are CloudFormation templates
+
+• Ex: Virtual machine images, Servers, Software, Databases, Regions, IP address ranges
+
+• CloudFormation helps ensure consistency, and standardization by Admins
+
+• They are assigned to Portfolios (teams)
+
+• Teams are presented a self-service portal where they can launch the products
+
+• All the deployed products are centrally managed deployed services
+
+• Helps with governance, compliance, and consistency
+
+• Can give user access to launching products without requiring deep AWS knowledge
+
+• Integrations with “self-service portals” such as ServiceNow
+
+## Service Catalog – Stack Set Constraints
+
+• Allows you to configure Product deployment options using CloudFormation StackSets
+
+• Accounts – identify AWS accounts where you want to create Products
+
+• Regions – identify AWS regions where you want to deploy to (with Order)
+
+• Permissions – IAM StackSet Administrator Role to manage target AWS accounts
+
+![ImAGE](../DPI/service_catalog_stackset_constraints.png)
+
+## Service Catalog – Launch Constraints
+
+IAM Role assigned to a Product which allows a user to launch, update, or terminate a product with minimal IAM permissions
+
+Example: end user has access only to Service Catalog, all other permissions required are attached to the Launch Constraint IAM Role IAM Role must have the following permissions:
+ - CloudFormation (Full Access)
+
+ - AWS Services in the CloudFormation template
+
+ - S3 Bucket which contains the CloudFormation template (Read Access)
+
+ ## Service Catalog – Continuous Delivery Pipeline (Syncing with CodeCommit)
+
+ ![Image](../DPI/sc_cd_pipeline.png)
