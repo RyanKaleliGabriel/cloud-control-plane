@@ -548,3 +548,8 @@ Check in the not free directory.
 70. Launch an ec2 instance with the default settings and no key pair and in advanced section we will create an IAM profile. Navigate to IAM and roles and create a role for ec2. Choose this for permissions "AmazonSSMManagedInstanceCore". Give it a name and create the role. Select the role in the ec2 iam profile and launch the instance. Navigate to the fleet manager uunder the ssm service to see all instances managed by ssm there. Navigate to session manager and start session. Select the ec2 insatnce and start the session
 
 
+## Devops
+
+1. In the same prod environment, implment an immuable deployment. In the envoronment, navigate to configuration, monitoring and updates and edit the deployment mode to immutable. On the top navbar of the production environment click on upload and deploy and add this zip file /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/beanstalk/nodejs-v2-blue.zip it changes the background to blue. Deploy the changes and view the events to see how immutable deployment works
+
+2. Check the sam deployment here https://www.udemy.com/course/aws-certified-devops-engineer-professional-hands-on/learn/lecture/37869152#questions
