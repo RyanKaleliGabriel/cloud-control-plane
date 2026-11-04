@@ -38,7 +38,7 @@ Resources:
                 runas=root
         configure:
           files:
-            "/var/www/html/index.html":
+            "/usr/share/httpd/noindex/index.html":
               content: |
                 <html>
                 <head>
@@ -47,6 +47,7 @@ Resources:
                 <body>
                   <h1>Hello, World! Welcome to my website!</h1>
                   <p> I've added some content to it </p>
+                  <p>More and more</p>
                 </body>
                 </html>
               mode: "000644"

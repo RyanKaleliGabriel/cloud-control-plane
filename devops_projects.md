@@ -39,3 +39,9 @@
 7. Create a cfn init stack using this template /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/from-sysops-course/1-cfn-init.yaml to demonstrate the cfn init capability. Confirm it worked by accessing the ec2 using its public ip. Delete the stack
 
 8. Create a cfn signal stack using this template /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/from-sysops-course/2-cfn-signal.yaml to demonstrate the cfn signal capability. Confirm it worked by accessing the ec2 using its public ip and by looking at the cf events to see if the simplewaitcondition received a 'Received SUCCESS signal with UniqueId ec2-instance-id'. Delete the stack
+
+9. Trigger a cfn-signa failure using this template /home/sysadmin/Personal_Projects/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/from-sysops-course/3-cfn-signal-failure.yaml to demonstrate cloudformation rolling back all the changes and deleting the resources. Delete the stack
+
+10. Create an stack using this template /home/sysadmin/Personal_Projects/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/from-sysops-course/5-dependson.yml to demonstrate depends on. The s3 bucket will only be created after the creation complete event for the ec2 instance is displayed in cloudformation. Delete the stack. Observe if the s3 bucket is deleted first
+
+11. Create a stack using this template /home/sysadmin/Personal_Projects/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/0-cfn-hup-demo.yml to demonstrate cfn hup that changes metadata on provisioned cloudformation resources. After the instance is running UPDATE the stack and add a paragraph in the metadata section and upload the updated yaml file to see the metadata change. Delete the stack
