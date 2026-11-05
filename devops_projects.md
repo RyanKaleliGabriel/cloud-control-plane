@@ -45,3 +45,16 @@
 10. Create an stack using this template /home/sysadmin/Personal_Projects/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/from-sysops-course/5-dependson.yml to demonstrate depends on. The s3 bucket will only be created after the creation complete event for the ec2 instance is displayed in cloudformation. Delete the stack. Observe if the s3 bucket is deleted first
 
 11. Create a stack using this template /home/sysadmin/Personal_Projects/cloud-control-plane/Devops_Professional/code_v2026-01-20/cloudformation/0-cfn-hup-demo.yml to demonstrate cfn hup that changes metadata on provisioned cloudformation resources. After the instance is running UPDATE the stack and add a paragraph in the metadata section and upload the updated yaml file to see the metadata change. Delete the stack
+
+## Beanstalk
+
+12. Create a beanstalk environment, application name = MyApplication, Enivornment = MyApplication-dev, platform = Nodejs, sample app, hello world Also set enironment type to single instance. Give the beanstalk environment a service role (aws-elasticbeanstalk-service-role) and instance role (aws-elasticbeanstalk-ec2-role) they are the first roles in each drop down. (Look at the policies attached to them at your own time). Launch your instances
+
+13. Create a beanstalk environment, application name = MyApplication, Enivornment = MyApplication-prod, platform = Nodejs, sample app, hello world Also set enironment type to single instance. Give the beanstalk environment a service role (aws-elasticbeanstalk-service-role) and instance role (aws-elasticbeanstalk-ec2-role) they are the first roles in each drop down. (Look at the policies attached to them at your own time). Launch your environment. Explore the services and security groups
+
+
+14. In the same prod environment, implment an immuable deployment. In the envoronment, navigate to configuration, monitoring and updates and edit the deployment mode to immutable. On the top navbar of the production environment click on upload and deploy and add this zip file /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/beanstalk/nodejs-v2-blue.zip it changes the background to blue. Deploy the changes and view the events to see how immutable deployment works
+
+## AWS SAM 
+
+15. Check the sam deployment here https://www.udemy.com/course/aws-certified-devops-engineer-professional-hands-on/learn/lecture/37869152#questions
