@@ -11,8 +11,8 @@ mainSteps:
   name: configureApache
   inputs:
     runCommand:
-    - 'sudo yum update -y'
-    - 'sudo yum install -y httpd'
+    - 'sudo dnf update -y'
+    - 'sudo dnf install -y httpd'
     - 'sudo systemctl start httpd'
     - 'sudo systemctl enable httpd'
-    - 'echo "{{Message}} from $(hostname -f)" > /var/www/html/index.html'
+    - 'echo "{{Message}} from $(hostname -f)" > /usr/share/httpd/noindex/index.html'

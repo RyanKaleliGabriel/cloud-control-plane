@@ -99,3 +99,28 @@ Note:
 ## Reserved and Provisioned Concurrency
 
 ![Image](../DPI/reserved_and_provisioned_concurrency.png)
+
+## Lambda – File Systems Mounting
+
+• Lambda functions can access EFS file systems if they are running in a VPC
+
+• Configure Lambda to mount EFS file systems to local directory during initialization
+
+• Must leverage EFS Access Points
+
+• Limitations: watch out for the EFS connection limits (one function instance = one
+connection) and connection burst limits
+
+![Image](../DPI/lambda_file_systems_mounting.png)
+
+## Lambda – Storage Options
+
+![Image](../DPI/lambda_storage_options.png)
+
+## Lambda – Cross-Account EFS Mounting
+
+![Image](../DPI/lambda_cross_account_efs_mounting.png)
+
+## Example: Building a Serverless API
+
+![Image](../DPI/building_serverless_api.png)

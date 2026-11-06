@@ -58,3 +58,118 @@
 ## AWS SAM 
 
 15. Check the sam deployment here https://www.udemy.com/course/aws-certified-devops-engineer-professional-hands-on/learn/lecture/37869152#questions
+
+## AWS step functions
+
+16. Create a step function sampled hello world, take a look at the flow chart and study the code as well. Execute it and look at the events,inputs and outputs, variables. Change the variable IsHelloWorldExample to false so that the step function is fails
+
+17. Create a new state machine, create from blank and give it a name. Navigae to code and add the contents of this file /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/step-functions/0-hello-world/state-machine.json. Go through the file to see how it works. It prints wohoo if sthe name stephane is in the payload. Create a lambda function from scratch, the lambda function will be nodejs based and will have these contents /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/step-functions/0-hello-world/function.js. Test the function. and copy the functions arn to the API parameters of the step functions. The API parameter is found when you navigate to the design tab a new window will open on your right. Create the state machine and execute. When executing fill in the parameters as 
+
+    ```
+    {
+        "who": "Stephane Mareek"
+    }
+    ```
+
+    for it to work. Change the name to John doe for it to fail
+
+## System Manager
+
+
+18. Navigate to the Systems Manager service and navigate to fleet manager. There are no instances to manage so we will navigate to the ec2 instance to create them. Do not proceed with a key pair and create a new security group removing the accessfrom port 22. Create and IAM instace profile with this role only AmazonSSMManagedInstanceCore and give it a name. After the instances state have changed to runnign refresh the fleet manager
+
+19. Tag those three instaces,
+    Instance 1 Tags
+     - Name: MyDevInstance
+     - Environment:Dev
+     - Team: Finance
+    
+    Instance 2 Tags
+     - Name: MyProdInstance
+     - Environment: Prod
+     - Team: Finance
+    
+    Instance 3 Tags:
+     - Name: MyDevInstance
+     - Environment: Dev
+     - Team: Operations
+
+    Navigate to the resource groups service and create three resource groups name DevGroup, ProdGroup and FinanceGroup and add the approriate instaces there
+
+20. Add a security groupof your ec2 instances and add http access inbound rule from anywhere. Navigate to documents in ssm and create document. Select Command or Session. And give it a name, target = EC2 instance, Doc type Command. Edit the content by deleting the current yaml code and add the contents of this yaml file /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/ssm/document-install-apache.yml. Navigate to the run command and create a run command. Select the document your created and write a message. Target selection = Choose instances manually and you can select all three. Concurrency control = 1. Error threshold = 0. Enable cloudwatch logs and run the command. Check the cloudwatch logs and try accessing the ec2 instances with their public ips to see the message after all instances have been updated
+
+21. Create a ssm automation by navigating to the automation section in ssm. Search fro AWS-Restart and select awsrestartec2 and select the latest version before clicking next. Click Next. In the configuration select Rate Control, Parameter = InstanceID, Targets=Resource Group, Resource Group = DevGroup, Concurrency= 1, Error Threshold = 1
+
+22. Create a parameter in systemsmanager under parameter store:
+    Name: /my-app/dev/db-url
+    Description: DB URL for dev eniroment
+    Tier: standard
+    Type: string
+    Data typ: text
+    Value: dev.database.stephanetheteacher.com:3306
+
+    Create another parameter for db password
+    Name: /my-app/dev/db-password
+    Description: DB password
+    Tier standard
+    Type: securestring
+    KEy:any kms key
+    Data type: text
+    Value: devpassword 
+
+    Create two other parameters but switch dev with prod in the same manner. In cloudshell write 
+    ```
+     aws ssm get-parameters --names /my-app/dev/db-url /my-app/dev/db-password
+    ```
+    to get the values
+
+    To get vaues decrypted write 
+    ```
+     aws ssm get-parameters --names /my-app/dev/db-url /my-app/dev/db-password
+    ```
+
+    Other commands
+
+    ```
+     aws ssm get-parameters --names /my-app/dev/db-url /my-app/dev/db-password
+    ```
+
+    All parameter under my-app
+
+    ```
+    aws ssm get-parameters-by-path --path /my-app/ --recursive
+    ```
+
+23. Start a session manager for your prod instance and run commands. Terminate the fleet instances under fleet manager.
+
+24. Under fleet management. Click on 'Configure Default Host Management Configuration'. Then Enable Default Host Management Configuration and configure. Launch an ec2 instance with no keypair and watch it appear in the fleet manager.Under security in the ec2 instance check that there are no iam roles attached.This shows system manager can control and manage your instance. Disable the DHMC in account management in the fleet manager tab and terminate the instance
+
+25. Create an activation, Instance limit = 1, Iam role = create a system default... . Create the actvation, copy the activation code somewhere. Under ec2 launch an instancename = OnPremises, OS= Ubuntu, proceed withut key pair and launch the instance. Connect the ec2 instance with ec2 connect and run the following commands to activate the hybrid connection /home/ryankaleligabriel/cloud-control-plane/Devops_Professional/code_v2026-01-20/ssm/managed-instance-setup.sh.Wait for 5 minutes and refresh the fleet manager to see the ec2 instance displayed. Terminate the instance and delete the activation
+
+## Lambda
+
+1. Create a lambda function from scratch with python and modiy the code to be this
+   ```
+    import json
+
+    def lambda_handler(event, context):
+    return "this is version 1
+   ```
+
+   Deploy and test.
+   Go to the top section in actions, publis new version, click on pubish. Now you can test the lambda version but you cannot update(edit) it (because you are under lambda version 1), you go back to the lambda function. When you go back to the lambda function update(edit), test and publish and you will see version 2 being created
+
+   Now navigate the lambda function section and create an alias named dev and it should be linked to the latest version. Create a test alias and let it point to version 2. Test the alias to confirm the output. Create the prod alias and point it to version 1. Test the alias.
+
+   Go to the list of all aliases and edit the prod alias to receive weighted traffic for version 20, add the percentage to 50% and test the alias. You should get traffic from both versions
+
+2. Create a lambda function modify its code to return a env name
+   ```
+    import json
+    import os
+
+    def lambda_handler(event, context):
+        return os.getenv("ENVIRONMENT_NAME")
+   ```
+
+   Navigate to configuration and add a environment variable name ENVIRONMENT_VARIABLE with a value of dev. Test the function to see the env variable.

@@ -8,3 +8,4 @@ sudo snap stop amazon-ssm-agent
 # edit the code, id and region in the command below
 sudo /snap/amazon-ssm-agent/current/amazon-ssm-agent -register -code "activation-code" -id "activation-id" -region "region" 
 sudo snap start amazon-ssm-agent
+
