@@ -173,6 +173,50 @@
    ```
 
    Navigate to configuration and add a environment variable name ENVIRONMENT_VARIABLE with a value of dev. Test the function to see the env variable.
+<<<<<<< HEAD
 ## CDK
 
 16. For this we want to create a cdk script that will Deploy an s3 bucket which will trigger a lambda function that will analyze the image send it to rekognition to analyse the image and send the result to lambda. The result will be stored in dynamodb. Tutorial was abit complicated with the dependencies but check it out here https://www.udemy.com/course/aws-certified-devops-engineer-professional-hands-on/learn/lecture/37869428#overview
+=======
+
+## API GATEWAY
+
+1. Create an api gateway in  the api gateway service. Choose rest api and the api detail should be new API. Give it a name and set the endpoint type to regional and create it. Navigate to the api and create a method. Should be a GET type and lambda function integration. Enable lambda proxy integration , leave it as buffered. And from here we have to create the lambda function. Give your lambda function a name and choose python 3.14 as the runtime, leave other setting. Copy the lambda code in the api-gateway folder (/home/ryankaleligabriel/cloud-control-plane/Solutions_architect/code_v2025-10-27/api-gateway/lambda-code.py) and test it. Go back to the api gateway and select the new lambda function and create method. Go to the lambda function and in under configuration and permissions check the resource based policy to see if the api gateway is authorized to access your lambda function. Test to see the response. In the api gateway, Create a resource and name it houses. Repeat the same steps for creaing a method and linking the method to a new lambda function that instead says "HELLO from my pretty houses" in the print statement. Test the endpoint from the api gateway. Deploy the api and choose a new stage and name it dev. Test the invoke URL with both endpoints i.e "/" and "/houses".
+
+2. Create a  new resource and name it /stage-variables. Create a lambda function and name it api-gateway-stage-variable-get. Copy the same code from the file in the first task but it should say hello from lambda v1. Test it, Deploy it, then test it again. Still in lambda go to actions and publish it as v1. Go back to the function change it to say HEllo from lambda v2 and repeat the steps up until publishing. Go back to the function, update the code to say hello from dev. Do not publish the function as it is going to be the latest one. Now create aliases for the function named DEV, TEST and PROD. Pointing to LATEST, V2 AND V1 respectively. Now head back to api gateway and create a method which will be a get method under stage-variables. Choose the lambda arn from the lambda funcion you created and after the arn add ':${stageVariables.lambdaAlias}'. A warning willpop up that will ask if you have the right permissions and you have to add it to cloud shell. Copy the permissions command and modify this part named stageVariables.lambdaAlias and add the aliases you created as shown in the commnda below
+
+   ```
+   aws lambda add-permission \
+    --function-name "arn:aws:lambda:us-east-1:737429582017:function:ApiGatewayFunc-stage-variable-get:DEV" \
+    --source-arn "arn:aws:execute-api:us-east-1:737429582017:rpwuod3yjg/*/GET/stage-variables" \
+    --principal apigateway.amazonaws.com \
+    --statement-id 33fdc68b-b863-44a0-a6a7-04a652604517 \
+    --action lambda:InvokeFunction
+   ```
+
+   ```
+    aws lambda add-permission \
+    --function-name "arn:aws:lambda:us-east-1:737429582017:function:ApiGatewayFunc-stage-variable-get:TEST" \
+    --source-arn "arn:aws:execute-api:us-east-1:737429582017:rpwuod3yjg/*/GET/stage-variables" \
+    --principal apigateway.amazonaws.com \
+    --statement-id 33fdc68b-b863-44a0-a6a7-04a652604517 \
+    --action lambda:InvokeFunction
+   ```
+
+   ```
+    aws lambda add-permission \
+    --function-name "arn:aws:lambda:us-east-1:737429582017:function:ApiGatewayFunc-stage-variable-get:PROD" \
+    --source-arn "arn:aws:execute-api:us-east-1:737429582017:rpwuod3yjg/*/GET/stage-variables" \
+    --principal apigateway.amazonaws.com \
+    --statement-id 33fdc68b-b863-44a0-a6a7-04a652604517 \
+    --action lambda:InvokeFunction
+   ```
+
+   Create your method. Go back to your lambda function alias like the prod one and confirm under configuration and permissions if a new resource based policy of the api agteway has been added. Back to the api-gateway click on the get method in stage-variables and test it. You will notice lambdaAlias input field. Test with the respective lambda alises like PROD, TEST and DEV. Now deploy the api with a stage name called dev and after deploying scroll down and manage stage variables. Add a new one called lambdaAlias and give its value should be DEV. It means this deployment will trigger the PROD alias. Deploy the api two more times repeating the steps for the prod and test as stage names and add the stage variables for the respective lambda aliases. Test the api using the invoke url and add /stage-variables because it it the name of the resource.
+
+2. OpenAPI implementation. Under api gateway, create a new api and select rest api and import.You can import api or use example api and create the api. You can also go to the api we created from the previous tasks and navigate to a stage for example prod in stage actions you can export api to generate an api definition file or generate a sdk for your api that can be used for different platforms and this is generated by api gateway
+
+3. You can cache the api-gateway in the stages by editing the stage details
+
+4. Canary deployment. Create a new resource under the api we created in the eariler tasks and name it /canary-demo. Use a lambda function in the resource ad use the arn that we used for stage-variables tasks because it has two versions 1 and 2. In the arn add ':1' to reference version 1. e.g arn:aws:lambda:us-east-1:737429582017:function:ApiGatewayFunc-stage-variable-get:1. Test and deploy in a new stage called canary. Test the url ending with /canary-demo so that it takes you to v1. In th canary stage. Go to canary section below and edit the canary to 50%. Go back to resources and under /canary-dem and GET, edit the integration request and in the arn. Switch the arn to :2 and save. Deploy the api again and choose the stage as canary and now you can test the inoke url to see the requests going from v1 to v2.
+>>>>>>> 2b375e5 (Changes)

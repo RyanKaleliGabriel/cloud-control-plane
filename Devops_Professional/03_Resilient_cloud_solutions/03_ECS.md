@@ -87,3 +87,81 @@ ECS Task Role:
 • Use cases: containers needing shared file access to data that already lives in S3
 
 ![Image](../DPI/ecs_data_volumes_s3.png)
+
+## ECS Service Auto Scaling
+
+Automatically increase/decrease the desired number of ECS tasks
+
+Amazon ECS Auto Scaling uses AWS Application Auto Scaling
+ - ECS Service Average CPU Utilization
+ - ECS Service Average Memory Utilization - Scale on RAM
+ - ALB Request Count Per Target – metric coming from the ALB
+
+Target Tracking – scale based on target value for a specific CloudWatch metric
+
+Step Scaling – scale based on a specified CloudWatch Alarm
+
+Scheduled Scaling – scale based on a specified date/time (predictable changes)
+
+ECS Service Auto Scaling (task level) ≠ EC2 Auto Scaling (EC2 instance level)
+
+Fargate Auto Scaling is much easier to setup (because Serverless)
+
+## EC2 Launch Type – Auto Scaling EC2 Instances
+
+Accommodate ECS Service Scaling by adding underlying EC2 Instances
+
+Auto Scaling Group Scaling
+ - Scale your ASG based on CPU Utilization
+ - Add EC2 instances over time
+
+ECS Cluster Capacity Provider
+ - Used to automatically provision and scale the infrastructure for your ECS Tasks
+ - Capacity Provider paired with an Auto Scaling Group
+ - Add EC2 Instances when you’re missing capacity (CPU, RAM…)
+
+## ECS Scaling – Service CPU Usage Example
+
+![Image](../DPI/ecs_scaling_service_cpu.png)
+
+## ECS tasks invoked by Event Bridge
+
+![Image](../DPI/ecs_tasks_inoked_eb.png)
+
+## ECS tasks invoked by Event Bridge Schedule
+
+![Image](../DPI/ecs_tasks_eb2.png)
+
+## ECS – SQS Queue Example
+
+![Image](../DPI/ecs-sqs-queue-example.png)
+
+## ECS – Intercept Stopped Tasks using EventBridge
+
+![Image](../DPI/ecs-intercept-stopped-tasks.png)
+
+## ECS – Logging with “awslogs” driver
+
+• Containers can send application logs directly to CloudWatch Logs
+
+• You need to turn on awslogs log driver (for CW Logs)
+
+• Configure logConfiguration parameters in your Task Definition
+
+Fargate Launch Type
+ - Task Execution Role must have the required permissions
+ - Supports awslogs, splunk, awsfirelens log drivers
+
+EC2 Launch Type
+ - Prevents logs from taking up disk space on your container EC2 instances
+ - Uses CloudWatch Unified Agent & ECS Container Agent
+ - Enable logging using ECS_AVAILABLE_LOGGING_DRIVERS in /etc/ecs/ecs.config
+ - Container EC2 instances must have permissions
+
+![Image](../DPI/ecs_logging_with_advisors.png)
+
+## ECS – Logging with Sidecar Container
+
+Using a sidecar container which is responsible for collecting logs from all other containers and files on the file system and send the logs to a log storage (e.g., CloudWatch Logs)
+
+![Image](../DPI/ecs_logging_with_sidecar_container.png)
