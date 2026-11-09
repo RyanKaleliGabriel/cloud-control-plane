@@ -73,3 +73,21 @@ NS – Name Servers for the Hosted Zone
 • If all records have weight of 0, then all records will be returned equally
 
 ![Image](../DPI/rp_weighted2.png)
+
+## Routing Policies – Latency-based
+
+• Redirect to the resource that has the least latency close to us
+
+• Super helpful when latency for users is a priority
+
+• Latency is based on traffic between users and AWS Regions
+
+• Germany users may be directed to the US (if that’s the lowest latency)
+
+• Can be associated with Health Checks (has a failover capability)
+
+![Image](../DPI/rp_latency_based.png)
+
+## Routing Policies – Failover (Active-Passive)
+
+![Image](../DPI/rp_failover.png)
