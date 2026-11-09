@@ -173,3 +173,6 @@
    ```
 
    Navigate to configuration and add a environment variable name ENVIRONMENT_VARIABLE with a value of dev. Test the function to see the env variable.
+## CDK
+
+16. For this we want to create a cdk script that will Deploy an s3 bucket which will trigger a lambda function that will analyze the image send it to rekognition to analyse the image and send the result to lambda. The result will be stored in dynamodb. Tutorial was abit complicated with the dependencies but check it out here https://www.udemy.com/course/aws-certified-devops-engineer-professional-hands-on/learn/lecture/37869428#overview

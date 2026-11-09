@@ -19,7 +19,9 @@ npm install @aws-cdk/aws-s3 @aws-cdk/aws-iam @aws-cdk/aws-lambda @aws-cdk/aws-la
 
 
 # 3. setup the Lambda function
-mkdir lambda && touch index.py
+mkdir lambda && cd lambda 
+
+touch index.py
 
 # 4. bootstrap the CDK application
 cdk bootstrap

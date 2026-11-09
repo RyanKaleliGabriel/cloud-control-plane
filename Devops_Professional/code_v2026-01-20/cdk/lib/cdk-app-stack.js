@@ -17,19 +17,13 @@ class CdkAppStack extends cdk.Stack {
     constructor(scope, id, props) {
         super(scope, id, props);
 
-        // The code that defines your stack goes here
 
-        // ========================================
-        // Bucket for storing images
-        // ========================================
         const bucket = new s3.Bucket(this, imageBucket, {
             removalPolicy: cdk.RemovalPolicy.DESTROY,
         });
         new cdk.CfnOutput(this, "Bucket", { value: bucket.bucketName });
 
-        // ========================================
-        // Role for AWS Lambda
-        // ========================================
+
         const role = new iam.Role(this, "cdk-rekn-lambdarole", {
             assumedBy: new iam.ServicePrincipal("lambda.amazonaws.com"),
         });
@@ -46,18 +40,14 @@ class CdkAppStack extends cdk.Stack {
             })
         );
 
-        // ========================================
-        // DynamoDB table for storing image labels
-        // ========================================
+
         const table = new dynamodb.Table(this, "cdk-rekn-imagetable", {
             partitionKey: { name: "Image", type: dynamodb.AttributeType.STRING },
             removalPolicy: cdk.RemovalPolicy.DESTROY,
         });
         new cdk.CfnOutput(this, "Table", { value: table.tableName });
 
-        // ========================================
-        // AWS Lambda function
-        // ========================================
+
         const lambdaFn = new lambda.Function(this, "cdk-rekn-function", {
             code: lambda.AssetCode.fromAsset("lambda"),
             runtime: lambda.Runtime.PYTHON_3_8,
