@@ -77,3 +77,37 @@ Advantages:
  - Minimizes latency spikes
 
 ![Image](../DPI/dms_multi-az_deployment.png)
+
+## AWS DMS – Replication Task Monitoring
+
+Task Status
+ - Indicates the condition of the Task (e.g., Creating, Running, Stopped...)
+ - Task Status Bar – gives an estimation of the Task’s progress
+
+Table State
+ - Includes the current state of the tables (e.g., Before load, Table completed...)
+ - Number of inserts, deletions, and updates for each table
+
+![Image](../DPI/DMS_RTM.png)
+
+## AWS DMS – CloudWatch Metrics
+
+![Image](../DPI/dms_cwm.png)
+
+## AWS DMS – CloudWatch Metrics
+
+Host Metrics
+ - Performance and utilization statistics for the replication host
+ - CPUUtilization, FreeableMemory, FreeStorageSpace, WriteIOPS…
+
+Replication Task Metrics
+ - Statistics for Replication Task including incoming and committed changes, latency between the Replication Host and both source and target databases
+ - FullLoadThroughputRowsSource, FullLoadThroughputRowsTarget, CDCThroughputRowsSource, CDCThroughputRowsTarget...
+
+Table Metrics
+ - Statistics for tables that are in the process of being migrated, including the number of insert, update, delete, and DDL statements completed
+
+
+
+
+
