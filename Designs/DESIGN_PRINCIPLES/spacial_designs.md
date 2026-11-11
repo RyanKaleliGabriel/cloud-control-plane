@@ -41,7 +41,7 @@ Monitoring
 
 
 Design one and make sure the following is ticked:
-1. It is a secure architecture.
-2. It is a resilient architecture.
-3. It is a high performant architecture.
-4. It is cost optimized.
+1. It is a secure architecture. Who can access this, what can they do, and how would I know if they misused it?
+2. It is a resilient architecture. What fails, and what recovers it automatically?
+3. It is a high performant architecture. What is the bottleneck, and which service removes it?
+4. It is cost optimized. Am I paying for capacity I'm not using, or a pricier option than the workload needs?
