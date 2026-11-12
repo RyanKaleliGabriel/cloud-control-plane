@@ -209,3 +209,138 @@ S3 Access Logs => to S3
 
 CloudFront Access Logs => to S3
  - Detailed information about every user request that CloudFront receives
+
+## CloudWatch Logs for EC2
+
+• By default, no logs from your EC2 machine will go to CloudWatch
+
+• You need to run a CloudWatch agent on EC2 to push the log files you want
+
+• Make sure IAM permissions are correct
+
+• The CloudWatch log agent can be setup on-premises too
+
+![Image](../DPI/cw_logs_ec2.png)
+
+## CloudWatch Logs Agent & Unified Agent
+
+For virtual servers (EC2 instances, on-premise servers…)
+
+CloudWatch Logs Agent
+ - Old version of the agent
+ - Can only send to CloudWatch Logs
+
+CloudWatch Unified Agent
+ - Collect additional system-level metrics such as RAM, processes, etc…
+ - Collect logs to send to CloudWatch Logs
+ - Centralized configuration using SSM Parameter Store
+
+## CloudWatch Unified Agent – Metrics
+
+
+• Collected directly on your Linux server / EC2 instance
+
+• CPU (active, guest, idle, system, user, steal)
+
+• Disk metrics (free, used, total), Disk IO (writes, reads, bytes, iops)
+
+• RAM (free, inactive, used, total, cached)
+
+• Netstat (number of TCP and UDP connections, net packets, bytes)
+
+• Processes (total, dead, bloqued, idle, running, sleep)
+
+• Swap Space (free, used, used %)
+
+• Reminder: out-of-the box metrics for EC2 – disk, CPU, network (high level)
+
+## CloudWatch Alarms
+
+• Alarms are used to trigger notifications for any metric
+
+• Various options (sampling, %, max, min, etc…)
+
+Alarm States:
+ - OK
+ - INSUFFICIENT_DATA
+ - ALARM
+
+Period:
+ - Length of time in seconds to evaluate the metric
+ - High resolution custom metrics: 10 sec, 30 sec or multiples of 60 sec
+
+## CloudWatch Alarm Targets
+
+• Stop, Terminate, Reboot, or Recover an EC2 Instance
+
+• Trigger Auto Scaling Action
+
+• Send notification to SNS (from which you can do pretty much anything)
+
+![Image](../DPI/cw_alarm_targets.png)
+
+## CloudWatch Alarms – Composite Alarms
+
+
+• CloudWatch Alarms are on a single metric
+
+• Composite Alarms are monitoring the states of multiple other alarms
+
+• AND and OR conditions
+
+• Helpful to reduce “alarm noise” by creating complex composite alarms
+
+![Image](../DPI/cw_alarms_ca.png)
+
+## EC2 Instance Recovery
+
+Status Check:
+ - Instance status = check the EC2 VM
+
+ - System status = check the underlying hardware
+
+ - Attached EBS status = check attached EBS volumes
+
+![iMAGE](../DPI/ec2_IR.png)
+
+• Recovery: Same Private, Public, Elastic IP, metadata, placement group
+
+## CloudWatch Alarm: good to know
+
+• Alarms can be created based on CloudWatch Logs Metrics Filters
+
+![Image](../DPI/cwa_gtk.png)
+
+• To test alarms and notifications, set the alarm state to Alarm using CLI aws cloudwatch set-alarm-state --alarm-name "myalarm" --state-value ALARM --state-reason "testing purposes"
+
+## CloudWatch Synthetics Canary
+
+• Configurable script that monitor your APIs, URLs, Websites...
+
+• Reproduce what your customers do programmatically to find issues before customers are impacted
+
+• Checks the availability and latency of your endpoints and can store load time data and screenshots of the UI
+
+• Integration with CloudWatch Alarms
+
+• Scripts written in Node.js or Python
+
+• Programmatic access to a headless Google Chrome browser
+
+• Can run once or on a regular schedule
+
+![Image](../DPI/cw_sc.png)
+
+## CloudWatch Synthetics Canary Blueprints
+
+• Heartbeat Monitor – load URL, store screenshot and an HTTP archive file
+
+• API Canary – test basic read and write functions of REST APIs
+
+• Broken Link Checker – check all links inside the URL that you are testing
+
+• Visual Monitoring – compare a screenshot taken during a canary run with a baseline screenshot
+
+• Canary Recorder – used with CloudWatch Synthetics Recorder (record your actions on a website and automatically generates a script for that)
+
+• GUI Workflow Builder – verifies that actions can be taken on your webpage (e.g., test a webpage with a login form)
