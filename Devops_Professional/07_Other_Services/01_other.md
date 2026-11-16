@@ -48,3 +48,21 @@ Integrated with RDS, Aurora, Athena, Redshift, S3…
 • Glue Studio: new GUI to create, run and monitor ETL jobs in Glue
 
 • Glue Streaming ETL (built on Apache Spark Structured Streaming): compatible with Kinesis Data Streaming, Kafka, MSK (managed Kafka)
+
+## Study
+
+1. SDLC 1-4 Mon
+
+2. SDLC 5-6, CM 1 Tue
+
+3. CM 2-5 WED
+
+4. RCS 1-6 Thur
+
+5. RCS 7-11(2) Fri
+
+6. RCS 12-17 Fri
+
+7. Monitoring and Incident Sat
+
+8. Security compliance and other Sat
