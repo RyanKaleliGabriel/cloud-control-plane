@@ -50,15 +50,15 @@ CodeDeploy can help you automate traffic shift for Lambda aliases
 
 Feature is integrated within the SAM framework
 
-Linear: grow traffic every N minutes until 100%
+Linear: grow traffic every N minutes until 100%. Linear: Traffic grows in equal steps at fixed intervals until it hits 100% (e.g., LambdaLinear10PercentEvery3Minutes adds 10% every 3 minutes).
  - LambdaLinear10PercentEvery3Minutes
  - LambdaLinear10PercentEvery10Minutes
 
-Canary: try X percent then 100%
+Canary: try X percent then 100%. anary: A small percentage goes to the new version first, then all remaining traffic shifts after the wait time (e.g., LambdaCanary10Percent5Minutes sends 10% for 5 minutes, then 100%).
  - LambdaCanary10Percent5Minutes
  - LambdaCanary10Percent30Minutes
 
-AllAtOnce: immediate
+AllAtOnce: immediate. AllAtOnce: All traffic shifts to the new version immediately.
 
 ![Image](../DPI/codedeploy_lambda_platform.png)
 
