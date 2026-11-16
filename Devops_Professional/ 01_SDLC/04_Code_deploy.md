@@ -82,8 +82,8 @@ AllAtOnce: immediate
 
 ## CodeDeploy – In-place Deployments
 
-• Use EC2 Tags or ASG to identify instances you want to deploy to
-• With a Load Balancer: traffic is stopped before instance is updated, and started again after the instance is updated
+In-place deployments: CodeDeploy updates the application directly on your existing instances, identified by EC2 tags or an Auto Scaling Group (ASG).
+With a load balancer: Traffic to each instance is stopped before it’s updated and resumed afterward, so users aren’t sent to an instance mid-update.
 
 ![Imahe](../DPI/codedeploy_inplace2.png)
 
