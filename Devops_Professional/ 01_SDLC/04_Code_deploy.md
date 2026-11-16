@@ -111,18 +111,20 @@ With a load balancer: Traffic to each instance is stopped before it’s updated 
 
 ## CodeDeploy – Blue/Green Deployments
 
-• Manually mode: provision EC2 Instances for Blue and Green and identify by Tags
+ - Manual mode: You provision the Blue and Green EC2 instances yourself and tell CodeDeploy which are which using tags.
 
-• Automatic mode: new ASG is provisioned by CodeDeploy (settings are copied)
+ - Automatic mode: CodeDeploy creates a new Auto Scaling Group for the Green environment, copying the settings from the existing one.
 
-• Using a Load Balancer is necessary for Blue/Green
+ - Load balancer: It’s required for Blue/Green, since it’s what shifts traffic from the old (Blue) instances to the new (Green) ones.
 
 ![Image](../DPI/cd_blue_green.png)
 
 ## CodeDeploy – Blue-Green Instance Termination
 
 • BlueInstanceTerminationOption – specify whether to terminate the original (Blue) EC2 instances after a successfully Blue-Green deployment
+
 • Action Terminate - Specify Wait Time, default 1 hour, max 2 days
+
 • Action Keep Alive - Instances are kept running but deregistered from ELB and deployment group
 
 ![Image](../DPI/cd_blue_green_instance_term.png)
