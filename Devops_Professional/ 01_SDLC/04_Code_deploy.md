@@ -265,10 +265,9 @@ If a roll back happens, CodeDeploy redeploys the last known good revision as a n
 
 ## CodeDeploy – Troubleshooting
 
-Deployment Error: “InvalidSignatureException – Signature expired: [time] is now earlier than [time]”
- - For CodeDeploy to perform its operations, it requires accurate time references
- 
- - If the date and time on your EC2 instance are not set correctly, they might not match the signature date of your deployment request, which CodeDeploy rejects
+ - The error: InvalidSignatureException – Signature expired means CodeDeploy rejected your request because the timestamp in its signature doesn’t match the current time.
+ - The cause: AWS requests are signed with a timestamp, so if your EC2 instance’s clock is off, the signature looks expired or invalid and gets denied.
+ - The fix: Sync the instance’s clock (e.g., with NTP, chrony, or Amazon Time Sync Service) so its date and time are accurate.
 
 ![Image](../DPI/cd_troubleshooting.png)
 
