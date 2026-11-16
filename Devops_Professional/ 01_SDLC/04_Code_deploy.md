@@ -303,10 +303,10 @@ Reasons:
 
 ## CodeDeploy – Troubleshooting
 
-Issue: failed AllowTraffic lifecycle event in Blue/Green Deployments with no error reported in the Deployment Logs
+The issue: A Blue/Green deployment fails at the AllowTraffic lifecycle event, but the deployment logs show no error.
 
- - Reason: incorrectly configured health checks in ELB
+The reason: The ELB health checks are misconfigured (e.g., wrong path, port, or protocol), so the new instances never pass and the load balancer won’t route traffic to them.
 
- - Resolution: review and correct any errors in ELB health checks configuration
+The fix: Review the ELB health check settings and correct them so they match what your application actually serves.
 
 ![Image](../DPI/cd_troubleshooting4.png)
