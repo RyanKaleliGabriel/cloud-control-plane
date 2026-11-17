@@ -265,7 +265,7 @@ Type:
 
 ## CloudFormation – Pseudo Parameters
 
-• AWS offers us Pseudo Parameters in any CloudFormation template
+• AWS offers us Pseudo Parameters in any CloudFormation template - Pseudo parameters: Built-in values AWS provides in every CloudFormation template, available by default with no need to declare them.
 
 • These can be used at any time and are enabled by default
 
