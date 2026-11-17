@@ -81,9 +81,15 @@ User-Based
  - IAM Policies – which API calls should be allowed for a specific user from IAM
 
 Resource-Based
- - Bucket Policies – bucket wide rules from the S3 console - allows cross account
- - Object Access Control List (ACL) – finer grain (can be disabled)
- - Bucket Access Control List (ACL) – less common (can be disabled)
+
+ - Bucket policies are JSON, resource-based policies attached to a bucket. They can cover the whole bucket or specific prefixes or objects within it, and they support conditions (source IP, VPC endpoint, encryption required, MFA, and so on). They can grant access to
+   other AWS accounts, which makes them the standard tool for cross-account sharing. This is the primary, recommended mechanism today.
+
+ - Object ACLs are a legacy mechanism that sets permissions on an individual object. Each object gets its own list of grantees (accounts or predefined groups) with simple permissions like READ or WRITE. They give you per-object granularity, but they’re hard to audit
+   at scale because permissions are scattered across objects. You can turn them off by setting the bucket’s Object Ownership to “Bucket owner enforced.”
+
+ - Bucket ACLs are also legacy, and they apply at the bucket level. Their main remaining use is granting the S3 log delivery group permission to write server access logs into a bucket. They are coarse (you can only grant things like list, write, and read/write ACL
+   permissions on the bucket itself) and rarely needed. They are disabled by the same Object Ownership setting.
 
 Note: an IAM principal can access an S3 object if
  - The user IAM permissions ALLOW it OR the resource policy ALLOWS it
