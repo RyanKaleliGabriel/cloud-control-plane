@@ -481,16 +481,11 @@ The intrinsic function (logical) can be any of the following:
 
 ## CloudFormation – Rollbacks
 
-Stack Creation Fails:
- - Default: everything rolls back (gets deleted). We can look at the log
- - Option to disable rollback and troubleshoot what happened
+ - Stack creation fails: By default, everything rolls back and gets deleted, but you can still read the logs; you can also disable rollback to keep the resources and troubleshoot.
 
-Stack Update Fails:
- - The stack automatically rolls back to the previous known working state
- - Ability to see in the log what happened and error messages
+ - Stack update fails: The stack automatically rolls back to the last known working state, and the logs show what went wrong and the error messages.
 
-Rollback Failure? Fix resources manually then issue ContinueUpdateRollback API from Console
- - Or from the CLI using continue-update-rollback API call
+ - Rollback fails: Manually fix the problem resources, then call ContinueUpdateRollback from the Console or the CLI (continue-update-rollback) to finish the rollback.
 
 ## CloudFormation – Service Role
 
