@@ -124,21 +124,11 @@ Allows creation of logical groups of resources such as
 
 ## SSM – Run Command
 
-• Execute a document (= script) or just run a command
-
-• Run command across multiple instances (using resource groups)
-
-• Rate Control / Error Control
-
-• Integrated with IAM & CloudTrail
-
-• No need for SSH
-
-• Command Output can be shown in the Console, sent to S3 bucket or CloudWatch Logs
-
-• Send notifications to SNS about command statues (In progress, Success, Failed...)
-
-• Can be invoked using EventBridge
+ - What it does: Run Command executes a document (script) or a single command on your instances, with no SSH needed.
+ - Targeting: You can run it across many instances at once using resource groups, with rate control and error control to limit how fast it rolls out and when it stops on failures.
+ - Security and auditing: It’s integrated with IAM for permissions and CloudTrail for tracking who ran what.
+ - Output: Results can be viewed in the Console, sent to an S3 bucket, or sent to CloudWatch Logs.
+ - Notifications and triggers: It can send command status updates (In Progress, Success, Failed, etc.) to SNS and can be invoked by EventBridge.
 
 ![Image](../DPI/ssm_run_command.png)
 
