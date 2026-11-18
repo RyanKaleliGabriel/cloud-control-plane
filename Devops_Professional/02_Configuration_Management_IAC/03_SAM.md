@@ -67,7 +67,7 @@ sam sync --watch
 
 • Traffic Shifting feature
 
-• Pre and Post traffic hooks features to validate deployment (before the traffic shift starts and after it ends)
+• Pre and post traffic hooks: Lambda functions that validate the deployment before the traffic shift starts and after it finishes.
 
 • Easy & automated rollback using CloudWatch Alarms
 
