@@ -314,17 +314,11 @@ Maintenance Window contains
 
 ## Systems Manager Default Host Management Configuration
 
-• When enabled, it automatically configure your EC2 instances as managed instances without the use of EC2 Instance Profile
-
-• Instance Identity Role – a type of IAM Role with no permissions beyond identifying the EC2 instance to AWS Services (e.g., Systems Manager)
-
-• EC2 instances must have IMDSv2 enabled and SSM Agent installed (doesn’t support IMDSv1)
-
-• Automatically enables Session Manager, Patch Manager, and Inventory
-
-• Automatically keeps the SSM Agent up to date
-
-• Must be enabled per AWS Region
+ - What it is: Default Host Management Configuration (DHMC) automatically makes your EC2 instances managed by Systems Manager, with no EC2 instance profile needed.
+ - How it works: It uses an Instance Identity Role, an IAM role with no permissions beyond identifying the instance to AWS services like Systems Manager.
+ - Requirements: Instances must have IMDSv2 enabled (IMDSv1 isn’t supported) and the SSM Agent installed.
+ - What you get automatically: Session Manager, Patch Manager, and Inventory are enabled, and the SSM Agent is kept up to date.
+ - Scope: It must be enabled separately in each AWS Region.
 
 ![Image](../DPI/system_manager_default_host.png)
 
@@ -386,17 +380,12 @@ Can send compliance data to Security Hub
 
 ## Systems Manager – OpsCenter
 
-Allows you to view, investigate, and remediate issues in one place (no need to navigate across different AWS services)
-
-Security issues (Security Hub), performance issues (DynamoDB throttle), failures (ASG failed launch instance)...
-Reduce meantime to resolve issues
-
-OpsItems
- - Operational issue or interruption that needs investigation and remediation
- - Event, resource, AWS Config changes, CloudTrail logs EventBridge...
- - Provides recommended Runbooks to resolve the issue
-
-Supports both EC2 instances and on-premises managed nodes
+ - What it is: OpsCenter is a single place in Systems Manager to view, investigate, and fix operational issues, so you don’t have to jump between AWS services.
+ - Issues it covers: Security problems (Security Hub), performance problems (DynamoDB throttling), and failures (ASG failing to launch an instance), which helps reduce mean time to resolve.
+ - OpsItems: Each OpsItem represents an operational issue or interruption that needs investigation and remediation.
+ - Sources: OpsItems can come from events, resources, AWS Config changes, CloudTrail logs, EventBridge, and more.
+ - Remediation: It recommends runbooks to help resolve the issue.
+ - Supported targets: Works with both EC2 instances and on-premises managed nodes.
 
 ## Systems Manager – OpsCenter
 
