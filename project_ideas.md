@@ -17,6 +17,7 @@
     -  Turn on password expiration
     -  Allow users to change their own password
     - Prevent password reuse
+    - Password expires after 30, 60, 90 choose the number of days
    Create a user and a user_group and the iam_group should have administrator access. Add the user to that group. Set up MFA for that user using google authenticator
 
 
