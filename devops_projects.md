@@ -173,11 +173,6 @@
    ```
 
    Navigate to configuration and add a environment variable name ENVIRONMENT_VARIABLE with a value of dev. Test the function to see the env variable.
-<<<<<<< HEAD
-## CDK
-
-16. For this we want to create a cdk script that will Deploy an s3 bucket which will trigger a lambda function that will analyze the image send it to rekognition to analyse the image and send the result to lambda. The result will be stored in dynamodb. Tutorial was abit complicated with the dependencies but check it out here https://www.udemy.com/course/aws-certified-devops-engineer-professional-hands-on/learn/lecture/37869428#overview
-=======
 
 ## API GATEWAY
 
@@ -219,4 +214,3 @@
 3. You can cache the api-gateway in the stages by editing the stage details
 
 4. Canary deployment. Create a new resource under the api we created in the eariler tasks and name it /canary-demo. Use a lambda function in the resource ad use the arn that we used for stage-variables tasks because it has two versions 1 and 2. In the arn add ':1' to reference version 1. e.g arn:aws:lambda:us-east-1:737429582017:function:ApiGatewayFunc-stage-variable-get:1. Test and deploy in a new stage called canary. Test the url ending with /canary-demo so that it takes you to v1. In th canary stage. Go to canary section below and edit the canary to 50%. Go back to resources and under /canary-dem and GET, edit the integration request and in the arn. Switch the arn to :2 and save. Deploy the api again and choose the stage as canary and now you can test the inoke url to see the requests going from v1 to v2.
->>>>>>> 2b375e5 (Changes)
