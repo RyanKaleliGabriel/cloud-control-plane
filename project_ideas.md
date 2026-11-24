@@ -13,7 +13,7 @@
       - including uppercase letters
       - lowercase letters
       - numbers
-      - non-alphanumeric characters
+      - an alphanumeric character
     -  Turn on password expiration
     -  Allow users to change their own password
     - Prevent password reuse
